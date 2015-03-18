@@ -1,0 +1,39 @@
+{
+  "name": "markdown-it-anchor",
+  "version": "1.0.0",
+  "description": "Header anchors for markdown-it.",
+  "keywords": [
+    "markdown-it-plugin"
+  ],
+  "homepage": "https://github.com/valeriangalliat/markdown-it-anchor",
+  "license": {
+    "type": "Unlicense",
+    "url": "http://unlicense.org/"
+  },
+  "author": {
+    "name": "Valérian Galliat",
+    "url": "http://val.codejam.info/"
+  },
+  "files": [
+    "README.md",
+    "UNLICENSE",
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valeriangalliat/markdown-it-anchor.git"
+  },
+  "dependencies": {
+    "lodash.assign": "^3.0.0",
+    "string": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel": "^4.5.0",
+    "markdown-it": "^4.0.1"
+  },
+  "scripts": {
+    "build": "babel index.es6.js -o index.js",
+    "prepublish": "$npm_package_scripts_build",
+    "test": "$npm_package_scripts_build && babel-node test.js"
+  }
+}
