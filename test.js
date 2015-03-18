@@ -21,3 +21,8 @@ equal(
   md().use(anchor, { permalink: true, permalinkClass: 'test' }).render('# H1'),
   '<h1 id="h1"><a class="test" href="#h1">¶</a> H1</h1>\n'
 )
+
+equal(
+  md().use(anchor, { permalink: true, permalinkSymbol: 'P' }).render('# H1'),
+  '<h1 id="h1"><a class="header-anchor" href="#h1">P</a> H1</h1>\n'
+)

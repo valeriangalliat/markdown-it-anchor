@@ -5,12 +5,12 @@ import Token from 'markdown-it/lib/token'
 const slugify = s =>
   string(s).slugify().toString()
 
-const renderPermalink = (slug, className, tokens, idx) =>
+const renderPermalink = (slug, opts, tokens, idx) =>
   tokens[idx + 1].children.unshift(
     assign(new Token('link_open', 'a', 1), {
-      attrs: [['class', className], ['href', `#${slug}`]],
+      attrs: [['class', opts.permalinkClass], ['href', `#${slug}`]],
     }),
-    assign(new Token('text', '', 0), { content: '¶' }),
+    assign(new Token('text', '', 0), { content: opts.permalinkSymbol }),
     new Token('link_close', 'a', -1),
     assign(new Token('text', '', 0), { content: ' ' })
   )
@@ -32,7 +32,7 @@ const anchor = (md, opts) => {
       ;(tokens[idx].attrs ||= []).push(['id', slug])
 
       if (opts.permalink) {
-        opts.renderPermalink(slug, opts.permalinkClass, ...args)
+        opts.renderPermalink(slug, opts, ...args)
       }
     }
 
@@ -50,6 +50,7 @@ anchor.defaults = {
   permalink: false,
   renderPermalink,
   permalinkClass: 'header-anchor',
+  permalinkSymbol: '¶',
 }
 
 export default anchor
