@@ -15,19 +15,35 @@ const renderPermalink = (slug, opts, tokens, idx) =>
     assign(new Token('text', '', 0), { content: ' ' })
   )
 
+const uniqueSlug = (slug, env) => {
+  // Add slug storage to environment if it doesn't already exist.
+  env.slugs ||= {}
+
+  // Mark this slug as used in the environment.
+  env.slugs[slug] = (env.slugs[slug] || 0) + 1
+
+  // First slug, return as is.
+  if (env.slugs[slug] === 1) {
+    return slug
+  }
+
+  // Duplicate slug, add a `-2`, `-3`, etc. to keep ID unique.
+  return slug + '-' + env.slugs[slug]
+}
+
 const anchor = (md, opts) => {
   opts = assign({}, anchor.defaults, opts)
 
   const originalHeadingOpen = md.renderer.rules.heading_open
 
   md.renderer.rules.heading_open = function (...args) {
-    const [ tokens, idx, , , self ] = args
+    const [ tokens, idx, , env, self ] = args
 
     if (tokens[idx].tag.substr(1) >= opts.level) {
       const title = tokens[idx + 1].children
         .reduce((acc, t) => acc + t.content, '')
 
-      const slug = opts.slugify(title)
+      const slug = uniqueSlug(opts.slugify(title), env)
 
       ;(tokens[idx].attrs ||= []).push(['id', slug])
 
