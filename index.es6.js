@@ -21,13 +21,24 @@ const anchor = (md, opts) => {
   const originalHeadingOpen = md.renderer.rules.heading_open
 
   md.renderer.rules.heading_open = function (...args) {
-    const [ tokens, idx, , , self ] = args
+    const [ tokens, idx, , env , self ] = args
 
     if (tokens[idx].tag.substr(1) >= opts.level) {
       const title = tokens[idx + 1].children
         .reduce((acc, t) => acc + t.content, '')
 
-      const slug = opts.slugify(title)
+      var slug = opts.slugify(title)
+
+      // Add slug storage to environment if it doesn't already exist
+      env.slugs ||= {}
+
+      // Mark this slug as used in the environment.
+      env.slugs[slug] = (env.slugs[slug] || 0) + 1
+
+      // Duplicate slug - add a '-2', '-3', etc., to keep ID unique
+      if (env.slugs[slug] > 1) {
+        slug += '-' + env.slugs[slug]
+      }
 
       ;(tokens[idx].attrs ||= []).push(['id', slug])
 
