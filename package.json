@@ -6,10 +6,7 @@
     "markdown-it-plugin"
   ],
   "homepage": "https://github.com/valeriangalliat/markdown-it-anchor",
-  "license": {
-    "type": "Unlicense",
-    "url": "http://unlicense.org/"
-  },
+  "license": "Unlicense",
   "author": {
     "name": "Valérian Galliat",
     "url": "http://val.codejam.info/"
