@@ -17,7 +17,7 @@ const renderPermalink = (slug, opts, tokens, idx) =>
 
 const uniqueSlug = (slug, env) => {
   // Add slug storage to environment if it doesn't already exist.
-  env.slugs ||= {}
+  env.slugs = env.slugs || {}
 
   // Mark this slug as used in the environment.
   env.slugs[slug] = (env.slugs[slug] || 0) + 1
@@ -45,7 +45,7 @@ const anchor = (md, opts) => {
 
       const slug = uniqueSlug(opts.slugify(title), env)
 
-      ;(tokens[idx].attrs ||= []).push(['id', slug])
+      ;(tokens[idx].attrs = tokens[idx].attrs || []).push(['id', slug])
 
       if (opts.permalink) {
         opts.renderPermalink(slug, opts, ...args)

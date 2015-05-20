@@ -29,7 +29,7 @@
     "string": "^3.0.1"
   },
   "devDependencies": {
-    "babel": "^4.5.0"
+    "babel": "^5.4.4"
   },
   "scripts": {
     "build": "babel index.es6.js -o index.js",
