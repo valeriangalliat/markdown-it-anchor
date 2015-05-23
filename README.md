@@ -9,7 +9,7 @@ Usage
 
 ```js
 const md = require('markdown-it')
-  .use(require('markdown-it-anchor', opts))
+  .use(require('markdown-it-anchor'), opts)
 ```
 
 The `opts` object can contain:
