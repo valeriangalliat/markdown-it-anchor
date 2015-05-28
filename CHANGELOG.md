@@ -7,6 +7,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [2.0.0] - 2015-05-28
 * Place the permalink after the header by default. ([#3])
 
+  If you want to keep the old behavior, set the `permalinkBefore` option
+  to `true`:
+
+  ```js
+  const md = require('markdown-it')
+    .use(require('markdown-it-anchor'), {
+      permalink: true,
+      permalinkBefore: true
+    })
+  ```
+
 ## [1.1.2] - 2015-05-23
 * Fix a code example in the readme.
 
