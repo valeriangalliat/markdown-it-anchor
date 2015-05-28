@@ -26,11 +26,12 @@
     "string": "^3.0.1"
   },
   "devDependencies": {
-    "babel": "^5.4.4"
+    "babel": "^5.4.4",
+    "standard": "^3.11.1"
   },
   "scripts": {
     "build": "babel index.es6.js -o index.js",
     "prepublish": "$npm_package_scripts_build",
-    "test": "$npm_package_scripts_build && babel-node test.js"
+    "test": "standard index.es6.js test.js && $npm_package_scripts_build && babel-node test.js"
   }
 }

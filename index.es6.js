@@ -10,16 +10,16 @@ const space = () =>
 
 const position = {
   false: 'push',
-  true: 'unshift',
+  true: 'unshift'
 }
 
 const renderPermalink = (slug, opts, tokens, idx) => {
   const linkTokens = [
     assign(new Token('link_open', 'a', 1), {
-      attrs: [['class', opts.permalinkClass], ['href', `#${slug}`]],
+      attrs: [['class', opts.permalinkClass], ['href', `#${slug}`]]
     }),
     assign(new Token('text', '', 0), { content: opts.permalinkSymbol }),
-    new Token('link_close', 'a', -1),
+    new Token('link_close', 'a', -1)
   ]
 
   // `push` or `unshift` according to position option.
@@ -80,7 +80,7 @@ anchor.defaults = {
   renderPermalink,
   permalinkClass: 'header-anchor',
   permalinkSymbol: '¶',
-  permalinkBefore: false,
+  permalinkBefore: false
 }
 
 export default anchor
