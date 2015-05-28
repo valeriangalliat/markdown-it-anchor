@@ -22,6 +22,7 @@ Name              | Description                               | Default
 `renderPermalink` | A custom permalink rendering function.    | See [`index.es6.js`](index.es6.js)
 `permalinkClass`  | The class of the permalink anchor.        | `header-anchor`
 `permalinkSymbol` | The symbol in the permalink anchor.       | `¶`
+`permalinkBefore` | Place the permalink before the title.     | `false`
 
 [slugify]: http://stringjs.com/#methods/slugify
 
