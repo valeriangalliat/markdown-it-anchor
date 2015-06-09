@@ -31,7 +31,8 @@
   },
   "scripts": {
     "build": "babel index.es6.js -o index.js",
-    "prepublish": "$npm_package_scripts_build",
-    "test": "standard index.es6.js test.js && $npm_package_scripts_build && babel-node test.js"
+    "lint": "standard index.es6.js test.js",
+    "prepublish": "npm run build",
+    "test": "npm run lint && npm run build && babel-node test.js"
   }
 }
