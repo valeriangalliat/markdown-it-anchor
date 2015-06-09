@@ -20,6 +20,12 @@
     "type": "git",
     "url": "https://github.com/valeriangalliat/markdown-it-anchor.git"
   },
+  "scripts": {
+    "build": "babel index.es6.js -o index.js",
+    "lint": "standard index.es6.js test.js",
+    "prepublish": "npm run build",
+    "test": "npm run lint && npm run build && babel-node test.js"
+  },
   "dependencies": {
     "lodash.assign": "^3.0.0",
     "markdown-it": "^4.0.1",
@@ -28,11 +34,5 @@
   "devDependencies": {
     "babel": "^5.4.4",
     "standard": "^4.0.1"
-  },
-  "scripts": {
-    "build": "babel index.es6.js -o index.js",
-    "lint": "standard index.es6.js test.js",
-    "prepublish": "npm run build",
-    "test": "npm run lint && npm run build && babel-node test.js"
   }
 }
