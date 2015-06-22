@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+* Set `aria-hidden` on permalink anchor.
+
 ## [2.0.0] - 2015-05-28
 * Place the permalink after the header by default. ([#3])
 

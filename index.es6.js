@@ -16,7 +16,11 @@ const position = {
 const renderPermalink = (slug, opts, tokens, idx) => {
   const linkTokens = [
     assign(new Token('link_open', 'a', 1), {
-      attrs: [['class', opts.permalinkClass], ['href', `#${slug}`]]
+      attrs: [
+        ['class', opts.permalinkClass],
+        ['href', `#${slug}`],
+        ['aria-hidden', 'true']
+      ]
     }),
     assign(new Token('text', '', 0), { content: opts.permalinkSymbol }),
     new Token('link_close', 'a', -1)
