@@ -13,7 +13,14 @@ const position = {
   true: 'unshift'
 }
 
-const renderPermalink = (slug, opts, tokens, idx) => {
+const getAttr = (attrs, name) => {
+  for (let i = 0; i < attrs.length; i++) {
+    if (attrs[i][0] === name) return attrs[i][1]
+  }
+}
+
+const renderPermalink = (opts, tokens, idx) => {
+  const slug = getAttr(tokens[idx].attrs, 'id')
   const linkTokens = [
     assign(new Token('link_open', 'a', 1), {
       attrs: [
@@ -51,28 +58,40 @@ const uniqueSlug = (slug, env) => {
 const anchor = (md, opts) => {
   opts = assign({}, anchor.defaults, opts)
 
-  const originalHeadingOpen = md.renderer.rules.heading_open
+  const addAnchors = state => {
 
-  md.renderer.rules.heading_open = function (...args) {
-    const [ tokens, idx, , env, self ] = args
+    let env = {}
+    let tokens = state.tokens
 
-    if (tokens[idx].tag.substr(1) >= opts.level) {
+    for (let idx = 0, l = tokens.length; idx < l; idx++) {
+      let token = tokens[idx]
+
+      if (token.type !== 'heading_open') continue
+      if (token.tag.substr(1) < opts.level) continue
+
       const title = tokens[idx + 1].children
         .reduce((acc, t) => acc + t.content, '')
 
       const slug = uniqueSlug(opts.slugify(title), env)
 
-      ;(tokens[idx].attrs = tokens[idx].attrs || []).push(['id', slug])
+      token.attrPush(['id', slug])
+    }
+  }
 
-      if (opts.permalink) {
-        opts.renderPermalink(slug, opts, ...args)
-      }
+  md.core.ruler.push('anchor', addAnchors)
+
+  const originalHeadingOpen = md.renderer.rules.heading_open
+
+  md.renderer.rules.heading_open = function (...args) {
+
+    if (opts.permalink) {
+      opts.renderPermalink(opts, ...args)
     }
 
     if (originalHeadingOpen) {
       return originalHeadingOpen.apply(this, args)
     } else {
-      return self.renderToken(...args)
+      return md.renderer.renderToken(...args)
     }
   }
 }
