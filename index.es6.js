@@ -35,28 +35,24 @@ const renderPermalink = (slug, opts, tokens, idx) => {
   tokens[idx + 1].children[position[opts.permalinkBefore]](...linkTokens)
 }
 
-const uniqueSlug = (slug, env) => {
-  // Add slug storage to environment if it doesn't already exist.
-  env.slugs = env.slugs || {}
-
+const uniqueSlug = (slug, slugs) => {
   // Mark this slug as used in the environment.
-  env.slugs[slug] = (env.slugs[slug] || 0) + 1
+  slugs[slug] = (slugs[slug] || 0) + 1
 
   // First slug, return as is.
-  if (env.slugs[slug] === 1) {
+  if (slugs[slug] === 1) {
     return slug
   }
 
   // Duplicate slug, add a `-2`, `-3`, etc. to keep ID unique.
-  return slug + '-' + env.slugs[slug]
+  return slug + '-' + slugs[slug]
 }
 
 const anchor = (md, opts) => {
   opts = assign({}, anchor.defaults, opts)
 
   const addAnchors = state => {
-
-    let env = {}
+    let slugs = {}
     let tokens = state.tokens
 
     for (let idx = 0, l = tokens.length; idx < l; idx++) {
@@ -68,7 +64,7 @@ const anchor = (md, opts) => {
       const title = tokens[idx + 1].children
         .reduce((acc, t) => acc + t.content, '')
 
-      const slug = uniqueSlug(opts.slugify(title), env)
+      const slug = uniqueSlug(opts.slugify(title), slugs)
 
       token.attrPush(['id', slug])
     }
