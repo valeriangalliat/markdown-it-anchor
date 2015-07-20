@@ -13,14 +13,10 @@ const position = {
   true: 'unshift'
 }
 
-const getAttr = (attrs, name) => {
-  for (let i = 0; i < attrs.length; i++) {
-    if (attrs[i][0] === name) return attrs[i][1]
-  }
-}
+const getAttr = (token, name) =>
+  token.attrs[token.attrIndex(name)][1]
 
-const renderPermalink = (opts, tokens, idx) => {
-  const slug = getAttr(tokens[idx].attrs, 'id')
+const renderPermalink = (slug, opts, tokens, idx) => {
   const linkTokens = [
     assign(new Token('link_open', 'a', 1), {
       attrs: [
@@ -83,9 +79,12 @@ const anchor = (md, opts) => {
   const originalHeadingOpen = md.renderer.rules.heading_open
 
   md.renderer.rules.heading_open = function (...args) {
+    const [ tokens, idx ] = args
 
     if (opts.permalink) {
-      opts.renderPermalink(opts, ...args)
+      const slug = getAttr(tokens[idx], 'id')
+
+      opts.renderPermalink(slug, opts, ...args)
     }
 
     if (originalHeadingOpen) {
