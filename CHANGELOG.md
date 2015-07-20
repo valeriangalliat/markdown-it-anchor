@@ -3,6 +3,7 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+* Use `core.ruler` to add attributes so other plugins can reuse them. ([#5])
 
 ## [2.1.0] - 2015-06-22
 * Set `aria-hidden` on permalink anchor.
@@ -44,3 +45,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [#1]: https://github.com/valeriangalliat/markdown-it-anchor/pull/1
 [#3]: https://github.com/valeriangalliat/markdown-it-anchor/issues/3
+[#5]: https://github.com/valeriangalliat/markdown-it-anchor/issues/5

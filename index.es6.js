@@ -13,6 +13,9 @@ const position = {
   true: 'unshift'
 }
 
+const getAttr = (token, name) =>
+  token.attrs[token.attrIndex(name)][1]
+
 const renderPermalink = (slug, opts, tokens, idx) => {
   const linkTokens = [
     assign(new Token('link_open', 'a', 1), {
@@ -32,47 +35,55 @@ const renderPermalink = (slug, opts, tokens, idx) => {
   tokens[idx + 1].children[position[opts.permalinkBefore]](...linkTokens)
 }
 
-const uniqueSlug = (slug, env) => {
-  // Add slug storage to environment if it doesn't already exist.
-  env.slugs = env.slugs || {}
-
+const uniqueSlug = (slug, slugs) => {
   // Mark this slug as used in the environment.
-  env.slugs[slug] = (env.slugs[slug] || 0) + 1
+  slugs[slug] = (slugs[slug] || 0) + 1
 
   // First slug, return as is.
-  if (env.slugs[slug] === 1) {
+  if (slugs[slug] === 1) {
     return slug
   }
 
   // Duplicate slug, add a `-2`, `-3`, etc. to keep ID unique.
-  return slug + '-' + env.slugs[slug]
+  return slug + '-' + slugs[slug]
 }
 
 const anchor = (md, opts) => {
   opts = assign({}, anchor.defaults, opts)
 
+  md.core.ruler.push('anchor', state => {
+    const slugs = {}
+    const tokens = state.tokens
+
+    tokens
+      .filter(token => token.type === 'heading_open')
+      .filter(token => token.tag.substr(1) >= opts.level)
+      .forEach(token => {
+        // Aggregate the next token children text.
+        const title = tokens[tokens.indexOf(token) + 1].children
+          .reduce((acc, t) => acc + t.content, '')
+
+        const slug = uniqueSlug(opts.slugify(title), slugs)
+
+        token.attrPush(['id', slug])
+      })
+  })
+
   const originalHeadingOpen = md.renderer.rules.heading_open
 
   md.renderer.rules.heading_open = function (...args) {
-    const [ tokens, idx, , env, self ] = args
+    const [ tokens, idx ] = args
 
-    if (tokens[idx].tag.substr(1) >= opts.level) {
-      const title = tokens[idx + 1].children
-        .reduce((acc, t) => acc + t.content, '')
+    if (opts.permalink) {
+      const slug = getAttr(tokens[idx], 'id')
 
-      const slug = uniqueSlug(opts.slugify(title), env)
-
-      ;(tokens[idx].attrs = tokens[idx].attrs || []).push(['id', slug])
-
-      if (opts.permalink) {
-        opts.renderPermalink(slug, opts, ...args)
-      }
+      opts.renderPermalink(slug, opts, ...args)
     }
 
     if (originalHeadingOpen) {
       return originalHeadingOpen.apply(this, args)
     } else {
-      return self.renderToken(...args)
+      return md.renderer.renderToken(...args)
     }
   }
 }
