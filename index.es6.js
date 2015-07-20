@@ -51,26 +51,23 @@ const uniqueSlug = (slug, slugs) => {
 const anchor = (md, opts) => {
   opts = assign({}, anchor.defaults, opts)
 
-  const addAnchors = state => {
-    let slugs = {}
-    let tokens = state.tokens
+  md.core.ruler.push('anchor', state => {
+    const slugs = {}
+    const tokens = state.tokens
 
-    for (let idx = 0, l = tokens.length; idx < l; idx++) {
-      let token = tokens[idx]
+    tokens
+      .filter(token => token.type === 'heading_open')
+      .filter(token => token.tag.substr(1) >= opts.level)
+      .forEach(token => {
+        // Aggregate the next token children text.
+        const title = tokens[tokens.indexOf(token) + 1].children
+          .reduce((acc, t) => acc + t.content, '')
 
-      if (token.type !== 'heading_open') continue
-      if (token.tag.substr(1) < opts.level) continue
+        const slug = uniqueSlug(opts.slugify(title), slugs)
 
-      const title = tokens[idx + 1].children
-        .reduce((acc, t) => acc + t.content, '')
-
-      const slug = uniqueSlug(opts.slugify(title), slugs)
-
-      token.attrPush(['id', slug])
-    }
-  }
-
-  md.core.ruler.push('anchor', addAnchors)
+        token.attrPush(['id', slug])
+      })
+  })
 
   const originalHeadingOpen = md.renderer.rules.heading_open
 
