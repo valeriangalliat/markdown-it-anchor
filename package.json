@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-anchor",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Header anchors for markdown-it.",
   "keywords": [
     "markdown-it-plugin"
