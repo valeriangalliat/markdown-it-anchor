@@ -74,7 +74,7 @@ const anchor = (md, opts) => {
   md.renderer.rules.heading_open = function (...args) {
     const [ tokens, idx ] = args
 
-    if (opts.permalink) {
+    if (opts.permalink && tokens[idx].tag.substr(1) >= opts.level) {
       const slug = getAttr(tokens[idx], 'id')
 
       opts.renderPermalink(slug, opts, ...args)

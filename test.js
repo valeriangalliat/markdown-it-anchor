@@ -36,3 +36,8 @@ equal(
   md().use(anchor, { permalink: true, permalinkBefore: true }).render('# H1'),
   '<h1 id="h1"><a class="header-anchor" href="#h1" aria-hidden="true">¶</a> H1</h1>\n'
 )
+
+equal(
+  md().use(anchor, { level: 2, permalink: true }).render('# H1\n\n## H2'),
+  '<h1>H1</h1>\n<h2 id="h2">H2 <a class="header-anchor" href="#h2" aria-hidden="true">¶</a></h2>\n'
+)
