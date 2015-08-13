@@ -3,6 +3,8 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+
+## [2.2.1] - 2015-08-13
 * Do not crash when permalink is enabled and headers below specified
   level are present. ([#7])
 
@@ -40,7 +42,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 1.0.0 - 2015-03-18
 * Initial release.
 
-[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.2.0...HEAD
+[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.2.1...HEAD
+[2.2.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v1.1.2...v2.0.0
