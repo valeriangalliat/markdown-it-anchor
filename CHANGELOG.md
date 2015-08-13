@@ -3,6 +3,7 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+* Allow to pass HTML as permalink symbol. ([#8])
 
 ## [2.2.1] - 2015-08-13
 * Do not crash when permalink is enabled and headers below specified
@@ -55,3 +56,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [#3]: https://github.com/valeriangalliat/markdown-it-anchor/issues/3
 [#5]: https://github.com/valeriangalliat/markdown-it-anchor/issues/5
 [#7]: https://github.com/valeriangalliat/markdown-it-anchor/issues/7
+[#8]: https://github.com/valeriangalliat/markdown-it-anchor/issues/8

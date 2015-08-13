@@ -25,7 +25,7 @@ const renderPermalink = (slug, opts, tokens, idx) => {
         ['aria-hidden', 'true']
       ]
     }),
-    assign(new Token('text', '', 0), { content: opts.permalinkSymbol }),
+    assign(new Token('html_block', '', 0), { content: opts.permalinkSymbol }),
     new Token('link_close', 'a', -1)
   ]
 
