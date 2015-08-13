@@ -3,6 +3,8 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+* Do not crash when permalink is enabled and headers below specified
+  level are present. ([#7])
 
 ## [2.2.0] - 2015-07-20
 * Use `core.ruler` to add attributes so other plugins can reuse them. ([#5])
@@ -49,3 +51,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [#1]: https://github.com/valeriangalliat/markdown-it-anchor/pull/1
 [#3]: https://github.com/valeriangalliat/markdown-it-anchor/issues/3
 [#5]: https://github.com/valeriangalliat/markdown-it-anchor/issues/5
+[#7]: https://github.com/valeriangalliat/markdown-it-anchor/issues/7
