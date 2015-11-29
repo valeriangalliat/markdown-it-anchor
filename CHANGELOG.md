@@ -4,6 +4,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [2.3.2] - 2015-11-29
+* Test against markdown-it 5.
+* Keep assigning `module.exports` after Babel 6 upgrade (that
+  assigns `exports.default` only instead), using
+  `babel-plugin-add-module-exports`. ([#12])
+
+## [2.3.1] - 2015-11-29
+* Remove hard dependency on markdown-it and replace `lodash.assign` with
+  `Object.assign`. ([#11])
+* Move to Babel 6.
+* Use `babel-plugin-transform-object-assign` to have `Object.assign`
+  work in ES5 environments.
+* Add the permalink during compilation instead of rendering.
+
 ## [2.3.0] - 2015-08-13
 * Allow to pass HTML as permalink symbol. ([#8])
 
@@ -45,7 +59,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 1.0.0 - 2015-03-18
 * Initial release.
 
-[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.3.0...HEAD
+[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.3.2...HEAD
+[2.3.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.3.1...v2.3.2
+[2.3.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.2.1...v2.3.0
 [2.2.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.1.0...v2.2.0
@@ -60,3 +76,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [#5]: https://github.com/valeriangalliat/markdown-it-anchor/issues/5
 [#7]: https://github.com/valeriangalliat/markdown-it-anchor/issues/7
 [#8]: https://github.com/valeriangalliat/markdown-it-anchor/issues/8
+[#11]: https://github.com/valeriangalliat/markdown-it-anchor/pull/11
+[#12]: https://github.com/valeriangalliat/markdown-it-anchor/issues/12
