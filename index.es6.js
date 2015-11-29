@@ -8,29 +8,26 @@ const position = {
   true: 'unshift'
 }
 
-const getAttr = (token, name) =>
-  token.attrs[token.attrIndex(name)][1]
-
-const renderPermalink = (slug, opts, tokens, idx) => {
+const renderPermalink = (slug, opts, state, idx) => {
   const space = () =>
-    Object.assign(new opts.Token('text', '', 0), { content: ' ' })
+    Object.assign(new state.Token('text', '', 0), { content: ' ' })
 
   const linkTokens = [
-    Object.assign(new opts.Token('link_open', 'a', 1), {
+    Object.assign(new state.Token('link_open', 'a', 1), {
       attrs: [
         ['class', opts.permalinkClass],
         ['href', `#${slug}`],
         ['aria-hidden', 'true']
       ]
     }),
-    Object.assign(new opts.Token('html_block', '', 0), { content: opts.permalinkSymbol }),
-    new opts.Token('link_close', 'a', -1)
+    Object.assign(new state.Token('html_block', '', 0), { content: opts.permalinkSymbol }),
+    new state.Token('link_close', 'a', -1)
   ]
 
   // `push` or `unshift` according to position option.
   // Space is at the opposite side.
   linkTokens[position[!opts.permalinkBefore]](space())
-  tokens[idx + 1].children[position[opts.permalinkBefore]](...linkTokens)
+  state.tokens[idx + 1].children[position[opts.permalinkBefore]](...linkTokens)
 }
 
 const uniqueSlug = (slug, slugs) => {
@@ -52,7 +49,6 @@ const anchor = (md, opts) => {
   md.core.ruler.push('anchor', state => {
     const slugs = {}
     const tokens = state.tokens
-    opts.Token = state.Token
 
     tokens
       .filter(token => token.type === 'heading_open')
@@ -65,20 +61,16 @@ const anchor = (md, opts) => {
         const slug = uniqueSlug(opts.slugify(title), slugs)
 
         token.attrPush(['id', slug])
+
+        if (opts.permalink) {
+          opts.renderPermalink(slug, opts, state, tokens.indexOf(token))
+        }
       })
   })
 
   const originalHeadingOpen = md.renderer.rules.heading_open
 
   md.renderer.rules.heading_open = function (...args) {
-    const [ tokens, idx ] = args
-
-    if (opts.permalink && tokens[idx].tag.substr(1) >= opts.level) {
-      const slug = getAttr(tokens[idx], 'id')
-
-      opts.renderPermalink(slug, opts, ...args)
-    }
-
     if (originalHeadingOpen) {
       return originalHeadingOpen.apply(this, args)
     } else {
