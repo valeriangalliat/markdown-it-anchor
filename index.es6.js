@@ -1,12 +1,7 @@
-import assign from 'lodash.assign'
 import string from 'string'
-import Token from 'markdown-it/lib/token'
 
 const slugify = s =>
   string(s).slugify().toString()
-
-const space = () =>
-  assign(new Token('text', '', 0), { content: ' ' })
 
 const position = {
   false: 'push',
@@ -17,16 +12,19 @@ const getAttr = (token, name) =>
   token.attrs[token.attrIndex(name)][1]
 
 const renderPermalink = (slug, opts, tokens, idx) => {
+  const space = () =>
+    Object.assign(new opts.Token('text', '', 0), { content: ' ' })
+
   const linkTokens = [
-    assign(new Token('link_open', 'a', 1), {
+    Object.assign(new opts.Token('link_open', 'a', 1), {
       attrs: [
         ['class', opts.permalinkClass],
         ['href', `#${slug}`],
         ['aria-hidden', 'true']
       ]
     }),
-    assign(new Token('html_block', '', 0), { content: opts.permalinkSymbol }),
-    new Token('link_close', 'a', -1)
+    Object.assign(new opts.Token('html_block', '', 0), { content: opts.permalinkSymbol }),
+    new opts.Token('link_close', 'a', -1)
   ]
 
   // `push` or `unshift` according to position option.
@@ -49,11 +47,12 @@ const uniqueSlug = (slug, slugs) => {
 }
 
 const anchor = (md, opts) => {
-  opts = assign({}, anchor.defaults, opts)
+  opts = Object.assign({}, anchor.defaults, opts)
 
   md.core.ruler.push('anchor', state => {
     const slugs = {}
     const tokens = state.tokens
+    opts.Token = state.Token
 
     tokens
       .filter(token => token.type === 'heading_open')
