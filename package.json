@@ -27,8 +27,6 @@
     "test": "npm run lint && npm run build && babel-node test.js"
   },
   "dependencies": {
-    "lodash.assign": "^3.0.0",
-    "markdown-it": "^4.0.1",
     "string": "^3.0.1"
   },
   "devDependencies": {
