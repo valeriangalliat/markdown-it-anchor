@@ -12,6 +12,8 @@ const md = require('markdown-it')
   .use(require('markdown-it-anchor'), opts)
 ```
 
+See a [demo as JSFiddle](https://jsfiddle.net/9ukc8dy6/).
+
 The `opts` object can contain:
 
 Name              | Description                               | Default

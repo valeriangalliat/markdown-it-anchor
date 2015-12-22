@@ -14,7 +14,8 @@
   "files": [
     "README.md",
     "UNLICENSE",
-    "index.js"
+    "index.js",
+    "demo.js"
   ],
   "repository": {
     "type": "git",
@@ -46,5 +47,6 @@
       "transform-object-assign",
       "add-module-exports"
     ]
-  }
+  },
+  "tonicExampleFilename": "demo.js"
 }
