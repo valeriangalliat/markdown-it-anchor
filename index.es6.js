@@ -71,16 +71,6 @@ const anchor = (md, opts) => {
         }
       })
   })
-
-  const originalHeadingOpen = md.renderer.rules.heading_open
-
-  md.renderer.rules.heading_open = function (...args) {
-    if (originalHeadingOpen) {
-      return originalHeadingOpen.apply(this, args)
-    } else {
-      return md.renderer.renderToken(...args)
-    }
-  }
 }
 
 anchor.defaults = {
