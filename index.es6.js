@@ -67,7 +67,7 @@ const anchor = (md, opts) => {
         }
 
         if (opts.callback) {
-          opts.callback(token, {slug, title})
+          opts.callback(token, { slug, title })
         }
       })
   })
