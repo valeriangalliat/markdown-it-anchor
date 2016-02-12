@@ -40,4 +40,7 @@ the header itself.
 You may want to use the [link symbol](http://graphemica.com/🔗) as
 `permalinkSymbol`, or a symbol from your favorite web font.
 
-The `callback` option is a function that will be called at the end of rendering with the `token` and an `info` object.  The `info` object has `title` and `slug` properties with the token content and the slug used for the identifier.
+The `callback` option is a function that will be called at the end of
+rendering with the `token` and an `info` object.  The `info` object has
+`title` and `slug` properties with the token content and the slug used
+for the identifier.
