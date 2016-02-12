@@ -65,6 +65,10 @@ const anchor = (md, opts) => {
         if (opts.permalink) {
           opts.renderPermalink(slug, opts, state, tokens.indexOf(token))
         }
+
+        if (opts.callback) {
+          opts.callback(token, {slug, title})
+        }
       })
   })
 
