@@ -46,3 +46,16 @@ equal(
   md().use(anchor, { level: 2, permalink: true }).render('# H1\n\n## H2'),
   '<h1>H1</h1>\n<h2 id="h2">H2 <a class="header-anchor" href="#h2" aria-hidden="true">¶</a></h2>\n'
 )
+
+const calls = []
+equal(
+  md().use(anchor, { callback: (token, info) => { calls.push({ token, info }) } }).render('# First Heading\n\n## Second Heading'),
+  '<h1 id="first-heading">First Heading</h1>\n<h2 id="second-heading">Second Heading</h2>\n'
+)
+equal(calls.length, 2)
+equal(calls[0].token.tag, 'h1')
+equal(calls[0].info.title, 'First Heading')
+equal(calls[0].info.slug, 'first-heading')
+equal(calls[1].token.tag, 'h2')
+equal(calls[1].info.title, 'Second Heading')
+equal(calls[1].info.slug, 'second-heading')
