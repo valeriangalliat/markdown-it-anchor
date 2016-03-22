@@ -4,6 +4,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [2.5.0] - 2016-03-22
+* Test against markdown-it 6.
+* Support anchors with HTML in header.
+
+## [2.4.0] - 2016-02-12
+* Add a callback option. ([#16]).
+
+## [2.3.3] - 2015-12-21
+* Add a live example ([#13]).
+
 ## [2.3.2] - 2015-11-29
 * Test against markdown-it 5.
 * Keep assigning `module.exports` after Babel 6 upgrade (that
@@ -59,7 +69,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 1.0.0 - 2015-03-18
 * Initial release.
 
-[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.3.2...HEAD
+[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.5.0...HEAD
+[2.5.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.4.0...v2.5.0
+[2.4.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.3.3...v2.4.0
+[2.3.3]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.3.2...v2.3.3
 [2.3.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.3.1...v2.3.2
 [2.3.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.2.1...v2.3.0
@@ -78,3 +91,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [#8]: https://github.com/valeriangalliat/markdown-it-anchor/issues/8
 [#11]: https://github.com/valeriangalliat/markdown-it-anchor/pull/11
 [#12]: https://github.com/valeriangalliat/markdown-it-anchor/issues/12
+[#13]: https://github.com/valeriangalliat/markdown-it-anchor/issues/13
+[#16]: https://github.com/valeriangalliat/markdown-it-anchor/issues/16
