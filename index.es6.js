@@ -56,6 +56,7 @@ const anchor = (md, opts) => {
       .forEach(token => {
         // Aggregate the next token children text.
         const title = tokens[tokens.indexOf(token) + 1].children
+          .filter(token => token.type === 'text')
           .reduce((acc, t) => acc + t.content, '')
 
         const slug = uniqueSlug(opts.slugify(title), slugs)
