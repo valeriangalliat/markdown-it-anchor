@@ -8,7 +8,7 @@ const position = {
   true: 'unshift'
 }
 
-const hasProp = ({}).hasOwnProperty;
+const hasProp = ({}).hasOwnProperty
 
 const renderPermalink = (slug, opts, state, idx) => {
   const space = () =>
