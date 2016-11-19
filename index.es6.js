@@ -8,6 +8,8 @@ const position = {
   true: 'unshift'
 }
 
+const hasProp = ({}).hasOwnProperty;
+
 const renderPermalink = (slug, opts, state, idx) => {
   const space = () =>
     Object.assign(new state.Token('text', '', 0), { content: ' ' })
@@ -32,7 +34,7 @@ const renderPermalink = (slug, opts, state, idx) => {
 
 const uniqueSlug = (slug, slugs) => {
   // Mark this slug as used in the environment.
-  slugs[slug] = (slugs[slug] || 0) + 1
+  slugs[slug] = (hasProp.call(slugs, slug) ? slugs[slug] : 0) + 1
 
   // First slug, return as is.
   if (slugs[slug] === 1) {
