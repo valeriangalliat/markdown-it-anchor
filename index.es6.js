@@ -61,7 +61,7 @@ const anchor = (md, opts) => {
           .filter(token => token.type === 'text')
           .reduce((acc, t) => acc + t.content, '')
 
-        const slug = uniqueSlug(opts.slugify(title), slugs)
+        const slug = uniqueSlug(opts.slugify(title, state, slugify), slugs)
 
         token.attrPush(['id', slug])
 
