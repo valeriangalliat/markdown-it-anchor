@@ -60,6 +60,11 @@ equal(
   '<h1 id="first-heading">First Heading</h1>\n<h2 id="second-heading">Second Heading</h2>\n'
 )
 
+equal(
+  md().use(anchor, {slugify: (s, state, slugify) => `${state.env.meta}-${slugify(s)}`}).render('# H1', {meta: 'data'}),
+  '<h1 id="data-h1">H1</h1>\n'
+)
+
 equal(calls.length, 2)
 equal(calls[0].token.tag, 'h1')
 equal(calls[0].info.title, 'First Heading')
