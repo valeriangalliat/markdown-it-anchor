@@ -10,6 +10,8 @@ const position = {
 
 const hasProp = ({}).hasOwnProperty
 
+const permalinkHref = slug => `#${slug}`
+
 const renderPermalink = (slug, opts, state, idx) => {
   const space = () =>
     Object.assign(new state.Token('text', '', 0), { content: ' ' })
@@ -18,7 +20,7 @@ const renderPermalink = (slug, opts, state, idx) => {
     Object.assign(new state.Token('link_open', 'a', 1), {
       attrs: [
         ['class', opts.permalinkClass],
-        ['href', `#${slug}`],
+        ['href', opts.permalinkHref(slug, state)],
         ['aria-hidden', 'true']
       ]
     }),
@@ -83,7 +85,8 @@ anchor.defaults = {
   renderPermalink,
   permalinkClass: 'header-anchor',
   permalinkSymbol: '¶',
-  permalinkBefore: false
+  permalinkBefore: false,
+  permalinkHref
 }
 
 export default anchor

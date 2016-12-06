@@ -60,6 +60,14 @@ equal(
   '<h1 id="first-heading">First Heading</h1>\n<h2 id="second-heading">Second Heading</h2>\n'
 )
 
+equal(
+  md().use(anchor, {
+    permalinkHref: (slug, state) => `${state.env.path}#${slug}`,
+    permalink: true
+  }).render('# H1', {path: 'file.html'}),
+  '<h1 id="h1">H1 <a class="header-anchor" href="file.html#h1" aria-hidden="true">¶</a></h1>\n'
+)
+
 equal(calls.length, 2)
 equal(calls[0].token.tag, 'h1')
 equal(calls[0].info.title, 'First Heading')
