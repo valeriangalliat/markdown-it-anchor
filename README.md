@@ -16,16 +16,17 @@ See a [demo as JSFiddle](https://jsfiddle.net/9ukc8dy6/).
 
 The `opts` object can contain:
 
-Name              | Description                                 | Default
-------------------|---------------------------------------------|------------------------------------
-`level`           | Minimum level to apply anchors on.          | 1
-`slugify`         | A custom slugification function.            | [string.js' `slugify`][slugify]
-`permalink`       | Whether to add permalinks next to titles.   | `false`
-`renderPermalink` | A custom permalink rendering function.      | See [`index.es6.js`](index.es6.js)
-`permalinkClass`  | The class of the permalink anchor.          | `header-anchor`
-`permalinkSymbol` | The symbol in the permalink anchor.         | `¶`
-`permalinkBefore` | Place the permalink before the title.       | `false`
-`callback`        | Called with token and info after rendering. | `undefined`
+Name              | Description                                   | Default
+------------------|-----------------------------------------------|------------------------------------
+`level`           | Minimum level to apply anchors on.            | 1
+`slugify`         | A custom slugification function.              | [string.js' `slugify`][slugify]
+`permalink`       | Whether to add permalinks next to titles.     | `false`
+`renderPermalink` | A custom permalink rendering function.        | See [`index.es6.js`](index.es6.js)
+`permalinkClass`  | The class of the permalink anchor.            | `header-anchor`
+`permalinkSymbol` | The symbol in the permalink anchor.           | `¶`
+`permalinkBefore` | Place the permalink before the title.         | `false`
+`permalinkHref`   | A custom permalink `href` rendering function. | See [`index.es6.js`](index.es6.js)
+`callback`        | Called with token and info after rendering.   | `undefined`
 
 [slugify]: http://stringjs.com/#methods/slugify
 
