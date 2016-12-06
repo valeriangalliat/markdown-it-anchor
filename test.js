@@ -64,7 +64,7 @@ equal(
   md().use(anchor, {
     permalinkHref: (slug, state) => `${state.env.path}#${slug}`,
     permalink: true
-  }).render('# H1', {path: 'file.html'}),
+  }).render('# H1', { path: 'file.html' }),
   '<h1 id="h1">H1 <a class="header-anchor" href="file.html#h1" aria-hidden="true">¶</a></h1>\n'
 )
 
