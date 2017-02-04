@@ -63,9 +63,12 @@ const anchor = (md, opts) => {
           .filter(token => token.type === 'text')
           .reduce((acc, t) => acc + t.content, '')
 
-        const slug = uniqueSlug(opts.slugify(title), slugs)
+        let slug = token.attrGet('id')
 
-        token.attrPush(['id', slug])
+        if (slug == null) {
+          slug = uniqueSlug(opts.slugify(title), slugs)
+          token.attrPush(['id', slug])
+        }
 
         if (opts.permalink) {
           opts.renderPermalink(slug, opts, state, tokens.indexOf(token))
