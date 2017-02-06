@@ -4,6 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [3.0.0] - 2017-02-06
+* Use existing ID as slug if present. This drops the support for
+  markdown-it 5 and lower, hence the major bump. ([#22])
+
+## [2.5.1] - 2016-11-19
+* Patch for supporting "Constructor" title. ([#18])
+
 ## [2.5.0] - 2016-03-22
 * Test against markdown-it 6.
 * Support anchors with HTML in header.
@@ -69,7 +76,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 1.0.0 - 2015-03-18
 * Initial release.
 
-[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.5.0...HEAD
+[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.5.1...v3.0.0
+[2.5.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.3.3...v2.4.0
 [2.3.3]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.3.2...v2.3.3
@@ -93,3 +102,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [#12]: https://github.com/valeriangalliat/markdown-it-anchor/issues/12
 [#13]: https://github.com/valeriangalliat/markdown-it-anchor/issues/13
 [#16]: https://github.com/valeriangalliat/markdown-it-anchor/issues/16
+[#18]: https://github.com/valeriangalliat/markdown-it-anchor/issues/18
+[#22]: https://github.com/valeriangalliat/markdown-it-anchor/pull/22
