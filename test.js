@@ -58,6 +58,11 @@ equal(
   '<h1 id="h1"><span>H1</span> <a class="header-anchor" href="#h1" aria-hidden="true">¶</a></h1>\n'
 )
 
+equal(
+  md().use(anchor).render('#### `options`'),
+  '<h4 id="options"><code>options</code></h4>\n'
+)
+
 const calls = []
 const callback = (token, info) => calls.push({ token, info })
 
