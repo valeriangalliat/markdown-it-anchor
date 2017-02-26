@@ -3,6 +3,8 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+
+## [4.0.0] - 2017-02-26
 * Drop Babel. This drops support for Node.js versions that doesn't
   support ES6.
 * Support code in titles. ([#27])
@@ -80,7 +82,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 1.0.0 - 2015-03-18
 * Initial release.
 
-[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v3.0.0...HEAD
+[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v4.0.0...HEAD
+[4.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v3.0.0...v4.0.0
 [3.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.5.1...v3.0.0
 [2.5.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.4.0...v2.5.0
