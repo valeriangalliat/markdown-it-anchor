@@ -1,7 +1,7 @@
-import { equal } from 'assert'
-import md from 'markdown-it'
-import attrs from 'markdown-it-attrs'
-import anchor from './'
+const { equal } = require('assert')
+const md = require('markdown-it')
+const attrs = require('markdown-it-attrs')
+const anchor = require('./')
 
 equal(
   md().use(anchor).render('# H1\n\n## H2'),

@@ -1,4 +1,4 @@
-import string from 'string'
+const string = require('string')
 
 const slugify = s =>
   string(s).slugify().toString()
@@ -92,4 +92,4 @@ anchor.defaults = {
   permalinkHref
 }
 
-export default anchor
+module.exports = anchor

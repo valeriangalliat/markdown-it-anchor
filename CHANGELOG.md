@@ -3,6 +3,8 @@
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+* Drop Babel. This drops support for Node.js versions that doesn't
+  support ES6.
 
 ## [3.0.0] - 2017-02-06
 * Use existing ID as slug if present. This drops the support for
