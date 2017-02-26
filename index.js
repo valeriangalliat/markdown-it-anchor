@@ -47,6 +47,9 @@ const uniqueSlug = (slug, slugs) => {
   return slug + '-' + slugs[slug]
 }
 
+const isLevelSelectedNumber = selection => level => level >= selection
+const isLevelSelectedArray = selection => level => selection.includes(level)
+
 const anchor = (md, opts) => {
   opts = Object.assign({}, anchor.defaults, opts)
 
@@ -54,9 +57,13 @@ const anchor = (md, opts) => {
     const slugs = {}
     const tokens = state.tokens
 
+    const isLevelSelected = Array.isArray(opts.level)
+      ? isLevelSelectedArray(opts.level)
+      : isLevelSelectedNumber(opts.level)
+
     tokens
       .filter(token => token.type === 'heading_open')
-      .filter(token => token.tag.substr(1) >= opts.level)
+      .filter(token => isLevelSelected(Number(token.tag.substr(1))))
       .forEach(token => {
         // Aggregate the next token children text.
         const title = tokens[tokens.indexOf(token) + 1].children

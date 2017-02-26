@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Drop Babel. This drops support for Node.js versions that doesn't
   support ES6.
 * Support code in titles. ([#27])
+* Support individual header level selection. ([#27])
 
 ## [3.0.0] - 2017-02-06
 * Use existing ID as slug if present. This drops the support for
