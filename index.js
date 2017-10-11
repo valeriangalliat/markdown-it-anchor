@@ -38,6 +38,8 @@ const uniqueSlug = (slug, slugs) => {
   // Mark this slug as used in the environment.
   slugs[slug] = (hasProp.call(slugs, slug) ? slugs[slug] : 0) + 1
 
+  // console.log(slugs, slug)
+
   // First slug, return as is.
   if (slugs[slug] === 1) {
     return slug
@@ -50,12 +52,17 @@ const uniqueSlug = (slug, slugs) => {
 const isLevelSelectedNumber = selection => level => level >= selection
 const isLevelSelectedArray = selection => level => selection.includes(level)
 
+// const parentSlug = ''
+
 const anchor = (md, opts) => {
   opts = Object.assign({}, anchor.defaults, opts)
 
   md.core.ruler.push('anchor', state => {
     const slugs = {}
     const tokens = state.tokens
+    let previousLevel = 0
+    let currentLevel = 1
+    let slugHistory = []
 
     const isLevelSelected = Array.isArray(opts.level)
       ? isLevelSelectedArray(opts.level)
@@ -65,15 +72,52 @@ const anchor = (md, opts) => {
       .filter(token => token.type === 'heading_open')
       .filter(token => isLevelSelected(Number(token.tag.substr(1))))
       .forEach(token => {
+        currentLevel = Number(token.tag.substr(1))
+
         // Aggregate the next token children text.
         const title = tokens[tokens.indexOf(token) + 1].children
           .filter(token => token.type === 'text' || token.type === 'code_inline')
           .reduce((acc, t) => acc + t.content, '')
 
+        let slugString = opts.slugify(title)
         let slug = token.attrGet('id')
 
         if (slug == null) {
-          slug = uniqueSlug(opts.slugify(title), slugs)
+          // console.log(currentLevel, previousLevel)
+
+          if (opts.nestSlugs) {
+            if (currentLevel === 1) {
+              previousLevel = 1
+              slugHistory[0] = {slug: slugString}
+              // console.log('is parent')
+            } else if (currentLevel > previousLevel) {
+              previousLevel = currentLevel
+              slugString = slugHistory[currentLevel - 2].slug + '-' + slugString
+              slugHistory[currentLevel - 1] = {slug: slugString}
+              // console.log('has parent')
+            } else if (currentLevel === previousLevel) {
+              slugString = slugHistory[currentLevel - 2].slug + '-' + slugString
+              // console.log('sibling')
+            } else if (currentLevel < previousLevel) {
+              slugString = slugHistory[currentLevel - 2].slug + '-' + slugString
+              slugHistory[currentLevel - 1] = {slug: slugString}
+              slugHistory.pop()
+              // console.log('has older sibling')
+            }
+          }
+
+          // console.log(slugHistory)
+
+          slug = uniqueSlug(slugString, slugs)
+
+          if (opts.nestSlugs) {
+            if (slug !== slugString) {
+              slugHistory[slugHistory.length - 2] = {slug: slug}
+            }
+          }
+
+          // console.log(slug)
+          // console.log(' ')
           token.attrPush(['id', slug])
         }
 
@@ -96,7 +140,8 @@ anchor.defaults = {
   permalinkClass: 'header-anchor',
   permalinkSymbol: '¶',
   permalinkBefore: false,
-  permalinkHref
+  permalinkHref,
+  nestSlugs: false
 }
 
 module.exports = anchor
