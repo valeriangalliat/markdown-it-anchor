@@ -27,6 +27,7 @@ Name              | Description                                                 
 `permalinkBefore` | Place the permalink before the title.                          | `false`
 `permalinkHref`   | A custom permalink `href` rendering function.                  | See [`index.es6.js`](index.es6.js)
 `callback`        | Called with token and info after rendering.                    | `undefined`
+`nestSlugs`       | Make a hierarchy of slugs based on document placement          | `false`
 
 [slugify]: http://stringjs.com/#methods/slugify
 
