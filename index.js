@@ -52,7 +52,9 @@ const uniqueSlug = (slug, slugs) => {
 const isLevelSelectedNumber = selection => level => level >= selection
 const isLevelSelectedArray = selection => level => selection.includes(level)
 
-// const parentSlug = ''
+const buildSlugString = (slugHistory, modifier, slugString) => {
+  return slugHistory[slugHistory.length - modifier].slug + '-' + slugString
+}
 
 const anchor = (md, opts) => {
   opts = Object.assign({}, anchor.defaults, opts)
@@ -88,20 +90,21 @@ const anchor = (md, opts) => {
           if (opts.nestSlugs) {
             if (currentLevel === 1) {
               previousLevel = 1
-              slugHistory[0] = {slug: slugString}
+              slugHistory = [{slug: slugString}]
               // console.log('is parent')
             } else if (currentLevel > previousLevel) {
               previousLevel = currentLevel
-              slugString = slugHistory[currentLevel - 2].slug + '-' + slugString
+              slugString = buildSlugString(slugHistory, 1, slugString)
               slugHistory[currentLevel - 1] = {slug: slugString}
               // console.log('has parent')
             } else if (currentLevel === previousLevel) {
-              slugString = slugHistory[currentLevel - 2].slug + '-' + slugString
+              // console.log(slugHistory)
+              slugString = buildSlugString(slugHistory, 2, slugString)
               // console.log('sibling')
             } else if (currentLevel < previousLevel) {
-              slugString = slugHistory[currentLevel - 2].slug + '-' + slugString
-              slugHistory[currentLevel - 1] = {slug: slugString}
               slugHistory.pop()
+              slugString = buildSlugString(slugHistory, 2, slugString)
+              slugHistory[currentLevel - 1] = {slug: slugString}
               // console.log('has older sibling')
             }
           }
@@ -112,7 +115,7 @@ const anchor = (md, opts) => {
 
           if (opts.nestSlugs) {
             if (slug !== slugString) {
-              slugHistory[slugHistory.length - 2] = {slug: slug}
+              slugHistory[currentLevel] = {slug: slug}
             }
           }
 
