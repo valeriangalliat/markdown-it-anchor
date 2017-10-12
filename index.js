@@ -65,6 +65,7 @@ const anchor = (md, opts) => {
     let previousLevel = 0
     let currentLevel = 1
     let slugHistory = []
+    let appropriateStart = false
 
     const isLevelSelected = Array.isArray(opts.level)
       ? isLevelSelectedArray(opts.level)
@@ -87,7 +88,11 @@ const anchor = (md, opts) => {
         if (slug == null) {
           // console.log(currentLevel, previousLevel)
 
-          if (opts.nestSlugs) {
+          if (!appropriateStart && currentLevel === 1 && previousLevel === 0) {
+            appropriateStart = true
+          }
+
+          if (opts.nestSlugs && appropriateStart) {
             if (currentLevel === 1) {
               previousLevel = 1
               slugHistory = [{slug: slugString}]

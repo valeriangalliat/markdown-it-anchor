@@ -4,6 +4,16 @@ const attrs = require('markdown-it-attrs')
 const anchor = require('./')
 
 equal(
+  md().use(anchor, { nestSlugs: true }).render('### H3\n\n### H3'),
+  '<h3 id="h3">H3</h3>\n<h3 id="h3-2">H3</h3>\n'
+)
+
+equal(
+  md().use(anchor, { nestSlugs: true }).render('### H3\n\n### H3\n\n# H1\n\n## H2'),
+  '<h3 id="h3">H3</h3>\n<h3 id="h3-2">H3</h3>\n<h1 id="h1">H1</h1>\n<h2 id="h1-h2">H2</h2>\n'
+)
+
+equal(
   md().use(anchor, { nestSlugs: true }).render('# H1\n\n### H3'),
   '<h1 id="h1">H1</h1>\n<h3 id="h1-h3">H3</h3>\n'
 )
