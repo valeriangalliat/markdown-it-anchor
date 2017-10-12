@@ -53,6 +53,8 @@ const isLevelSelectedNumber = selection => level => level >= selection
 const isLevelSelectedArray = selection => level => selection.includes(level)
 
 const buildSlugString = (slugHistory, modifier, slugString) => {
+  // console.log(slugHistory.length, modifier)
+  // console.log(slugHistory)
   return slugHistory[slugHistory.length - modifier].slug + '-' + slugString
 }
 
@@ -94,23 +96,25 @@ const anchor = (md, opts) => {
 
           if (opts.nestSlugs && appropriateStart) {
             if (currentLevel === 1) {
+              // console.log('is parent')
               previousLevel = 1
               slugHistory = [{slug: slugString}]
-              // console.log('is parent')
             } else if (currentLevel > previousLevel) {
+              // console.log('has parent')
               previousLevel = currentLevel
               slugString = buildSlugString(slugHistory, 1, slugString)
-              slugHistory[currentLevel - 1] = {slug: slugString}
-              // console.log('has parent')
+              slugHistory[slugHistory.length] = {slug: slugString}
             } else if (currentLevel === previousLevel) {
-              // console.log(slugHistory)
-              slugString = buildSlugString(slugHistory, 2, slugString)
               // console.log('sibling')
-            } else if (currentLevel < previousLevel) {
-              slugHistory.pop()
               slugString = buildSlugString(slugHistory, 2, slugString)
-              slugHistory[currentLevel - 1] = {slug: slugString}
+            } else if (currentLevel < previousLevel) {
               // console.log('has older sibling')
+              slugHistory.pop()
+              if (slugHistory.length > 1) {
+                slugHistory.pop()
+              }
+              slugString = buildSlugString(slugHistory, 1, slugString)
+              slugHistory[slugHistory.length] = {slug: slugString}
             }
           }
 
