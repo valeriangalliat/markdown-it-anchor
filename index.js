@@ -38,6 +38,8 @@ const uniqueSlug = (slug, slugs) => {
   // Mark this slug as used in the environment.
   slugs[slug] = (hasProp.call(slugs, slug) ? slugs[slug] : 0) + 1
 
+  // console.log(slugs, slug)
+
   // First slug, return as is.
   if (slugs[slug] === 1) {
     return slug
@@ -50,12 +52,22 @@ const uniqueSlug = (slug, slugs) => {
 const isLevelSelectedNumber = selection => level => level >= selection
 const isLevelSelectedArray = selection => level => selection.includes(level)
 
+const buildSlugString = (slugHistory, modifier, slugString) => {
+  // console.log(slugHistory.length, modifier)
+  // console.log(slugHistory)
+  return slugHistory[slugHistory.length - modifier].slug + '-' + slugString
+}
+
 const anchor = (md, opts) => {
   opts = Object.assign({}, anchor.defaults, opts)
 
   md.core.ruler.push('anchor', state => {
     const slugs = {}
     const tokens = state.tokens
+    let previousLevel = 0
+    let currentLevel = 1
+    let slugHistory = []
+    let appropriateStart = false
 
     const isLevelSelected = Array.isArray(opts.level)
       ? isLevelSelectedArray(opts.level)
@@ -65,15 +77,59 @@ const anchor = (md, opts) => {
       .filter(token => token.type === 'heading_open')
       .filter(token => isLevelSelected(Number(token.tag.substr(1))))
       .forEach(token => {
+        currentLevel = Number(token.tag.substr(1))
+
         // Aggregate the next token children text.
         const title = tokens[tokens.indexOf(token) + 1].children
           .filter(token => token.type === 'text' || token.type === 'code_inline')
           .reduce((acc, t) => acc + t.content, '')
 
+        let slugString = opts.slugify(title)
         let slug = token.attrGet('id')
 
         if (slug == null) {
-          slug = uniqueSlug(opts.slugify(title), slugs)
+          // console.log(currentLevel, previousLevel)
+
+          if (!appropriateStart && currentLevel === 1 && previousLevel === 0) {
+            appropriateStart = true
+          }
+
+          if (opts.nestSlugs && appropriateStart) {
+            if (currentLevel === 1) {
+              // console.log('is parent')
+              previousLevel = 1
+              slugHistory = [{slug: slugString}]
+            } else if (currentLevel > previousLevel) {
+              // console.log('has parent')
+              previousLevel = currentLevel
+              slugString = buildSlugString(slugHistory, 1, slugString)
+              slugHistory[slugHistory.length] = {slug: slugString}
+            } else if (currentLevel === previousLevel) {
+              // console.log('sibling')
+              slugString = buildSlugString(slugHistory, 2, slugString)
+            } else if (currentLevel < previousLevel) {
+              // console.log('has older sibling')
+              slugHistory.pop()
+              if (slugHistory.length > 1) {
+                slugHistory.pop()
+              }
+              slugString = buildSlugString(slugHistory, 1, slugString)
+              slugHistory[slugHistory.length] = {slug: slugString}
+            }
+          }
+
+          // console.log(slugHistory)
+
+          slug = uniqueSlug(slugString, slugs)
+
+          if (opts.nestSlugs) {
+            if (slug !== slugString) {
+              slugHistory[currentLevel] = {slug: slug}
+            }
+          }
+
+          // console.log(slug)
+          // console.log(' ')
           token.attrPush(['id', slug])
         }
 
@@ -96,7 +152,8 @@ anchor.defaults = {
   permalinkClass: 'header-anchor',
   permalinkSymbol: '¶',
   permalinkBefore: false,
-  permalinkHref
+  permalinkHref,
+  nestSlugs: false
 }
 
 module.exports = anchor
