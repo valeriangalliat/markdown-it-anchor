@@ -21,11 +21,11 @@ Name              | Description                                                 
 `level`           | Minimum level to apply anchors on or array of selected levels. | 1
 `slugify`         | A custom slugification function.                               | [string.js' `slugify`][slugify]
 `permalink`       | Whether to add permalinks next to titles.                      | `false`
-`renderPermalink` | A custom permalink rendering function.                         | See [`index.es6.js`](index.es6.js)
+`renderPermalink` | A custom permalink rendering function.                         | See [`index.js`](index.js)
 `permalinkClass`  | The class of the permalink anchor.                             | `header-anchor`
 `permalinkSymbol` | The symbol in the permalink anchor.                            | `¶`
 `permalinkBefore` | Place the permalink before the title.                          | `false`
-`permalinkHref`   | A custom permalink `href` rendering function.                  | See [`index.es6.js`](index.es6.js)
+`permalinkHref`   | A custom permalink `href` rendering function.                  | See [`index.js`](index.js)
 `callback`        | Called with token and info after rendering.                    | `undefined`
 
 [slugify]: http://stringjs.com/#methods/slugify
