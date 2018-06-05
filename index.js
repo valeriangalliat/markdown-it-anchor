@@ -1,7 +1,6 @@
-const string = require('string')
+const slugifier = require('slugify')
 
-const slugify = s =>
-  string(s).slugify().toString()
+const slugify = s => slugifier(s, {lower: true})
 
 const position = {
   false: 'push',

@@ -19,7 +19,7 @@ The `opts` object can contain:
 Name              | Description                                                    | Default
 ------------------|----------------------------------------------------------------|-----------------------------------
 `level`           | Minimum level to apply anchors on or array of selected levels. | 1
-`slugify`         | A custom slugification function.                               | [string.js' `slugify`][slugify]
+`slugify`         | A custom slugification function.                               | [`slugify`][slugify]
 `permalink`       | Whether to add permalinks next to titles.                      | `false`
 `renderPermalink` | A custom permalink rendering function.                         | See [`index.js`](index.js)
 `permalinkClass`  | The class of the permalink anchor.                             | `header-anchor`
@@ -28,7 +28,7 @@ Name              | Description                                                 
 `permalinkHref`   | A custom permalink `href` rendering function.                  | See [`index.js`](index.js)
 `callback`        | Called with token and info after rendering.                    | `undefined`
 
-[slugify]: http://stringjs.com/#methods/slugify
+[slugify]: https://www.npmjs.com/package/slugify
 
 The `renderPermalink` function takes the slug, an options object with
 the above options, and then all the usual markdown-it rendering
