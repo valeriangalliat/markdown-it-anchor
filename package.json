@@ -27,7 +27,7 @@
     "test": "npm run lint && node test"
   },
   "dependencies": {
-    "string": "^3.3.3"
+    "slugify": "^1.3.0"
   },
   "devDependencies": {
     "markdown-it": "^8.3.0",
