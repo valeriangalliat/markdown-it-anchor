@@ -1,4 +1,4 @@
-const slugify = (s) => encodeURIComponent(String(s).toLowerCase().replace(/\s+/g, '-'))
+const slugify = (s) => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-'))
 
 const position = {
   false: 'push',

@@ -85,3 +85,9 @@ const anchor = require('markdown-it-anchor', {
 	slugify: uslugify
 })
 ```
+
+## Table of Contents
+
+Looking for an automatic table of contents (TOC) generator? Take a look at
+[markdown-it-toc-done-right](https://www.npmjs.com/package/markdown-it-toc-done-right) it's
+made from the ground to be a great companion of this plugin. 

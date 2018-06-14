@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-anchor",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Header anchors for markdown-it.",
   "keywords": [
     "markdown",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "markdown-it": "^8.3.0",
     "markdown-it-attrs": "^0.8.0",
-    "standard": "^8.6.0"
+    "standard": "^11.0.1"
   },
   "peerDependencies": {
     "markdown-it": "^8.4.1"
