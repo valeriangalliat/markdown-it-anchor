@@ -4,8 +4,7 @@
 
 [markdown-it]: https://github.com/markdown-it/markdown-it
 
-Usage
------
+## Usage
 
 ```js
 const md = require('markdown-it')()
@@ -19,7 +18,7 @@ The `opts` object can contain:
 Name              | Description                                                    | Default
 ------------------|----------------------------------------------------------------|-----------------------------------
 `level`           | Minimum level to apply anchors on or array of selected levels. | 1
-`slugify`         | A custom slugification function.                               | [string.js' `slugify`][slugify]
+`slugify`         | A custom slugification function.                               | See [`index.js`](index.js)
 `permalink`       | Whether to add permalinks next to titles.                      | `false`
 `renderPermalink` | A custom permalink rendering function.                         | See [`index.js`](index.js)
 `permalinkClass`  | The class of the permalink anchor.                             | `header-anchor`
@@ -27,8 +26,6 @@ Name              | Description                                                 
 `permalinkBefore` | Place the permalink before the title.                          | `false`
 `permalinkHref`   | A custom permalink `href` rendering function.                  | See [`index.js`](index.js)
 `callback`        | Called with token and info after rendering.                    | `undefined`
-
-[slugify]: http://stringjs.com/#methods/slugify
 
 The `renderPermalink` function takes the slug, an options object with
 the above options, and then all the usual markdown-it rendering
@@ -49,3 +46,42 @@ The `callback` option is a function that will be called at the end of
 rendering with the `token` and an `info` object.  The `info` object has
 `title` and `slug` properties with the token content and the slug used
 for the identifier.
+
+## User-Friendly URLs
+
+Starting from `v5.0.0`, `markdown-it-anchor` dropped support for `string`
+keeping it's core value of being an unopinionated and secure library. Yet,
+users looking for backward compatibility may want the old slugify:
+
+```sh
+$ npm i -S string
+```
+
+```js
+const string = require('string')
+const legacySlugify = s => string(s).slugify().toString()
+
+const md = require('markdown-it')()
+const anchor = require('markdown-it-anchor', {
+	slugify: legacySlugify
+})
+```
+
+## Unicode Support
+
+Unicode is supported by default. Yet, if you are looking for a "prettier"
+--opinionated-- link, _i.e_ without %xx, you may want to take a look at `uslug`:
+
+```sh
+$ npm i -S uslug
+```
+
+```js
+const uslug = require('uslug')
+const uslugify = s => uslug(s)
+
+const md = require('markdown-it')()
+const anchor = require('markdown-it-anchor', {
+	slugify: uslugify
+})
+```

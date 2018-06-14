@@ -1,16 +1,16 @@
 {
   "name": "markdown-it-anchor",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Header anchors for markdown-it.",
   "keywords": [
-    "markdown-it-plugin"
+    "markdown",
+    "markdown-it",
+    "markdown-it-plugin",
+    "header",
+    "anchor"
   ],
   "homepage": "https://github.com/valeriangalliat/markdown-it-anchor",
   "license": "Unlicense",
-  "author": {
-    "name": "Valérian Galliat",
-    "url": "http://val.codejam.info/"
-  },
   "files": [
     "README.md",
     "UNLICENSE",
@@ -26,13 +26,14 @@
     "prepublish": "npm test",
     "test": "npm run lint && node test"
   },
-  "dependencies": {
-    "string": "^3.3.3"
-  },
+  "runkitExampleFilename": "runkit.js",
+  "dependencies": {},
   "devDependencies": {
     "markdown-it": "^8.3.0",
     "markdown-it-attrs": "^0.8.0",
     "standard": "^8.6.0"
   },
-  "tonicExampleFilename": "demo.js"
+  "peerDependencies": {
+    "markdown-it": "^8.4.1"
+  }
 }

@@ -1,20 +1,16 @@
-const string = require('string')
-
-const slugify = s =>
-  string(s).slugify().toString()
+const slugify = (s) => encodeURIComponent(String(s).toLowerCase().replace(/\s+/g, '-'))
 
 const position = {
   false: 'push',
   true: 'unshift'
 }
 
-const hasProp = ({}).hasOwnProperty
+const hasProp = Object.prototype.hasOwnProperty
 
 const permalinkHref = slug => `#${slug}`
 
 const renderPermalink = (slug, opts, state, idx) => {
-  const space = () =>
-    Object.assign(new state.Token('text', '', 0), { content: ' ' })
+  const space = () => Object.assign(new state.Token('text', '', 0), { content: ' ' })
 
   const linkTokens = [
     Object.assign(new state.Token('link_open', 'a', 1), {
