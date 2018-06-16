@@ -31,16 +31,11 @@ const renderPermalink = (slug, opts, state, idx) => {
 }
 
 const uniqueSlug = (slug, slugs) => {
-  // Mark this slug as used in the environment.
-  slugs[slug] = (hasProp.call(slugs, slug) ? slugs[slug] : 0) + 1
-
-  // First slug, return as is.
-  if (slugs[slug] === 1) {
-    return slug
-  }
-
-  // Duplicate slug, add a `-2`, `-3`, etc. to keep ID unique.
-  return slug + '-' + slugs[slug]
+  let uniq = slug
+  let i = 2
+  while (hasProp.call(slugs, uniq)) uniq = `${slug}-${i++}`
+  slugs[uniq] = true
+  return uniq
 }
 
 const isLevelSelectedNumber = selection => level => level >= selection

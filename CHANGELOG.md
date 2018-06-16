@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+## [5.0.2] - 2018-06-16
+* Patch to fix ([#35])
+
 ## [5.0.1] - 2018-06-14
 * `trim()` before `toLowerCase()` to prevent dashes as prefixes and suffixes.
 
@@ -123,6 +126,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#18]: https://github.com/valeriangalliat/markdown-it-anchor/issues/18
 [#22]: https://github.com/valeriangalliat/markdown-it-anchor/pull/22
 [#27]: https://github.com/valeriangalliat/markdown-it-anchor/issues/27
+[#35]: https://github.com/valeriangalliat/markdown-it-anchor/issues/35
 [#38]: https://github.com/valeriangalliat/markdown-it-anchor/issues/38
 [#43]: https://github.com/valeriangalliat/markdown-it-anchor/issues/43
 [#44]: https://github.com/valeriangalliat/markdown-it-anchor/issues/44
