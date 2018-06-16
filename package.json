@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-anchor",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Header anchors for markdown-it.",
   "keywords": [
     "markdown",
@@ -15,7 +15,7 @@
     "README.md",
     "UNLICENSE",
     "index.js",
-    "demo.js"
+    "runkit.js"
   ],
   "repository": {
     "type": "git",
