@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+## [5.0.1] - 2018-06-14
+* `trim()` before `toLowerCase()` to prevent dashes as prefixes and suffixes.
+
 ## [5.0.0] - 2018-06-14
 * NEW Contributor: nagaozen
 * Drop `string` package in favour of `encodeURIComponent`.  
