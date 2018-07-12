@@ -47,6 +47,7 @@ const anchor = (md, opts) => {
   md.core.ruler.push('anchor', state => {
     const slugs = {}
     const tokens = state.tokens
+    const extractHeaders = []
 
     const isLevelSelected = Array.isArray(opts.level)
       ? isLevelSelectedArray(opts.level)
@@ -72,10 +73,10 @@ const anchor = (md, opts) => {
           opts.renderPermalink(slug, opts, state, tokens.indexOf(token))
         }
 
-        if (opts.callback) {
-          opts.callback(token, { slug, title })
-        }
+        extractHeaders.push({ token, slug: { slug, title } })
       })
+      
+      opts.callback && opts.callback(extractHeaders)
   })
 }
 
