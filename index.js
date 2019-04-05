@@ -26,7 +26,9 @@ const renderPermalink = (slug, opts, state, idx) => {
 
   // `push` or `unshift` according to position option.
   // Space is at the opposite side.
-  linkTokens[position[!opts.permalinkBefore]](space())
+  if (opts.permalinkSpace) {
+    linkTokens[position[!opts.permalinkBefore]](space())
+  }
   state.tokens[idx + 1].children[position[opts.permalinkBefore]](...linkTokens)
 }
 
@@ -85,6 +87,7 @@ anchor.defaults = {
   permalink: false,
   renderPermalink,
   permalinkClass: 'header-anchor',
+  permalinkSpace: true,
   permalinkSymbol: '¶',
   permalinkBefore: false,
   permalinkHref
