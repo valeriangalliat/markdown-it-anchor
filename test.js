@@ -91,3 +91,13 @@ equal(calls[0].info.slug, 'first-heading')
 equal(calls[1].token.tag, 'h2')
 equal(calls[1].info.title, 'Second Heading')
 equal(calls[1].info.slug, 'second-heading')
+
+equal(
+  md({ html: true }).use(anchor, { permalink: true, permalinkSpace: false }).render('# H1'),
+  '<h1 id="h1">H1<a class="header-anchor" href="#h1" aria-hidden="true">¶</a></h1>\n'
+)
+
+equal(
+  md({ html: true }).use(anchor, { permalink: false, permalinkSpace: false }).render('# H1'),
+  '<h1 id="h1">H1</h1>\n'
+)

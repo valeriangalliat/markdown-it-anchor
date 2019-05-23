@@ -22,6 +22,7 @@ Name              | Description                                                 
 `permalink`       | Whether to add permalinks next to titles.                      | `false`
 `renderPermalink` | A custom permalink rendering function.                         | See [`index.js`](index.js)
 `permalinkClass`  | The class of the permalink anchor.                             | `header-anchor`
+`permalinkSpace`  | Place space between the header text and the permalink anchor.  | `true`
 `permalinkSymbol` | The symbol in the permalink anchor.                            | `¶`
 `permalinkBefore` | Place the permalink before the title.                          | `false`
 `permalinkHref`   | A custom permalink `href` rendering function.                  | See [`index.js`](index.js)
@@ -90,4 +91,4 @@ const anchor = require('markdown-it-anchor', {
 
 Looking for an automatic table of contents (TOC) generator? Take a look at
 [markdown-it-toc-done-right](https://www.npmjs.com/package/markdown-it-toc-done-right) it's
-made from the ground to be a great companion of this plugin. 
+made from the ground to be a great companion of this plugin.
