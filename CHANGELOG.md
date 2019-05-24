@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+## [5.1.0] - 2019-05-24
+* New option `permalinkSpace` makes possible to suppress the whitespace between the permalink and the header text value. Defaults to `true` ([#52])
+
 ## [5.0.2] - 2018-06-16
 * Patch to fix ([#35])
 
