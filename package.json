@@ -21,10 +21,7 @@
   "files": [
     "README.md",
     "UNLICENSE",
-    "index.js",
-    "dist/markdownItAnchor.js",
-    "dist/markdownItAnchor.umd.js",
-    "dist/markdownItAnchor.mjs",
+    "dist/*",
     "runkit.js"
   ],
   "repository": {
@@ -34,7 +31,7 @@
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch",
-    "lint": "standard",
+    "lint": "standard index.js",
     "prepublish": "npm test",
     "test": "npm run lint && node test"
   },
