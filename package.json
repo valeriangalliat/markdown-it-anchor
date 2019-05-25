@@ -1,4 +1,11 @@
 {
+  "source": "index.js",
+  "main": "dist/markdownItAnchor.js",
+  "umd:main": "dist/markdownItAnchor.umd.js",
+  "module": "dist/markdownItAnchor.mjs",
+  "mangle": {
+    "regex": "^_"
+  },
   "name": "markdown-it-anchor",
   "version": "5.1.0",
   "description": "Header anchors for markdown-it.",
@@ -15,6 +22,9 @@
     "README.md",
     "UNLICENSE",
     "index.js",
+    "dist/markdownItAnchor.js",
+    "dist/markdownItAnchor.umd.js",
+    "dist/markdownItAnchor.mjs",
     "runkit.js"
   ],
   "repository": {
@@ -22,6 +32,8 @@
     "url": "https://github.com/valeriangalliat/markdown-it-anchor.git"
   },
   "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch",
     "lint": "standard",
     "prepublish": "npm test",
     "test": "npm run lint && node test"
@@ -31,6 +43,7 @@
   "devDependencies": {
     "markdown-it": "^8.3.0",
     "markdown-it-attrs": "^0.8.0",
+    "microbundle": "^0.11.0",
     "standard": "^11.0.1"
   },
   "peerDependencies": {

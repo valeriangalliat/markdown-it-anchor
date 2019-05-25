@@ -93,4 +93,4 @@ anchor.defaults = {
   permalinkHref
 }
 
-module.exports = anchor
+export default anchor
