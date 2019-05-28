@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+## [5.2.2] - 2019-05-28
+* `...linkTokens` -> `[].concat(linkTokens)` makes IE/EDGE compatible.
+
+## [5.2.1] - 2019-05-28
+* fix typo
+
 ## [5.2.0] - 2019-05-28
 * Added support for unpkg
 * Added support for mjs
@@ -99,7 +105,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 1.0.0 - 2015-03-18
 * Initial release.
 
-[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.0...HEAD
+[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.2...HEAD
+[5.2.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.1...v5.2.2
+[5.2.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.0...v5.2.1
 [5.2.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.0.1...v5.2.0
 [5.0.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.0.0...v5.0.1
 [5.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v4.0.0...v5.0.0
