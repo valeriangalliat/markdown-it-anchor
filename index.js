@@ -59,7 +59,8 @@ const anchor = (md, opts) => {
       .filter(token => isLevelSelected(Number(token.tag.substr(1))))
       .forEach(token => {
         // Aggregate the next token children text.
-        const title = tokens[tokens.indexOf(token) + 1].children
+        const title = tokens[tokens.indexOf(token) + 1]
+          .children
           .filter(token => token.type === 'text' || token.type === 'code_inline')
           .reduce((acc, t) => acc + t.content, '')
 

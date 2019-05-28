@@ -6,10 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
-## [5.1.0] - 2019-05-24
+## [5.2.0] - 2019-05-28
+* Added support for unpkg
+* Added support for mjs
+* Fixes: [#40] and [#46]
 * New option `permalinkSpace` makes possible to suppress the whitespace between the permalink and the header text value. Defaults to `true` ([#52])
-
-## [5.0.2] - 2018-06-16
 * Patch to fix ([#35])
 
 ## [5.0.1] - 2018-06-14
@@ -98,7 +99,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 1.0.0 - 2015-03-18
 * Initial release.
 
-[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.0.0...HEAD
+[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.0...HEAD
+[5.0.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.0.1...v5.2.0
+[5.0.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.0.0...v5.0.1
+[5.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v4.0.0...v5.0.0
 [4.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v3.0.0...v4.0.0
 [3.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.5.1...v3.0.0
 [2.5.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v2.5.0...v2.5.1
@@ -131,6 +135,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#27]: https://github.com/valeriangalliat/markdown-it-anchor/issues/27
 [#35]: https://github.com/valeriangalliat/markdown-it-anchor/issues/35
 [#38]: https://github.com/valeriangalliat/markdown-it-anchor/issues/38
+[#40]: https://github.com/valeriangalliat/markdown-it-anchor/issues/40
 [#43]: https://github.com/valeriangalliat/markdown-it-anchor/issues/43
 [#44]: https://github.com/valeriangalliat/markdown-it-anchor/issues/44
 [#45]: https://github.com/valeriangalliat/markdown-it-anchor/pull/45
+[#45]: https://github.com/valeriangalliat/markdown-it-anchor/issues/46

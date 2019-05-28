@@ -1,14 +1,14 @@
 {
+  "name": "markdown-it-anchor",
+  "version": "5.2.0",
+  "description": "Header anchors for markdown-it.",
   "source": "index.js",
   "main": "dist/markdownItAnchor.js",
-  "umd:main": "dist/markdownItAnchor.umd.js",
   "module": "dist/markdownItAnchor.mjs",
+  "unpkg": "dist/markdownItAnchor.umd.js",
   "mangle": {
     "regex": "^_"
   },
-  "name": "markdown-it-anchor",
-  "version": "5.1.0",
-  "description": "Header anchors for markdown-it.",
   "keywords": [
     "markdown",
     "markdown-it",
