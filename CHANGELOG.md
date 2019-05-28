@@ -100,7 +100,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Initial release.
 
 [unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.0...HEAD
-[5.0.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.0.1...v5.2.0
+[5.2.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.0.1...v5.2.0
 [5.0.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.0.0...v5.0.1
 [5.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v4.0.0...v5.0.0
 [4.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v3.0.0...v4.0.0
