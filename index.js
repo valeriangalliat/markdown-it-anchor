@@ -29,7 +29,7 @@ const renderPermalink = (slug, opts, state, idx) => {
   if (opts.permalinkSpace) {
     linkTokens[position[!opts.permalinkBefore]](space())
   }
-  state.tokens[idx + 1].children[position[opts.permalinkBefore]]([].concat(linkTokens))
+  state.tokens[idx + 1].children[position[opts.permalinkBefore]].apply(null, linkTokens)
 }
 
 const uniqueSlug = (slug, slugs) => {

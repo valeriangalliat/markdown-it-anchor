@@ -6,8 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+## [5.2.3] - 2019-05-28
+* `...linkTokens` -> `(...).apply(null, linkTokens)` IE doesn't support spread syntax.
+
 ## [5.2.2] - 2019-05-28
-* `...linkTokens` -> `[].concat(linkTokens)` makes IE/EDGE compatible.
+* `...linkTokens` -> `[].concat(linkTokens)` makes IE compatible.
 
 ## [5.2.1] - 2019-05-28
 * fix typo
