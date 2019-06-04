@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+## [5.2.4] - 2019-06-03
+* rolled back to `...linkTokens`
+* executed `npm audit fix` to fix dependencies vunerabilities
+
 ## [5.2.3] - 2019-05-28
 * `...linkTokens` -> `(...).apply(null, linkTokens)` IE doesn't support spread syntax.
 
