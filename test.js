@@ -64,6 +64,36 @@ equal(
 )
 
 equal(
+  md().use(anchor, { toplink: true }).render('# H1'),
+  '<h1 id="h1"><a class="header-toplink" href="#top" aria-hidden="true">↑</a> H1</h1>\n'
+)
+
+equal(
+  md().use(anchor, { toplink: true, toplinkBefore: false }).render('# H1'),
+  '<h1 id="h1">H1 <a class="header-toplink" href="#top" aria-hidden="true">↑</a></h1>\n'
+)
+
+equal(
+  md().use(anchor, { toplink: true, toplinkSymbol: 'T' }).render('# H1'),
+  '<h1 id="h1"><a class="header-toplink" href="#top" aria-hidden="true">T</a> H1</h1>\n'
+)
+
+equal(
+  md().use(anchor, { toplink: true, toplinkSymbol: '<i class="icon"></i>' }).render('# H1'),
+  '<h1 id="h1"><a class="header-toplink" href="#top" aria-hidden="true"><i class="icon"></i></a> H1</h1>\n'
+)
+
+equal(
+  md().use(anchor, { toplink: true, permalink: true }).render('# H1'),
+  '<h1 id="h1"><a class="header-toplink" href="#top" aria-hidden="true">↑</a> H1 <a class="header-anchor" href="#h1" aria-hidden="true">¶</a></h1>\n'
+)
+
+equal(
+  md().use(anchor, { toplink: true, permalink: true, toplinkBefore: false }).render('# H1'),
+  '<h1 id="h1">H1 <a class="header-anchor" href="#h1" aria-hidden="true">¶</a> <a class="header-toplink" href="#top" aria-hidden="true">↑</a></h1>\n'
+)
+
+equal(
   md().use(anchor).render('#### `options`'),
   '<h4 id="options"><code>options</code></h4>\n'
 )

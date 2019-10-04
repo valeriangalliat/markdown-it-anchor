@@ -9,27 +9,44 @@ const hasProp = Object.prototype.hasOwnProperty
 
 const permalinkHref = slug => `#${slug}`
 
-const renderPermalink = (slug, opts, state, idx) => {
-  const space = () => Object.assign(new state.Token('text', '', 0), { content: ' ' })
-
-  const linkTokens = [
+const createLink = (state, className, href, content) => {
+  return [
     Object.assign(new state.Token('link_open', 'a', 1), {
       attrs: [
-        ['class', opts.permalinkClass],
-        ['href', opts.permalinkHref(slug, state)],
+        ['class', className],
+        ['href', href],
         ['aria-hidden', 'true']
       ]
     }),
-    Object.assign(new state.Token('html_block', '', 0), { content: opts.permalinkSymbol }),
+    Object.assign(new state.Token('html_block', '', 0), { content }),
     new state.Token('link_close', 'a', -1)
   ]
+}
+
+const addLink = (state, withSpace, before, idx, linkTokens) => {
+  const space = () => Object.assign(new state.Token('text', '', 0), { content: ' ' })
 
   // `push` or `unshift` according to position option.
   // Space is at the opposite side.
-  if (opts.permalinkSpace) {
-    linkTokens[position[!opts.permalinkBefore]](space())
+  if (withSpace) {
+    linkTokens[position[!before]](space())
   }
-  state.tokens[idx + 1].children[position[opts.permalinkBefore]](...linkTokens)
+
+  state.tokens[idx + 1].children[position[before]](...linkTokens)
+}
+
+const renderPermalink = (slug, opts, state, idx) => {
+  const linkTokens = createLink(state, opts.permalinkClass,
+    opts.permalinkHref(slug, state), opts.permalinkSymbol)
+
+  addLink(state, opts.permalinkSpace, opts.permalinkBefore, idx, linkTokens)
+}
+
+const renderToplink = (slug, opts, state, idx) => {
+  const linkTokens = createLink(state, opts.toplinkClass, `#${opts.toplinkName}`,
+    opts.toplinkSymbol)
+
+  addLink(state, opts.toplinkSpace, opts.toplinkBefore, idx, linkTokens)
 }
 
 const uniqueSlug = (slug, slugs) => {
@@ -75,6 +92,10 @@ const anchor = (md, opts) => {
           opts.renderPermalink(slug, opts, state, tokens.indexOf(token))
         }
 
+        if (opts.toplink) {
+          opts.renderToplink(slug, opts, state, tokens.indexOf(token))
+        }
+
         if (opts.callback) {
           opts.callback(token, { slug, title })
         }
@@ -91,7 +112,14 @@ anchor.defaults = {
   permalinkSpace: true,
   permalinkSymbol: '¶',
   permalinkBefore: false,
-  permalinkHref
+  permalinkHref,
+  toplink: false,
+  renderToplink,
+  toplinkClass: 'header-toplink',
+  toplinkSpace: true,
+  toplinkSymbol: '↑',
+  toplinkBefore: true,
+  toplinkName: 'top'
 }
 
 export default anchor
