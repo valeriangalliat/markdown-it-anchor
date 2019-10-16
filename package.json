@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-anchor",
-  "version": "5.2.4",
+  "version": "5.2.5",
   "description": "Header anchors for markdown-it.",
   "source": "index.js",
   "main": "dist/markdownItAnchor.js",
@@ -38,10 +38,10 @@
   "runkitExampleFilename": "runkit.js",
   "dependencies": {},
   "devDependencies": {
-    "markdown-it": "*",
-    "markdown-it-attrs": "*",
+    "markdown-it": "^10.0.0",
+    "markdown-it-attrs": "^3.0.1",
     "microbundle": "*",
-    "standard": "*"
+    "standard": "^14.3.1"
   },
   "peerDependencies": {
     "markdown-it": "*"

@@ -25,22 +25,22 @@ equal(
 
 equal(
   md().use(anchor, { permalink: true }).render('# H1'),
-  '<h1 id="h1">H1 <a class="header-anchor" href="#h1" aria-hidden="true">¶</a></h1>\n'
+  '<h1 id="h1">H1 <a class="header-anchor" href="#h1">¶</a></h1>\n'
 )
 
 equal(
   md().use(anchor, { permalink: true, permalinkClass: 'test' }).render('# H1'),
-  '<h1 id="h1">H1 <a class="test" href="#h1" aria-hidden="true">¶</a></h1>\n'
+  '<h1 id="h1">H1 <a class="test" href="#h1">¶</a></h1>\n'
 )
 
 equal(
   md().use(anchor, { permalink: true, permalinkSymbol: 'P' }).render('# H1'),
-  '<h1 id="h1">H1 <a class="header-anchor" href="#h1" aria-hidden="true">P</a></h1>\n'
+  '<h1 id="h1">H1 <a class="header-anchor" href="#h1">P</a></h1>\n'
 )
 
 equal(
   md().use(anchor, { permalink: true, permalinkSymbol: '<i class="icon"></i>' }).render('# H1'),
-  '<h1 id="h1">H1 <a class="header-anchor" href="#h1" aria-hidden="true"><i class="icon"></i></a></h1>\n'
+  '<h1 id="h1">H1 <a class="header-anchor" href="#h1"><i class="icon"></i></a></h1>\n'
 )
 
 equal(
@@ -50,17 +50,17 @@ equal(
 
 equal(
   md().use(anchor, { permalink: true, permalinkBefore: true }).render('# H1'),
-  '<h1 id="h1"><a class="header-anchor" href="#h1" aria-hidden="true">¶</a> H1</h1>\n'
+  '<h1 id="h1"><a class="header-anchor" href="#h1">¶</a> H1</h1>\n'
 )
 
 equal(
   md().use(anchor, { level: 2, permalink: true }).render('# H1\n\n## H2'),
-  '<h1>H1</h1>\n<h2 id="h2">H2 <a class="header-anchor" href="#h2" aria-hidden="true">¶</a></h2>\n'
+  '<h1>H1</h1>\n<h2 id="h2">H2 <a class="header-anchor" href="#h2">¶</a></h2>\n'
 )
 
 equal(
   md({ html: true }).use(anchor, { permalink: true }).render('# <span>H1</span>'),
-  '<h1 id="h1"><span>H1</span> <a class="header-anchor" href="#h1" aria-hidden="true">¶</a></h1>\n'
+  '<h1 id="h1"><span>H1</span> <a class="header-anchor" href="#h1">¶</a></h1>\n'
 )
 
 equal(
@@ -81,7 +81,7 @@ equal(
     permalinkHref: (slug, state) => `${state.env.path}#${slug}`,
     permalink: true
   }).render('# H1', { path: 'file.html' }),
-  '<h1 id="h1">H1 <a class="header-anchor" href="file.html#h1" aria-hidden="true">¶</a></h1>\n'
+  '<h1 id="h1">H1 <a class="header-anchor" href="file.html#h1">¶</a></h1>\n'
 )
 
 equal(calls.length, 2)
@@ -94,7 +94,7 @@ equal(calls[1].info.slug, 'second-heading')
 
 equal(
   md({ html: true }).use(anchor, { permalink: true, permalinkSpace: false }).render('# H1'),
-  '<h1 id="h1">H1<a class="header-anchor" href="#h1" aria-hidden="true">¶</a></h1>\n'
+  '<h1 id="h1">H1<a class="header-anchor" href="#h1">¶</a></h1>\n'
 )
 
 equal(

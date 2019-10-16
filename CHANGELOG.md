@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+## [5.2.5] - 2019-10-16
+* removing `aria-hidden` from links ([#58])
+
 ## [5.2.4] - 2019-06-03
 * rolled back to `...linkTokens`
 * executed `npm audit fix` to fix dependencies vunerabilities
@@ -157,3 +160,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#44]: https://github.com/valeriangalliat/markdown-it-anchor/issues/44
 [#45]: https://github.com/valeriangalliat/markdown-it-anchor/pull/45
 [#45]: https://github.com/valeriangalliat/markdown-it-anchor/issues/46
+[#58]: https://github.com/valeriangalliat/markdown-it-anchor/issues/58

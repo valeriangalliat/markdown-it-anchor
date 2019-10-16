@@ -16,8 +16,7 @@ const renderPermalink = (slug, opts, state, idx) => {
     Object.assign(new state.Token('link_open', 'a', 1), {
       attrs: [
         ['class', opts.permalinkClass],
-        ['href', opts.permalinkHref(slug, state)],
-        ['aria-hidden', 'true']
+        ['href', opts.permalinkHref(slug, state)]
       ]
     }),
     Object.assign(new state.Token('html_block', '', 0), { content: opts.permalinkSymbol }),
