@@ -104,7 +104,7 @@ equal(
 
 equal(
   md()
-    .use(anchor, { permalink: true, permalinkAttrs: { "aria-label": "permalink", title: "permalink" } })
-    .render("# H1"),
-  '<h1 id="h1">H1 <a class="header-anchor" href="#h1" aria-label="permalink" title="permalink">¶</a></h1>\n'
+    .use(anchor, { permalink: true, permalinkAttrs: (slug, state) => ({ "aria-label": `permalink to ${slug}`, title: "permalink" }) })
+    .render("# My title"),
+  '<h1 id="my-title">My title <a class="header-anchor" href="#my-title" aria-label="permalink to my-title" title="permalink">¶</a></h1>\n'
 );

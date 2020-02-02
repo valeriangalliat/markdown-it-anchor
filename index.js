@@ -17,7 +17,7 @@ const renderPermalink = (slug, opts, state, idx) => {
       attrs: [
         ['class', opts.permalinkClass],
         ['href', opts.permalinkHref(slug, state)],
-        ...Object.entries(opts.permalinkAttrs)
+        ...Object.entries(opts.permalinkAttrs(slug, state))
       ]
     }),
     Object.assign(new state.Token('html_block', '', 0), { content: opts.permalinkSymbol }),
@@ -92,7 +92,7 @@ anchor.defaults = {
   permalinkSymbol: '¶',
   permalinkBefore: false,
   permalinkHref,
-  permalinkAttrs: {}
+  permalinkAttrs: () => ({})
 }
 
 export default anchor
