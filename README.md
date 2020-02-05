@@ -26,8 +26,8 @@ Name              | Description                                                 
 `permalinkSymbol` | The symbol in the permalink anchor.                            | `¶`
 `permalinkBefore` | Place the permalink before the title.                          | `false`
 `permalinkHref`   | A custom permalink `href` rendering function.                  | See [`index.js`](index.js)
+`permalinkAttrs`  | A custom permalink attributes rendering function.              | See [`index.js`](index.js)
 `callback`        | Called with token and info after rendering.                    | `undefined`
-`permalinkAttrs`  | A function to set arbitrary HTML attributes on the permalink anchor. Called with `slug` and `state`, returns an object of attributes | `() => ({})`
 
 The `renderPermalink` function takes the slug, an options object with
 the above options, and then all the usual markdown-it rendering
