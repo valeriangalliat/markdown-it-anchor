@@ -101,3 +101,10 @@ equal(
   md({ html: true }).use(anchor, { permalink: false, permalinkSpace: false }).render('# H1'),
   '<h1 id="h1">H1</h1>\n'
 )
+
+equal(
+  md()
+    .use(anchor, { permalink: true, permalinkAttrs: (slug, state) => ({ "aria-label": `permalink to ${slug}`, title: "permalink" }) })
+    .render("# My title"),
+  '<h1 id="my-title">My title <a class="header-anchor" href="#my-title" aria-label="permalink to my-title" title="permalink">¶</a></h1>\n'
+);

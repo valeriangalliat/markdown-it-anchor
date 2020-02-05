@@ -8,6 +8,7 @@ const position = {
 const hasProp = Object.prototype.hasOwnProperty
 
 const permalinkHref = slug => `#${slug}`
+const permalinkAttrs = slug => ({})
 
 const renderPermalink = (slug, opts, state, idx) => {
   const space = () => Object.assign(new state.Token('text', '', 0), { content: ' ' })
@@ -16,7 +17,8 @@ const renderPermalink = (slug, opts, state, idx) => {
     Object.assign(new state.Token('link_open', 'a', 1), {
       attrs: [
         ['class', opts.permalinkClass],
-        ['href', opts.permalinkHref(slug, state)]
+        ['href', opts.permalinkHref(slug, state)],
+        ...Object.entries(opts.permalinkAttrs(slug, state))
       ]
     }),
     Object.assign(new state.Token('html_block', '', 0), { content: opts.permalinkSymbol }),
@@ -90,7 +92,8 @@ anchor.defaults = {
   permalinkSpace: true,
   permalinkSymbol: '¶',
   permalinkBefore: false,
-  permalinkHref
+  permalinkHref,
+  permalinkAttrs
 }
 
 export default anchor
