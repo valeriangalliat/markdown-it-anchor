@@ -8,6 +8,7 @@ const position = {
 const hasProp = Object.prototype.hasOwnProperty
 
 const permalinkHref = slug => `#${slug}`
+const permalinkAttrs = slug => ({})
 
 const renderPermalink = (slug, opts, state, idx) => {
   const space = () => Object.assign(new state.Token('text', '', 0), { content: ' ' })
@@ -92,7 +93,7 @@ anchor.defaults = {
   permalinkSymbol: '¶',
   permalinkBefore: false,
   permalinkHref,
-  permalinkAttrs: () => ({})
+  permalinkAttrs
 }
 
 export default anchor
