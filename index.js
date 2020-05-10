@@ -33,10 +33,13 @@ const renderPermalink = (slug, opts, state, idx) => {
   state.tokens[idx + 1].children[position[opts.permalinkBefore]](...linkTokens)
 }
 
-const uniqueSlug = (slug, slugs) => {
+const uniqueSlug = (slug, slugs, failOnNonUnique) => {
   let uniq = slug
   let i = 2
   while (hasProp.call(slugs, uniq)) uniq = `${slug}-${i++}`
+  if (uniq !== slug && failOnNonUnique) {
+    throw new Error(`Defined slug/ID '${slug}' is not unique. Please fix this ID duplication.`);
+  }
   slugs[uniq] = true
   return uniq
 }
@@ -68,9 +71,13 @@ const anchor = (md, opts) => {
         let slug = token.attrGet('id')
 
         if (slug == null) {
-          slug = uniqueSlug(opts.slugify(title), slugs)
-          token.attrPush(['id', slug])
+          slug = uniqueSlug(opts.slugify(title), slugs, false);
+        } else {
+          // mark existing slug/ID as unique, at least.
+          // IFF it collides, FAIL!
+          slug = uniqueSlug(slug, slugs, true);
         }
+        token.attrSet('id', slug);
 
         if (opts.permalink) {
           opts.renderPermalink(slug, opts, state, tokens.indexOf(token))

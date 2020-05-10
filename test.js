@@ -9,7 +9,7 @@ equal(
 )
 
 equal(
-  md().use(attrs, anchor).render('# H1 {id=bubblegum}\n\n## H2 {id=shoelaces}'),
+  md().use(attrs).use(anchor).render('# H1 {id=bubblegum}\n\n## H2 {id=shoelaces}'),
   '<h1 id="bubblegum">H1</h1>\n<h2 id="shoelaces">H2</h2>\n'
 )
 
@@ -107,4 +107,31 @@ equal(
     .use(anchor, { permalink: true, permalinkAttrs: (slug, state) => ({ "aria-label": `permalink to ${slug}`, title: "permalink" }) })
     .render("# My title"),
   '<h1 id="my-title">My title <a class="header-anchor" href="#my-title" aria-label="permalink to my-title" title="permalink">¶</a></h1>\n'
+);
+
+equal(
+  (() => {
+    try {
+      return md().use(attrs).use(anchor).render('# H1 {id=bubblegum}\n\n## H2 {id=bubblegum}');
+    } catch (ex) {
+      return ex.message;
+    }
+  })(),
+  "Defined slug/ID 'bubblegum' is not unique. Please fix this ID duplication."
+);
+
+equal(
+  md().use(attrs).use(anchor).render('# H1 {id=h2}\n\n## H2'),
+  '<h1 id="h2">H1</h1>\n<h2 id="h2-2">H2</h2>\n'
+);
+
+equal(
+  (() => {
+    try {
+      return md().use(attrs).use(anchor).render('# H1\n\n## H2 {id=h1}');
+    } catch (ex) {
+      return ex.message;
+    }
+  })(),
+  "Defined slug/ID 'h1' is not unique. Please fix this ID duplication."
 );
