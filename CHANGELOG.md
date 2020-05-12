@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+## [5.3.0] - 2020-05-12
+* Fix support for user defined ids by using `markdown-it-attrs`.
+* Updated dependencies -> `found 0 vulnerabilities`
+
+## [5.2.7] - 2020-04-01
+* Added `permalinkAttrs` option
+
+## [5.2.6] - ???
+* ???
+
 ## [5.2.5] - 2019-10-16
 * removing `aria-hidden` from links ([#58])
 
