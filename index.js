@@ -1,4 +1,4 @@
-const slugify = (s) => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-'))
+const slugify = (s) => String(latinize(s.toLowerCase().replace(/[^a-zA-Z0-9 ]+/g, ""))).split(" ").join("-")
 
 const position = {
   false: 'push',
