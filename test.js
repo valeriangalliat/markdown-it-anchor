@@ -45,7 +45,7 @@ equal(
 
 equal(
   md().use(anchor).render('# Title\n\n## Title'),
-  '<h1 id="title">Title</h1>\n<h2 id="title-2">Title</h2>\n'
+  '<h1 id="title">Title</h1>\n<h2 id="title-1">Title</h2>\n'
 )
 
 equal(
@@ -122,7 +122,7 @@ equal(
 
 equal(
   md().use(attrs).use(anchor).render('# H1 {id=h2}\n\n## H2'),
-  '<h1 id="h2">H1</h1>\n<h2 id="h2-2">H2</h2>\n'
+  '<h1 id="h2">H1</h1>\n<h2 id="h2-1">H2</h2>\n'
 )
 
 equal(

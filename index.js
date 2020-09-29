@@ -33,9 +33,9 @@ const renderPermalink = (slug, opts, state, idx) => {
   state.tokens[idx + 1].children[position[opts.permalinkBefore]](...linkTokens)
 }
 
-const uniqueSlug = (slug, slugs, failOnNonUnique) => {
+const uniqueSlug = (slug, slugs, failOnNonUnique, startIndex) => {
   let uniq = slug
-  let i = 2
+  let i = startIndex
   if (failOnNonUnique && hasProp.call(slugs, uniq)) {
     throw Error(`User defined id attribute '${slug}' is NOT unique. Please fix it in your markdown to continue.`)
   } else {
@@ -72,9 +72,9 @@ const anchor = (md, opts) => {
         let slug = token.attrGet('id')
 
         if (slug == null) {
-          slug = uniqueSlug(opts.slugify(title), slugs, false)
+          slug = uniqueSlug(opts.slugify(title), slugs, false, opts.uniqueSlugStartIndex)
         } else {
-          slug = uniqueSlug(slug, slugs, true)
+          slug = uniqueSlug(slug, slugs, true, opts.uniqueSlugStartIndex)
         }
         token.attrSet('id', slug)
 
@@ -99,7 +99,8 @@ anchor.defaults = {
   permalinkSymbol: '¶',
   permalinkBefore: false,
   permalinkHref,
-  permalinkAttrs
+  permalinkAttrs,
+  uniqueSlugStartIndex: 1
 }
 
 export default anchor

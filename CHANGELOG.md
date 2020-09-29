@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+## [6.0.0] - 2020-09-29
+* Allow to configure unique slug start index, and make it 1 instead of 2
+  to mimic what markdown-toc, github-slugger, and GitHub itself does by
+  default. This should improve out of the box compatibility with other
+  packages. ([#74])
+
 ## [5.3.0] - 2020-05-12
 * Fix support for user defined ids by using `markdown-it-attrs`.
 * Updated dependencies -> `found 0 vulnerabilities`
@@ -126,6 +132,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Initial release.
 
 [unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.4...HEAD
+[6.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.3.0...v6.0.0
+[5.3.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.7...v5.3.0
+[5.2.7]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.6...v5.2.7
+[5.2.6]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.5...v5.2.6
+[5.2.5]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.4...v5.2.5
 [5.2.4]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.3...v5.2.4
 [5.2.3]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.2...v5.2.3
 [5.2.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.1...v5.2.2
@@ -171,3 +182,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#45]: https://github.com/valeriangalliat/markdown-it-anchor/pull/45
 [#45]: https://github.com/valeriangalliat/markdown-it-anchor/issues/46
 [#58]: https://github.com/valeriangalliat/markdown-it-anchor/issues/58
+[#74]: https://github.com/valeriangalliat/markdown-it-anchor/issues/74

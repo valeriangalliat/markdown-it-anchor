@@ -15,19 +15,20 @@ See a [demo as JSFiddle](https://jsfiddle.net/9ukc8dy6/).
 
 The `opts` object can contain:
 
-Name              | Description                                                    | Default
-------------------|----------------------------------------------------------------|-----------------------------------
-`level`           | Minimum level to apply anchors on or array of selected levels. | 1
-`slugify`         | A custom slugification function.                               | See [`index.js`](index.js)
-`permalink`       | Whether to add permalinks next to titles.                      | `false`
-`renderPermalink` | A custom permalink rendering function.                         | See [`index.js`](index.js)
-`permalinkClass`  | The class of the permalink anchor.                             | `header-anchor`
-`permalinkSpace`  | Place space between the header text and the permalink anchor.  | `true`
-`permalinkSymbol` | The symbol in the permalink anchor.                            | `¶`
-`permalinkBefore` | Place the permalink before the title.                          | `false`
-`permalinkHref`   | A custom permalink `href` rendering function.                  | See [`index.js`](index.js)
-`permalinkAttrs`  | A custom permalink attributes rendering function.              | See [`index.js`](index.js)
-`callback`        | Called with token and info after rendering.                    | `undefined`
+Name                   | Description                                                    | Default
+-----------------------|----------------------------------------------------------------|-----------------------------------
+`level`                | Minimum level to apply anchors on or array of selected levels. | 1
+`slugify`              | A custom slugification function.                               | See [`index.js`](index.js)
+`permalink`            | Whether to add permalinks next to titles.                      | `false`
+`renderPermalink`      | A custom permalink rendering function.                         | See [`index.js`](index.js)
+`permalinkClass`       | The class of the permalink anchor.                             | `header-anchor`
+`permalinkSpace`       | Place space between the header text and the permalink anchor.  | `true`
+`permalinkSymbol`      | The symbol in the permalink anchor.                            | `¶`
+`permalinkBefore`      | Place the permalink before the title.                          | `false`
+`permalinkHref`        | A custom permalink `href` rendering function.                  | See [`index.js`](index.js)
+`permalinkAttrs`       | A custom permalink attributes rendering function.              | See [`index.js`](index.js)
+`callback`             | Called with token and info after rendering.                    | `undefined`
+`uniqueSlugStartIndex` | Index to start with when making duplicate slugs unique.        | 1
 
 The `renderPermalink` function takes the slug, an options object with
 the above options, and then all the usual markdown-it rendering
