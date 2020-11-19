@@ -92,6 +92,7 @@ const anchor = (md, opts) => {
 anchor.defaults = {
   level: 1,
   slugify,
+  uniqueSlugStartIndex: 1,
   permalink: false,
   renderPermalink,
   permalinkClass: 'header-anchor',
@@ -99,8 +100,7 @@ anchor.defaults = {
   permalinkSymbol: '¶',
   permalinkBefore: false,
   permalinkHref,
-  permalinkAttrs,
-  uniqueSlugStartIndex: 1
+  permalinkAttrs
 }
 
 export default anchor
