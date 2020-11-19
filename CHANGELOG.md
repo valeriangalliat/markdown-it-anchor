@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased][unreleased]
 
 ## [6.0.1] - 2020-11-19
+* Added `example.html` test case
 * Added `uniqueSlugStartIndex` test case
 * Fix `equal` -> `strictEqual`
 * Updated dependencies -> `found 0 vulnerabilities`
