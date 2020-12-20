@@ -38,7 +38,7 @@
   "runkitExampleFilename": "runkit.js",
   "dependencies": {},
   "devDependencies": {
-    "markdown-it": "^10.0.0",
+    "markdown-it": "^12.0.0",
     "markdown-it-attrs": "^3.0.1",
     "microbundle": "^0.12.0",
     "standard": "^14.3.1"
