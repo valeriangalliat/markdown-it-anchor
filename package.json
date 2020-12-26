@@ -1,6 +1,6 @@
 {
-  "name": "markdown-it-anchor",
-  "version": "6.0.1",
+  "name": "@mrdrogdrog/markdown-it-anchor",
+  "version": "6.0.3",
   "description": "Header anchors for markdown-it.",
   "source": "index.js",
   "main": "dist/markdownItAnchor.js",
@@ -9,6 +9,7 @@
   "mangle": {
     "regex": "^_"
   },
+  "types": "./types/index.d.ts",
   "keywords": [
     "markdown",
     "markdown-it",
@@ -22,7 +23,8 @@
     "README.md",
     "UNLICENSE",
     "dist/*",
-    "runkit.js"
+    "runkit.js",
+    "types/*"
   ],
   "repository": {
     "type": "git",
