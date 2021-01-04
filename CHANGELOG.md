@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+## [7.0.0] - 2021-01-04
+* Depend on any markdown-it version ([#76])
+
 ## [6.0.1] - 2020-11-19
 * Added `example.html` test case
 * Added `uniqueSlugStartIndex` test case
@@ -137,7 +140,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 1.0.0 - 2015-03-18
 * Initial release.
 
-[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v6.0.1...HEAD
+[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v7.0.0...HEAD
+[7.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v6.0.1...v7.0.0
 [6.0.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v6.0.0...v6.0.1
 [6.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.3.0...v6.0.0
 [5.3.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v5.2.7...v5.3.0
@@ -190,3 +194,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#45]: https://github.com/valeriangalliat/markdown-it-anchor/issues/46
 [#58]: https://github.com/valeriangalliat/markdown-it-anchor/issues/58
 [#74]: https://github.com/valeriangalliat/markdown-it-anchor/issues/74
+[#76]: https://github.com/valeriangalliat/markdown-it-anchor/pull/76
