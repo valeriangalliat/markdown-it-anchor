@@ -4,8 +4,9 @@
 
 [markdown-it]: https://github.com/markdown-it/markdown-it
 
-## Usage 
-language | [中文(v7.0.1)](./README-zh_CN.md)
+English | [中文 (v7.0.1)](./README-zh_CN.md)
+
+## Usage
 
 ```js
 const md = require('markdown-it')()
