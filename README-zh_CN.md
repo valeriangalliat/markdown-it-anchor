@@ -1,6 +1,7 @@
 # markdown-it-anchor [![npm version](http://img.shields.io/npm/v/markdown-it-anchor.svg?style=flat-square)](https://www.npmjs.org/package/markdown-it-anchor)
 
-> 为[markdown-it]设计的标题锚点生成.
+> 中文版翻译基于 version 7.0.1
+> 为 [markdown-it] 设计的标题锚点生成. 
 
 [markdown-it]: https://github.com/markdown-it/markdown-it
 
