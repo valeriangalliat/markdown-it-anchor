@@ -59,33 +59,38 @@ const anchor = (md, opts) => {
       ? isLevelSelectedArray(opts.level)
       : isLevelSelectedNumber(opts.level)
 
-    tokens
-      .filter(token => token.type === 'heading_open')
-      .filter(token => isLevelSelected(Number(token.tag.substr(1))))
-      .forEach(token => {
-        // Aggregate the next token children text.
-        const title = tokens[tokens.indexOf(token) + 1]
-          .children
-          .filter(token => token.type === 'text' || token.type === 'code_inline')
-          .reduce((acc, t) => acc + t.content, '')
+    tokens.forEach((token, i) => {
+      if (token.type !== 'heading_open') {
+        return
+      }
 
-        let slug = token.attrGet('id')
+      if (!isLevelSelected(Number(token.tag.substr(1)))) {
+        return
+      }
 
-        if (slug == null) {
-          slug = uniqueSlug(opts.slugify(title), slugs, false, opts.uniqueSlugStartIndex)
-        } else {
-          slug = uniqueSlug(slug, slugs, true, opts.uniqueSlugStartIndex)
-        }
-        token.attrSet('id', slug)
+      // Aggregate the next token children text.
+      const title = tokens[i + 1]
+        .children
+        .filter(token => token.type === 'text' || token.type === 'code_inline')
+        .reduce((acc, t) => acc + t.content, '')
 
-        if (opts.permalink) {
-          opts.renderPermalink(slug, opts, state, tokens.indexOf(token))
-        }
+      let slug = token.attrGet('id')
 
-        if (opts.callback) {
-          opts.callback(token, { slug, title })
-        }
-      })
+      if (slug == null) {
+        slug = uniqueSlug(opts.slugify(title), slugs, false, opts.uniqueSlugStartIndex)
+      } else {
+        slug = uniqueSlug(slug, slugs, true, opts.uniqueSlugStartIndex)
+      }
+      token.attrSet('id', slug)
+
+      if (opts.permalink) {
+        opts.renderPermalink(slug, opts, state, tokens.indexOf(token))
+      }
+
+      if (opts.callback) {
+        opts.callback(token, { slug, title })
+      }
+    })
   })
 }
 
