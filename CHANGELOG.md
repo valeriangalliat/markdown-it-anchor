@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+## [7.1.0] - 2021-03-06
+* Update TypeScript types (#83)
+
 ## [7.0.2] - 2021-02-06
 * Optimize token parsing (#80)
 
@@ -146,7 +149,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 1.0.0 - 2015-03-18
 * Initial release.
 
-[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v7.0.2...HEAD
+[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v7.1.0...HEAD
+[7.1.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v7.0.2...v7.1.0
 [7.0.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v7.0.1...v7.0.2
 [7.0.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v7.0.0...v7.0.1
 [7.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v6.0.1...v7.0.0
@@ -205,3 +209,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#76]: https://github.com/valeriangalliat/markdown-it-anchor/pull/76
 [#79]: https://github.com/valeriangalliat/markdown-it-anchor/pull/79
 [#80]: https://github.com/valeriangalliat/markdown-it-anchor/issues/80
+[#83]: https://github.com/valeriangalliat/markdown-it-anchor/pull/83
