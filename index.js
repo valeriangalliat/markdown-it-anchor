@@ -82,6 +82,7 @@ const anchor = (md, opts) => {
         slug = uniqueSlug(slug, slugs, true, opts.uniqueSlugStartIndex)
       }
       token.attrSet('id', slug)
+      token.attrSet('tabindex', '-1')
 
       if (opts.permalink) {
         opts.renderPermalink(slug, opts, state, tokens.indexOf(token))
