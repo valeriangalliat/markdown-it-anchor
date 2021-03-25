@@ -1,54 +1,29 @@
+import * as permalink from './permalink'
+
 const slugify = (s) => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-'))
 
-const position = {
-  false: 'push',
-  true: 'unshift'
-}
-
-const hasProp = Object.prototype.hasOwnProperty
-
-const permalinkHref = slug => `#${slug}`
-const permalinkAttrs = slug => ({})
-
-const renderPermalink = (slug, opts, state, idx) => {
-  const space = () => Object.assign(new state.Token('text', '', 0), { content: ' ' })
-
-  const linkTokens = [
-    Object.assign(new state.Token('link_open', 'a', 1), {
-      attrs: [
-        ...(opts.permalinkClass ? [['class', opts.permalinkClass]] : []),
-        ['href', opts.permalinkHref(slug, state)],
-        ...Object.entries(opts.permalinkAttrs(slug, state))
-      ]
-    }),
-    Object.assign(new state.Token('html_block', '', 0), { content: opts.permalinkSymbol }),
-    new state.Token('link_close', 'a', -1)
-  ]
-
-  // `push` or `unshift` according to position option.
-  // Space is at the opposite side.
-  if (opts.permalinkSpace) {
-    linkTokens[position[!opts.permalinkBefore]](space())
-  }
-  state.tokens[idx + 1].children[position[opts.permalinkBefore]](...linkTokens)
-}
-
-const uniqueSlug = (slug, slugs, failOnNonUnique, startIndex) => {
+function uniqueSlug (slug, slugs, failOnNonUnique, startIndex) {
   let uniq = slug
   let i = startIndex
-  if (failOnNonUnique && hasProp.call(slugs, uniq)) {
-    throw Error(`User defined id attribute '${slug}' is NOT unique. Please fix it in your markdown to continue.`)
+
+  if (failOnNonUnique && Object.prototype.hasOwnProperty.call(slugs, uniq)) {
+    throw new Error(`User defined \`id\` attribute \`${slug}\` is not unique. Please fix it in your Markdown to continue.`)
   } else {
-    while (hasProp.call(slugs, uniq)) uniq = `${slug}-${i++}`
+    while (Object.prototype.hasOwnProperty.call(slugs, uniq)) {
+      uniq = `${slug}-${i}`
+      i += 1
+    }
   }
+
   slugs[uniq] = true
+
   return uniq
 }
 
 const isLevelSelectedNumber = selection => level => level >= selection
 const isLevelSelectedArray = selection => level => selection.includes(level)
 
-const anchor = (md, opts) => {
+function anchor (md, opts) {
   opts = Object.assign({}, anchor.defaults, opts)
 
   md.core.ruler.push('anchor', state => {
@@ -81,10 +56,15 @@ const anchor = (md, opts) => {
       } else {
         slug = uniqueSlug(slug, slugs, true, opts.uniqueSlugStartIndex)
       }
+
       token.attrSet('id', slug)
 
-      if (opts.permalink) {
-        opts.renderPermalink(slug, opts, state, tokens.indexOf(token))
+      if (typeof opts.permalink === 'function') {
+        opts.permalink(slug, opts, state, i)
+      } else if (opts.permalink) {
+        opts.renderPermalink(slug, opts, state, i)
+      } else if (opts.renderPermalink && opts.renderPermalink !== permalink.legacy) {
+        opts.renderPermalink(slug, opts, state, i)
       }
 
       if (opts.callback) {
@@ -94,18 +74,22 @@ const anchor = (md, opts) => {
   })
 }
 
+anchor.permalink = permalink
+
 anchor.defaults = {
   level: 1,
   slugify,
   uniqueSlugStartIndex: 1,
+
+  // Legacy options.
   permalink: false,
-  renderPermalink,
-  permalinkClass: 'header-anchor',
-  permalinkSpace: true,
-  permalinkSymbol: '¶',
-  permalinkBefore: false,
-  permalinkHref,
-  permalinkAttrs
+  renderPermalink: permalink.legacy,
+  permalinkClass: permalink.ariaHidden.defaults.class,
+  permalinkSpace: permalink.ariaHidden.defaults.space,
+  permalinkSymbol: permalink.ariaHidden.defaults.symbol,
+  permalinkBefore: permalink.ariaHidden.defaults.placement === 'before',
+  permalinkHref: permalink.ariaHidden.defaults.renderHref,
+  permalinkAttrs: permalink.ariaHidden.defaults.renderAttrs
 }
 
 export default anchor

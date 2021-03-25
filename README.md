@@ -52,51 +52,47 @@ rendering with the `token` and an `info` object.  The `info` object has
 `title` and `slug` properties with the token content and the slug used
 for the identifier.
 
-## User-Friendly URLs
+## User-friendly URLs
 
-Starting from `v5.0.0`, `markdown-it-anchor` dropped package `string`
-keeping it's core value of being an unopinionated and secure library. Yet,
-users looking for backward compatibility may want the old slugify:
+Starting from `v5.0.0`, `markdown-it-anchor` dropped the package
+`string` keeping it's core value of being an unopinionated and secure
+library. Yet, users looking for backward compatibility may want the old
+`slugify`:
 
 ```sh
-$ npm i -S string
+npm install string
 ```
 
 ```js
 const string = require('string')
-const legacySlugify = s => string(s).slugify().toString()
+const slugify = s => string(s).slugify().toString()
 
 const md = require('markdown-it')()
-const anchor = require('markdown-it-anchor', {
-	slugify: legacySlugify
-})
+const anchor = require('markdown-it-anchor', { slugify })
 ```
 
-## Unicode Support
+## Unicode support
 
 Unicode is supported by default. Yet, if you are looking for a "prettier"
---opinionated-- link, _i.e_ without %xx, you may want to take a look at `uslug`:
+link, you may want to take a look at `@sindresorhus/slugify`:
 
 ```sh
-$ npm i -S uslug
+npm install @sindresorhus/slugify
 ```
 
 ```js
-const uslug = require('uslug')
-const uslugify = s => uslug(s)
+const slugify = require('@sindresorhus/slugify')
 
 const md = require('markdown-it')()
-const anchor = require('markdown-it-anchor', {
-	slugify: uslugify
-})
+const anchor = require('markdown-it-anchor', { slugify: s => slugify(s) })
 ```
 
-## Table of Contents
+## Table of contents
 
 Looking for an automatic table of contents (TOC) generator? Take a look at
-[markdown-it-toc-done-right](https://www.npmjs.com/package/markdown-it-toc-done-right) it's
-made from the ground to be a great companion of this plugin.
+[markdown-it-toc-done-right](https://www.npmjs.com/package/markdown-it-toc-done-right)
+it's made from the ground to be a great companion of this plugin.
 
-## Browser Example
+## Browser example
 
-See `example.html`.
+See [`example.html`](example.html).
