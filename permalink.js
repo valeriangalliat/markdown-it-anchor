@@ -49,9 +49,9 @@ export function renderAttrs (slug) {
 
 const commonDefaults = {
   class: 'header-anchor',
+  symbol: '#',
   renderHref,
-  renderAttrs,
-  symbol: '#'
+  renderAttrs
 }
 
 export function makePermalink (wrappedRenderPermalink) {
