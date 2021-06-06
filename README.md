@@ -150,13 +150,13 @@ text. It makes the permalink symbol `aria-hidden` to not pollute the
 experience, and leverages a `visuallyHiddenClass` to hide the assistive
 text from the visual experience.
 
-| Name                  | Description                                                                                              | Default                                                             |
-|-----------------------|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
-| `style`               | The (sub) style of link.                                                                                 | `visually-hidden`                                                   |
-| `assistiveText`       | A function that takes the title and returns the assistive text.                                          | `undefined`, required for `visually-hidden` and `aria-label` styles |
-| `visuallyHiddenClass` | The class you use to make an element visually hidden.                                                    | `undefined`, required for `visually-hidden` style                   |
-| `space`               | Add a space between the assistive text and the permalink symbol.                                         | `true`                                                              |
-| `placement`           | Placement of the permalink symbol relative to the assistive text, can be `before` or `after` the header. | `after`                                                             |
+| Name                  | Description                                                                                               | Default                                                             |
+|-----------------------|-----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| `style`               | The (sub) style of link, one of `visually-hidden`, `aria-label`, `aria-describedby` or `aria-labelledby`. | `visually-hidden`                                                   |
+| `assistiveText`       | A function that takes the title and returns the assistive text.                                           | `undefined`, required for `visually-hidden` and `aria-label` styles |
+| `visuallyHiddenClass` | The class you use to make an element visually hidden.                                                     | `undefined`, required for `visually-hidden` style                   |
+| `space`               | Add a space between the assistive text and the permalink symbol.                                          | `true`                                                              |
+| `placement`           | Placement of the permalink symbol relative to the assistive text, can be `before` or `after` the header.  | `after`                                                             |
 
 ```js
 const anchor = require('markdown-it-anchor')
@@ -217,7 +217,7 @@ md.use(anchor, {
 </details>
 
 <details>
-<summary><code>aria-describedby</code> variant</summary>
+<summary><code>aria-describedby</code> and <code>aria-labelledby</code> variants</summary>
 
 This removes the need to customize the assistive text to your locale and
 doesn't need a visually hidden `span` either, but since the anchor will
@@ -230,7 +230,7 @@ const md = require('markdown-it')()
 
 md.use(anchor, {
   permalink: anchor.permalink.linkAfterHeader({
-    style: 'aria-describedby'
+    style: 'aria-describedby' // Or `aria-labelledby`
   })
 })
 ```

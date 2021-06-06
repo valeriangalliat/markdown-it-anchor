@@ -113,11 +113,11 @@ export const headerLink = makePermalink((slug, opts, anchorOpts, state, idx) => 
 })
 
 export const linkAfterHeader = makePermalink((slug, opts, anchorOpts, state, idx) => {
-  if (!['visually-hidden', 'aria-label', 'aria-describedby'].includes(opts.style)) {
+  if (!['visually-hidden', 'aria-label', 'aria-describedby', 'aria-labelledby'].includes(opts.style)) {
     throw new Error(`\`permalink.linkAfterHeader\` called with unknown style option \`${opts.style}\``)
   }
 
-  if (opts.style !== 'aria-describedby' && !opts.assistiveText) {
+  if (!['aria-describedby', 'aria-labelledby'].includes(opts.style) && !opts.assistiveText) {
     throw new Error(`\`permalink.linkAfterHeader\` called without the \`assistiveText\` option in \`${opts.style}\` style`)
   }
 
@@ -174,8 +174,8 @@ export const linkAfterHeader = makePermalink((slug, opts, anchorOpts, state, idx
 
   if (opts.style === 'aria-label') {
     linkAttrs.push(['aria-label', opts.assistiveText(title)])
-  } else if (opts.style === 'aria-describedby') {
-    linkAttrs.push(['aria-describedby', slug])
+  } else if (['aria-describedby', 'aria-labelledby'].includes(opts.style)) {
+    linkAttrs.push([opts.style, slug])
   }
 
   const linkTokens = [
