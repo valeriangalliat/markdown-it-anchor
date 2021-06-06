@@ -25,17 +25,17 @@ strictEqual(
 
 strictEqual(
   md().use(anchor, { permalink: true }).render('# H1'),
-  '<h1 id="h1">H1 <a class="header-anchor" href="#h1">#</a></h1>\n'
+  '<h1 id="h1">H1 <a class="header-anchor" href="#h1">¶</a></h1>\n'
 )
 
 strictEqual(
   md().use(anchor, { permalink: true, permalinkClass: 'test' }).render('# H1'),
-  '<h1 id="h1">H1 <a class="test" href="#h1">#</a></h1>\n'
+  '<h1 id="h1">H1 <a class="test" href="#h1">¶</a></h1>\n'
 )
 
 strictEqual(
   md().use(anchor, { permalink: true, permalinkClass: null }).render('# H1'),
-  '<h1 id="h1">H1 <a href="#h1">#</a></h1>\n'
+  '<h1 id="h1">H1 <a href="#h1">¶</a></h1>\n'
 )
 
 strictEqual(
@@ -55,17 +55,17 @@ strictEqual(
 
 strictEqual(
   md().use(anchor, { permalink: true, permalinkBefore: true }).render('# H1'),
-  '<h1 id="h1"><a class="header-anchor" href="#h1">#</a> H1</h1>\n'
+  '<h1 id="h1"><a class="header-anchor" href="#h1">¶</a> H1</h1>\n'
 )
 
 strictEqual(
   md().use(anchor, { level: 2, permalink: true }).render('# H1\n\n## H2'),
-  '<h1>H1</h1>\n<h2 id="h2">H2 <a class="header-anchor" href="#h2">#</a></h2>\n'
+  '<h1>H1</h1>\n<h2 id="h2">H2 <a class="header-anchor" href="#h2">¶</a></h2>\n'
 )
 
 strictEqual(
   md({ html: true }).use(anchor, { permalink: true }).render('# <span>H1</span>'),
-  '<h1 id="h1"><span>H1</span> <a class="header-anchor" href="#h1">#</a></h1>\n'
+  '<h1 id="h1"><span>H1</span> <a class="header-anchor" href="#h1">¶</a></h1>\n'
 )
 
 strictEqual(
@@ -86,7 +86,7 @@ strictEqual(
     permalinkHref: (slug, state) => `${state.env.path}#${slug}`,
     permalink: true
   }).render('# H1', { path: 'file.html' }),
-  '<h1 id="h1">H1 <a class="header-anchor" href="file.html#h1">#</a></h1>\n'
+  '<h1 id="h1">H1 <a class="header-anchor" href="file.html#h1">¶</a></h1>\n'
 )
 
 strictEqual(calls.length, 2)
@@ -99,7 +99,7 @@ strictEqual(calls[1].info.slug, 'second-heading')
 
 strictEqual(
   md({ html: true }).use(anchor, { permalink: true, permalinkSpace: false }).render('# H1'),
-  '<h1 id="h1">H1<a class="header-anchor" href="#h1">#</a></h1>\n'
+  '<h1 id="h1">H1<a class="header-anchor" href="#h1">¶</a></h1>\n'
 )
 
 strictEqual(
@@ -111,7 +111,7 @@ strictEqual(
   md()
     .use(anchor, { permalink: true, permalinkAttrs: (slug, state) => ({ 'aria-label': `permalink to ${slug}`, title: 'permalink' }) })
     .render('# My title'),
-  '<h1 id="my-title">My title <a class="header-anchor" href="#my-title" aria-label="permalink to my-title" title="permalink">#</a></h1>\n'
+  '<h1 id="my-title">My title <a class="header-anchor" href="#my-title" aria-label="permalink to my-title" title="permalink">¶</a></h1>\n'
 )
 
 strictEqual(

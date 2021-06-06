@@ -86,7 +86,7 @@ anchor.defaults = {
   renderPermalink: permalink.legacy,
   permalinkClass: permalink.ariaHidden.defaults.class,
   permalinkSpace: permalink.ariaHidden.defaults.space,
-  permalinkSymbol: permalink.ariaHidden.defaults.symbol,
+  permalinkSymbol: '¶',
   permalinkBefore: permalink.ariaHidden.defaults.placement === 'before',
   permalinkHref: permalink.ariaHidden.defaults.renderHref,
   permalinkAttrs: permalink.ariaHidden.defaults.renderAttrs
