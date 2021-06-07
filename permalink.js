@@ -179,24 +179,11 @@ export const linkAfterHeader = makePermalink((slug, opts, anchorOpts, state, idx
   }
 
   const linkTokens = [
-    Object.assign(new state.Token('paragraph_open', 'p', 1), {
-      attrs: [
-        ...(opts.paragraphClass ? [['class', opts.paragraphClass]] : [])
-      ],
-      block: true
+    Object.assign(new state.Token('link_open', 'a', 1), {
+      attrs: linkAttrs
     }),
-    Object.assign(new state.Token('inline', '', 0), {
-      children: [
-        Object.assign(new state.Token('link_open', 'a', 1), {
-          attrs: linkAttrs
-        }),
-        ...subLinkTokens,
-        new state.Token('link_close', 'a', -1),
-      ]
-    }),
-    Object.assign(new state.Token('paragraph_close', 'p', -1), {
-      block: true
-    })
+    ...subLinkTokens,
+    new state.Token('link_close', 'a', -1),
   ]
 
   state.tokens.splice(idx + 3, 0, ...linkTokens)

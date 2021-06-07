@@ -166,7 +166,7 @@ strictEqual(
       visuallyHiddenClass: 'visually-hidden'
     })
   }).render('# H1'),
-  '<h1 id="h1">H1</h1>\n<p><a class="header-anchor" href="#h1"><span class="visually-hidden">Permalink to “H1”</span> <span aria-hidden="true">#</span></a></p>\n'
+  '<h1 id="h1">H1</h1>\n<a class="header-anchor" href="#h1"><span class="visually-hidden">Permalink to “H1”</span> <span aria-hidden="true">#</span></a>'
 )
 
 strictEqual(
@@ -176,7 +176,7 @@ strictEqual(
       assistiveText: title => `Permalink to “${title}”`
     })
   }).render('# H1'),
-  '<h1 id="h1">H1</h1>\n<p><a class="header-anchor" href="#h1" aria-label="Permalink to “H1”">#</a></p>\n'
+  '<h1 id="h1">H1</h1>\n<a class="header-anchor" href="#h1" aria-label="Permalink to “H1”">#</a>'
 )
 
 strictEqual(
@@ -185,7 +185,7 @@ strictEqual(
       style: 'aria-describedby'
     })
   }).render('# H1'),
-  '<h1 id="h1">H1</h1>\n<p><a class="header-anchor" href="#h1" aria-describedby="h1">#</a></p>\n'
+  '<h1 id="h1">H1</h1>\n<a class="header-anchor" href="#h1" aria-describedby="h1">#</a>'
 )
 
 strictEqual(
@@ -198,5 +198,5 @@ strictEqual(
       space: false
     })
   }).render('# H1'),
-  '<h1 id="h1">H1</h1>\n<p><a class="header-anchor" href="#h1"><span aria-hidden="true">#</span><span class="visually-hidden">Permalink to “H1”</span></a></p>\n'
+  '<h1 id="h1">H1</h1>\n<a class="header-anchor" href="#h1"><span aria-hidden="true">#</span><span class="visually-hidden">Permalink to “H1”</span></a>'
 )

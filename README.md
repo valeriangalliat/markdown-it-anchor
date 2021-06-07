@@ -178,12 +178,10 @@ md.use(anchor, {
 
 ```html
 <h2 id="title">Title</h2>
-<p>
-  <a class="header-anchor" href="#title">
-    <span class="visually-hidden">Permalink to “Title”</span>
-    <span aria-hidden="true">#</span>
-  </a>
-</p>
+<a class="header-anchor" href="#title">
+  <span class="visually-hidden">Permalink to “Title”</span>
+  <span aria-hidden="true">#</span>
+</a>
 ```
 
 By using a visually hidden element for the assistive text, we make sure
@@ -214,9 +212,7 @@ md.use(anchor, {
 
 ```html
 <h2 id="title">Title</h2>
-<p>
-  <a class="header-anchor" href="#title" aria-label="Permalink to “Title”">#</a>
-</p>
+<a class="header-anchor" href="#title" aria-label="Permalink to “Title”">#</a>
 ```
 
 </details>
@@ -242,9 +238,7 @@ md.use(anchor, {
 
 ```html
 <h2 id="title">Title</h2>
-<p>
-  <a class="header-anchor" href="#title" aria-describedby="title">#</a>
-</p>
+<a class="header-anchor" href="#title" aria-describedby="title">#</a>
 ```
 
 </details>
