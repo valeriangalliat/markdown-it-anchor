@@ -139,6 +139,11 @@ md.use(anchor, {
 The main caveat of this approach is that you can't include links inside
 headers. If you do, consider the other styles.
 
+Also note that this pattern [breaks reader mode in Safari](https://www.leereamsnyder.com/blog/making-headings-with-links-show-up-in-safari-reader),
+an issue you can also notice on the referenced websites above. This was
+already [reported to Apple](https://bugs.webkit.org/show_bug.cgi?id=225609#c2)
+but their bug tracker is not public.
+
 ### Link after header
 
 If you want to customize further the screen reader experience of your
@@ -172,7 +177,7 @@ md.use(anchor, {
 ```
 
 ```html
-<h2 id="title">Title</h1>
+<h2 id="title">Title</h2>
 <p>
   <a class="header-anchor" href="#title">
     <span class="visually-hidden">Permalink to “Title”</span>
@@ -208,7 +213,7 @@ md.use(anchor, {
 ```
 
 ```html
-<h2 id="title">Title</h1>
+<h2 id="title">Title</h2>
 <p>
   <a class="header-anchor" href="#title" aria-label="Permalink to “Title”">#</a>
 </p>
@@ -236,7 +241,7 @@ md.use(anchor, {
 ```
 
 ```html
-<h2 id="title">Title</h1>
+<h2 id="title">Title</h2>
 <p>
   <a class="header-anchor" href="#title" aria-describedby="title">#</a>
 </p>
