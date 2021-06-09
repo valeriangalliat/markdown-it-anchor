@@ -45,7 +45,7 @@ const uniqueSlug = (slug, slugs, failOnNonUnique, startIndex) => {
   return uniq
 }
 
-const isLevelSelectedNumber = selection => level => level >= selection
+const isLevelSelectedNumber = selection => level => level <= selection
 const isLevelSelectedArray = selection => level => selection.includes(level)
 
 const anchor = (md, opts) => {
