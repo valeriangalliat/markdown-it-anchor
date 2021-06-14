@@ -58,7 +58,10 @@ function anchor (md, opts) {
       }
 
       token.attrSet('id', slug)
-      token.attrSet('tabindex', '-1')
+
+      if (opts.tabIndex !== false) {
+        token.attrSet('tabindex', `${opts.tabIndex}`)
+      }
 
       if (typeof opts.permalink === 'function') {
         opts.permalink(slug, opts, state, i)
@@ -81,6 +84,7 @@ anchor.defaults = {
   level: 1,
   slugify,
   uniqueSlugStartIndex: 1,
+  tabIndex: '-1',
 
   // Legacy options.
   permalink: false,
