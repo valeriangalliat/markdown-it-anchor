@@ -34,7 +34,7 @@
     "build": "microbundle",
     "dev": "microbundle watch",
     "lint": "standard index.js",
-    "prepublish": "npm test",
+    "prepublish": "npm run build && npm test",
     "test": "npm run lint && node -r source-map-support/register test"
   },
   "runkitExampleFilename": "runkit.js",
