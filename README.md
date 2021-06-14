@@ -309,3 +309,17 @@ md.use(anchor, {
 ```html
 <h2 id="title"><a class="header-anchor" href="#title" aria-hidden="true">#</a> Title</h2>
 ```
+
+## Development
+
+```sh
+# Build the library in the `dist/` directory.
+npm run build
+
+# Watch file changes to update `dist/`.
+npm run dev
+
+# Run tests, will use the build version so make sure to build after
+# making changes.
+npm test
+```
