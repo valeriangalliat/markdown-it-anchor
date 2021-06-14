@@ -42,7 +42,7 @@ for the identifier.
 
 ## User-friendly URLs
 
-Starting from `v5.0.0`, `markdown-it-anchor` dropped the [`string`](https://github.com/jprichardson/string.js)
+Starting from `v5.0.0`, markdown-it-anchor dropped the [`string`](https://github.com/jprichardson/string.js)
 package keeping it's core value of being an unopinionated and secure
 library. Yet, users looking for backward compatibility may want the old
 `slugify` function:
@@ -72,6 +72,33 @@ const slugify = require('@sindresorhus/slugify')
 const md = require('markdown-it')()
   .use(require('markdown-it-anchor'), { slugify: s => slugify(s) })
 ```
+
+## Explicit `id`s
+
+You might want to explicitly set the `id` attribute of your headings
+from the Markdown document, for example to keep them consistent across
+translations.
+
+markdown-it-anchor is designed to reuse any existing `id`, making [markdown-it-attrs](https://www.npmjs.com/package/markdown-it-attrs)
+a perfect fit for this use case. Make sure to load it before markdown-it-anchor!
+
+Then you can do something like this:
+
+```markdown
+# Your title {#your-custom-id}
+```
+
+The anchor link will reuse the `id` that you explicitly defined.
+
+## Table of contents
+
+Looking for an automatic table of contents (TOC) generator? Take a look at
+[markdown-it-toc-done-right](https://www.npmjs.com/package/markdown-it-toc-done-right)
+it's made from the ground to be a great companion of this plugin.
+
+## Browser example
+
+See [`example.html`](example.html).
 
 ## Permalinks
 
@@ -281,13 +308,3 @@ md.use(anchor, {
 ```html
 <h2 id="title"><a class="header-anchor" href="#title" aria-hidden="true">#</a> Title</h2>
 ```
-
-## Table of contents
-
-Looking for an automatic table of contents (TOC) generator? Take a look at
-[markdown-it-toc-done-right](https://www.npmjs.com/package/markdown-it-toc-done-right)
-it's made from the ground to be a great companion of this plugin.
-
-## Browser example
-
-See [`example.html`](example.html).
