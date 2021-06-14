@@ -17,13 +17,14 @@ See a [demo as JSFiddle](https://jsfiddle.net/9ukc8dy6/).
 
 The `opts` object can contain:
 
-| Name                   | Description                                                    | Default                    |
-|------------------------|----------------------------------------------------------------|----------------------------|
-| `level`                | Minimum level to apply anchors, or array of selected levels.   | 1                          |
-| `slugify`              | A custom slugification function.                               | See [`index.js`](index.js) |
-| `uniqueSlugStartIndex` | Index to start with when making duplicate slugs unique.        | 1                          |
-| `permalink`            | A function to render permalinks, see [permalinks] below.       | `undefined`                |
-| `callback`             | Called with token and info after rendering.                    | `undefined`                |
+| Name                   | Description                                                               | Default                    |
+|------------------------|---------------------------------------------------------------------------|----------------------------|
+| `level`                | Minimum level to apply anchors, or array of selected levels.              | 1                          |
+| `slugify`              | A custom slugification function.                                          | See [`index.js`](index.js) |
+| `uniqueSlugStartIndex` | Index to start with when making duplicate slugs unique.                   | 1                          |
+| `permalink`            | A function to render permalinks, see [permalinks] below.                  | `undefined`                |
+| `callback`             | Called with token and info after rendering.                               | `undefined`                |
+| `tabIndex`             | Value of the `tabindex` attribute on headings, set to `false` to disable. | -1                         |
 
 [permalinks]: #permalinks
 
@@ -40,6 +41,15 @@ The `callback` option is a function that will be called at the end of
 rendering with the `token` and an `info` object.  The `info` object has
 `title` and `slug` properties with the token content and the slug used
 for the identifier.
+
+Finally, we set by default [`tabindex="-1"`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex)
+on headers. This marks the headers as focusable elements that are not
+reachable by keyboard navigation. The effect is that screen readers will
+read the title content when it's being jumped to. Outside of screen
+readers, the experience is the same as not setting that attribute. You
+can override this behavior with the `tabIndex` option. Set it to `false`
+to remove the attribute altogether, otherwise the value will be used as
+attribute value.
 
 ## User-friendly URLs
 
