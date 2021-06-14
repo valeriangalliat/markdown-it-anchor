@@ -6,14 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+## [8.0.0] - 2021-06-14
+* Set `tabindex="-1"` on headers ([#85], [#86])
+* Include and document accessible permalink options ([#82], [#89])
+
 ## [7.1.0] - 2021-03-06
-* Update TypeScript types (#83)
+* Update TypeScript types ([#83])
 
 ## [7.0.2] - 2021-02-06
-* Optimize token parsing (#80)
+* Optimize token parsing ([#80])
 
 ## [7.0.1] - 2021-01-28
-* Add a Chinese readme (#79)
+* Add a Chinese readme ([#79])
 
 ## [7.0.0] - 2021-01-04
 * Depend on any markdown-it version ([#76])
@@ -149,7 +153,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 1.0.0 - 2015-03-18
 * Initial release.
 
-[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v7.1.0...HEAD
+[unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.0...HEAD
+[8.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v7.1.0...v8.0.0
 [7.1.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v7.0.2...v7.1.0
 [7.0.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v7.0.1...v7.0.2
 [7.0.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v7.0.0...v7.0.1
@@ -209,4 +214,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#76]: https://github.com/valeriangalliat/markdown-it-anchor/pull/76
 [#79]: https://github.com/valeriangalliat/markdown-it-anchor/pull/79
 [#80]: https://github.com/valeriangalliat/markdown-it-anchor/issues/80
+[#82]: https://github.com/valeriangalliat/markdown-it-anchor/issues/82
 [#83]: https://github.com/valeriangalliat/markdown-it-anchor/pull/83
+[#85]: https://github.com/valeriangalliat/markdown-it-anchor/issues/85
+[#86]: https://github.com/valeriangalliat/markdown-it-anchor/pull/86
+[#89]: https://github.com/valeriangalliat/markdown-it-anchor/pull/89
