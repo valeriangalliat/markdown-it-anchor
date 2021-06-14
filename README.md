@@ -53,7 +53,7 @@ attribute value.
 
 ## User-friendly URLs
 
-Starting from `v5.0.0`, markdown-it-anchor dropped the [`string`](https://github.com/jprichardson/string.js)
+Starting from v5.0.0, markdown-it-anchor dropped the [`string`](https://github.com/jprichardson/string.js)
 package keeping it's core value of being an unopinionated and secure
 library. Yet, users looking for backward compatibility may want the old
 `slugify` function:
@@ -113,7 +113,7 @@ See [`example.html`](example.html).
 
 ## Permalinks
 
-Version `v8.0.0` completely reworked the way permalinks work in order to
+Version 8.0.0 completely reworked the way permalinks work in order to
 offer more accessible options out of the box.
 
 Instead of a single default way of rendering permalinks (which used to
