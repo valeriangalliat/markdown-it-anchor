@@ -129,7 +129,7 @@ strictEqual(
       return ex.message
     }
   })(),
-  "User defined id attribute 'bubblegum' is NOT unique. Please fix it in your markdown to continue."
+  'User defined `id` attribute `bubblegum` is not unique. Please fix it in your Markdown to continue.'
 )
 
 strictEqual(
@@ -145,5 +145,58 @@ strictEqual(
       return ex.message
     }
   })(),
-  "User defined id attribute 'h1' is NOT unique. Please fix it in your markdown to continue."
+  'User defined `id` attribute `h1` is not unique. Please fix it in your Markdown to continue.'
+)
+
+strictEqual(
+  md().use(anchor, { permalink: anchor.permalink.ariaHidden() }).render('# H1'),
+  '<h1 id="h1">H1 <a class="header-anchor" href="#h1" aria-hidden="true">#</a></h1>\n'
+)
+
+strictEqual(
+  md().use(anchor, { permalink: anchor.permalink.headerLink() }).render('# H1'),
+  '<h1 id="h1"><a class="header-anchor" href="#h1">H1</a></h1>\n'
+)
+
+strictEqual(
+  md().use(anchor, {
+    permalink: anchor.permalink.linkAfterHeader({
+      style: 'visually-hidden',
+      assistiveText: title => `Permalink to “${title}”`,
+      visuallyHiddenClass: 'visually-hidden'
+    })
+  }).render('# H1'),
+  '<h1 id="h1">H1</h1>\n<a class="header-anchor" href="#h1"><span class="visually-hidden">Permalink to “H1”</span> <span aria-hidden="true">#</span></a>'
+)
+
+strictEqual(
+  md().use(anchor, {
+    permalink: anchor.permalink.linkAfterHeader({
+      style: 'aria-label',
+      assistiveText: title => `Permalink to “${title}”`
+    })
+  }).render('# H1'),
+  '<h1 id="h1">H1</h1>\n<a class="header-anchor" href="#h1" aria-label="Permalink to “H1”">#</a>'
+)
+
+strictEqual(
+  md().use(anchor, {
+    permalink: anchor.permalink.linkAfterHeader({
+      style: 'aria-describedby'
+    })
+  }).render('# H1'),
+  '<h1 id="h1">H1</h1>\n<a class="header-anchor" href="#h1" aria-describedby="h1">#</a>'
+)
+
+strictEqual(
+  md().use(anchor, {
+    permalink: anchor.permalink.linkAfterHeader({
+      style: 'visually-hidden',
+      assistiveText: title => `Permalink to “${title}”`,
+      visuallyHiddenClass: 'visually-hidden',
+      placement: 'before',
+      space: false
+    })
+  }).render('# H1'),
+  '<h1 id="h1">H1</h1>\n<a class="header-anchor" href="#h1"><span aria-hidden="true">#</span><span class="visually-hidden">Permalink to “H1”</span></a>'
 )
