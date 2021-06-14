@@ -19,7 +19,7 @@ The `opts` object can contain:
 
 | Name                   | Description                                                    | Default                    |
 |------------------------|----------------------------------------------------------------|----------------------------|
-| `level`                | Minimum level to apply anchors on or array of selected levels. | 1                          |
+| `level`                | Minimum level to apply anchors, or array of selected levels.   | 1                          |
 | `slugify`              | A custom slugification function.                               | See [`index.js`](index.js) |
 | `uniqueSlugStartIndex` | Index to start with when making duplicate slugs unique.        | 1                          |
 | `permalink`            | A function to render permalinks, see [permalinks] below.       | `undefined`                |
@@ -27,10 +27,11 @@ The `opts` object can contain:
 
 [permalinks]: #permalinks
 
-All headers above `level` will then have an `id` attribute with a slug
-of their content. `level` can also be an array of headers levels to
-apply the anchor, like `[2, 3]` to have an anchor on only level 2 and
-3 headers.
+All headers greater than the minimum `level` will have an `id` attribute
+with a slug of their content. For example, you can set `level` to 2 to
+add anchors to all headers but `h1`. You can also pass an array of
+header levels to apply the anchor, like `[2, 3]` to have an anchor on
+only level 2 and 3 headers.
 
 If a `permalink` renderer is given, it will be called for each matching header
 to add a permalink. See [permalinks] below.
