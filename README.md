@@ -24,7 +24,7 @@ The `opts` object can contain:
 | `uniqueSlugStartIndex` | Index to start with when making duplicate slugs unique.                   | 1                          |
 | `permalink`            | A function to render permalinks, see [permalinks] below.                  | `undefined`                |
 | `callback`             | Called with token and info after rendering.                               | `undefined`                |
-| `tabIndex`             | Value of the `tabindex` attribute on headings, set to `false` to disable. | -1                         |
+| `tabIndex`             | Value of the `tabindex` attribute on headings, set to `false` to disable. | `-1`                       |
 
 [permalinks]: #permalinks
 
