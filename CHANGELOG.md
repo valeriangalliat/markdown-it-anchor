@@ -211,8 +211,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#40]: https://github.com/valeriangalliat/markdown-it-anchor/issues/40
 [#43]: https://github.com/valeriangalliat/markdown-it-anchor/issues/43
 [#44]: https://github.com/valeriangalliat/markdown-it-anchor/issues/44
-[#45]: https://github.com/valeriangalliat/markdown-it-anchor/pull/45
 [#45]: https://github.com/valeriangalliat/markdown-it-anchor/issues/46
+[#46]: https://github.com/valeriangalliat/markdown-it-anchor/issues/46
+[#52]: https://github.com/valeriangalliat/markdown-it-anchor/pull/52
 [#58]: https://github.com/valeriangalliat/markdown-it-anchor/issues/58
 [#63]: https://github.com/valeriangalliat/markdown-it-anchor/pull/63
 [#74]: https://github.com/valeriangalliat/markdown-it-anchor/issues/74
