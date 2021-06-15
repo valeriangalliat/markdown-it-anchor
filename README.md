@@ -131,12 +131,12 @@ md.use(anchor, {
 
 All renderers share a common set of options:
 
-| Name         | Description                                       | Default                            |
-|--------------|---------------------------------------------------|------------------------------------|
-| `class`      | The class of the permalink anchor.                | `header-anchor`                    |
-| `symbol`     | The symbol in the permalink anchor.               | `#`                                |
-| `renderHref` | A custom permalink `href` rendering function.     | See [`permalink.js`](permalink.js) |
-| `renderHref` | A custom permalink attributes rendering function. | See [`permalink.js`](permalink.js) |
+| Name          | Description                                       | Default                            |
+|---------------|---------------------------------------------------|------------------------------------|
+| `class`       | The class of the permalink anchor.                | `header-anchor`                    |
+| `symbol`      | The symbol in the permalink anchor.               | `#`                                |
+| `renderHref`  | A custom permalink `href` rendering function.     | See [`permalink.js`](permalink.js) |
+| `renderAttrs` | A custom permalink attributes rendering function. | See [`permalink.js`](permalink.js) |
 
 For the `symbol`, you may want to use the [link symbol](http://graphemica.com/🔗),
 or a symbol from your favorite web font.
