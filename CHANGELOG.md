@@ -7,29 +7,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased][unreleased]
 
 ## [8.0.1] - 2021-06-15
-* Fix permalink option typo in readme ([#91])
+* Fix permalink option typo in readme. ([#91])
 
 ## [8.0.0] - 2021-06-14
-* Set `tabindex="-1"` on headers ([#85], [#86])
-* Include and document accessible permalink options ([#82], [#89])
+* Set `tabindex="-1"` on headers. ([#85], [#86])
+* Include and document accessible permalink options. ([#82], [#89])
 
 ## [7.1.0] - 2021-03-06
-* Update TypeScript types ([#83])
+* Update TypeScript types. ([#83])
 
 ## [7.0.2] - 2021-02-06
-* Optimize token parsing ([#80])
+* Optimize token parsing. ([#80])
 
 ## [7.0.1] - 2021-01-28
-* Add a Chinese readme ([#79])
+* Add a Chinese readme. ([#79])
 
 ## [7.0.0] - 2021-01-04
-* Depend on any markdown-it version ([#76])
+* Depend on any markdown-it version. ([#76])
 
 ## [6.0.1] - 2020-11-19
-* Added `example.html` test case
-* Added `uniqueSlugStartIndex` test case
-* Fix `equal` -> `strictEqual`
-* Updated dependencies -> `found 0 vulnerabilities`
+* Added `example.html` test case.
+* Added `uniqueSlugStartIndex` test case.
+* Fix `equal` -> `strictEqual`.
+* Updated dependencies -> `found 0 vulnerabilities`.
 
 ## [6.0.0] - 2020-09-29
 * Allow to configure unique slug start index, and make it 1 instead of 2
@@ -39,20 +39,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [5.3.0] - 2020-05-12
 * Fix support for user defined ids by using `markdown-it-attrs`.
-* Updated dependencies -> `found 0 vulnerabilities`
+* Updated dependencies -> `found 0 vulnerabilities`.
 
 ## [5.2.7] - 2020-04-01
-* Added `permalinkAttrs` option
+* Forgot to build before pushing to npm.
 
-## [5.2.6] - ???
-* ???
+## [5.2.6] - 2020-02-05
+* Support arbitrary permalink attributes with `permalinkAttrs`. ([#63])
 
 ## [5.2.5] - 2019-10-16
-* removing `aria-hidden` from links ([#58])
+* Removing `aria-hidden` from links. ([#58])
 
 ## [5.2.4] - 2019-06-03
-* rolled back to `...linkTokens`
-* executed `npm audit fix` to fix dependencies vunerabilities
+* Rolled back to `...linkTokens`.
+* Executed `npm audit fix` to fix dependencies vulnerabilities.
 
 ## [5.2.3] - 2019-05-28
 * `...linkTokens` -> `(...).apply(null, linkTokens)` IE doesn't support spread syntax.
@@ -61,22 +61,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * `...linkTokens` -> `[].concat(linkTokens)` makes IE compatible.
 
 ## [5.2.1] - 2019-05-28
-* fix typo
+* Fix typo.
 
 ## [5.2.0] - 2019-05-28
 * Added support for unpkg
 * Added support for mjs
-* Fixes: [#40] and [#46]
-* New option `permalinkSpace` makes possible to suppress the whitespace between the permalink and the header text value. Defaults to `true` ([#52])
-* Patch to fix ([#35])
+* Fix Babel issue, support ES modules. ([#40], [#46])
+* New option `permalinkSpace` makes possible to suppress the whitespace
+  between the permalink and the header text value. Defaults to `true`. ([#52])
+* Fix duplicate ID edge case. ([#35])
 
 ## [5.0.1] - 2018-06-14
 * `trim()` before `toLowerCase()` to prevent dashes as prefixes and suffixes.
 
 ## [5.0.0] - 2018-06-14
-* NEW Contributor: nagaozen
-* Drop `string` package in favour of `encodeURIComponent`.  
-  Fixes: [#44], [#43], [#38], [#17]. Obsoletes [#45].
+* New contributor: [**@nagaozen**](https://github.com/nagaozen)
+* Drop `string` package in favour of `encodeURIComponent`. ([#44], [#43], [#38], [#17], [#45])
 
 ## [4.0.0] - 2017-02-26
 * Drop Babel. This drops support for Node.js versions that doesn't
@@ -96,15 +96,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Support anchors with HTML in header.
 
 ## [2.4.0] - 2016-02-12
-* Add a callback option. ([#16]).
+* Add a callback option. ([#16])
 
 ## [2.3.3] - 2015-12-21
-* Add a live example ([#13]).
+* Add a live example. ([#13])
 
 ## [2.3.2] - 2015-11-29
 * Test against markdown-it 5.
-* Keep assigning `module.exports` after Babel 6 upgrade (that
-  assigns `exports.default` only instead), using
+* Keep assigning `module.exports` after Babel 6 upgrade (that assigns
+  `exports.default` only instead), using
   `babel-plugin-add-module-exports`. ([#12])
 
 ## [2.3.1] - 2015-11-29
@@ -214,6 +214,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#45]: https://github.com/valeriangalliat/markdown-it-anchor/pull/45
 [#45]: https://github.com/valeriangalliat/markdown-it-anchor/issues/46
 [#58]: https://github.com/valeriangalliat/markdown-it-anchor/issues/58
+[#63]: https://github.com/valeriangalliat/markdown-it-anchor/pull/63
 [#74]: https://github.com/valeriangalliat/markdown-it-anchor/issues/74
 [#76]: https://github.com/valeriangalliat/markdown-it-anchor/pull/76
 [#79]: https://github.com/valeriangalliat/markdown-it-anchor/pull/79
