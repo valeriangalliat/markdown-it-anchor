@@ -33,7 +33,7 @@
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch",
-    "lint": "standard index.js",
+    "lint": "standard index.js test.js",
     "prepublish": "npm run build && npm test",
     "test": "npm run lint && node -r source-map-support/register test"
   },
