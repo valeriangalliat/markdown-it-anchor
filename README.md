@@ -322,8 +322,7 @@ md.use(anchor, {
 
 ## Debugging
 
-If you want to debug this library more easily, the bundled version
-(default for `require('markdown-it-anchor')`) supports source maps.
+If you want to debug this library more easily, we support source maps.
 
 Use the [source-map-support](https://www.npmjs.com/package/source-map-support)
 module to enable it with Node.js.
