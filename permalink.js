@@ -78,7 +78,7 @@ export const ariaHidden = makePermalink((slug, opts, anchorOpts, state, idx) => 
         ...Object.entries(opts.renderAttrs(slug, state))
       ]
     }),
-    Object.assign(new state.Token('text', '', 0), { content: opts.symbol }),
+    Object.assign(new state.Token('html_inline', '', 0), { content: opts.symbol }),
     new state.Token('link_close', 'a', -1)
   ]
 
@@ -159,14 +159,14 @@ export const linkAfterHeader = makePermalink((slug, opts, anchorOpts, state, idx
       Object.assign(new state.Token('span_open', 'span', 1), {
         attrs: [['aria-hidden', 'true']],
       }),
-      Object.assign(new state.Token('text', '', 0), {
+      Object.assign(new state.Token('html_inline', '', 0), {
         content: opts.symbol,
       }),
       new state.Token('span_close', 'span', -1)
     )
   } else {
     subLinkTokens.push(
-      Object.assign(new state.Token('text', '', 0), {
+      Object.assign(new state.Token('html_inline', '', 0), {
         content: opts.symbol,
       })
     )
