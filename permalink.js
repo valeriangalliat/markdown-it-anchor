@@ -28,7 +28,7 @@ export function legacy (slug, opts, state, idx) {
         ...Object.entries(opts.permalinkAttrs(slug, state))
       ]
     }),
-    Object.assign(new state.Token('html_block', '', 0), { content: opts.permalinkSymbol }),
+    Object.assign(new state.Token('html_inline', '', 0), { content: opts.permalinkSymbol }),
     new state.Token('link_close', 'a', -1)
   ]
 
