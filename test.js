@@ -164,8 +164,29 @@ strictEqual(
 )
 
 strictEqual(
+  md().use(anchor, {
+    permalink: anchor.permalink.ariaHidden({
+      symbol: '<i class="icon"></i>'
+    })
+  }).render('# H1'),
+  '<h1 id="h1" tabindex="-1">H1 <a class="header-anchor" href="#h1" aria-hidden="true"><i class="icon"></i></a></h1>\n'
+)
+
+strictEqual(
   md().use(anchor, { permalink: anchor.permalink.headerLink() }).render('# H1'),
   '<h1 id="h1" tabindex="-1"><a class="header-anchor" href="#h1">H1</a></h1>\n'
+)
+
+strictEqual(
+  md().use(anchor, {
+    permalink: anchor.permalink.linkAfterHeader({
+      symbol: '<i class="icon"></i>',
+      style: 'visually-hidden',
+      assistiveText: title => `Permalink to “${title}”`,
+      visuallyHiddenClass: 'visually-hidden'
+    })
+  }).render('# H1'),
+  '<h1 id="h1" tabindex="-1">H1</h1>\n<a class="header-anchor" href="#h1"><span class="visually-hidden">Permalink to “H1”</span> <span aria-hidden="true"><i class="icon"></i></span></a>'
 )
 
 strictEqual(
