@@ -320,6 +320,18 @@ md.use(anchor, {
 <h2 id="title"><a class="header-anchor" href="#title" aria-hidden="true">#</a> Title</h2>
 ```
 
+## Debugging
+
+If you want to debug this library more easily, the bundled version
+(default for `require('markdown-it-anchor')`) supports source maps.
+
+Use the [source-map-support](https://www.npmjs.com/package/source-map-support)
+module to enable it with Node.js.
+
+```sh
+node -r source-map-support/register your-script.js
+```
+
 ## Development
 
 ```sh
