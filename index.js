@@ -34,42 +34,51 @@ function anchor (md, opts) {
       ? isLevelSelectedArray(opts.level)
       : isLevelSelectedNumber(opts.level)
 
-    tokens
-      .filter((token) => token.type === 'heading_open' && isLevelSelected(Number(token.tag.substr(1))))
-      .forEach((token) => {
-        // Aggregate the next token children text.
-        const index = tokens.findIndex((t) => t === token)
-        const title = tokens[index + 1]
-          .children
-          .filter(token => token.type === 'text' || token.type === 'code_inline')
-          .reduce((acc, t) => acc + t.content, '')
+    for (const token of tokens) {
+      if (token.type !== 'heading_open') {
+        continue
+      }
 
-        let slug = token.attrGet('id')
+      if (!isLevelSelected(Number(token.tag.substr(1)))) {
+        continue
+      }
 
-        if (slug == null) {
-          slug = uniqueSlug(opts.slugify(title), slugs, false, opts.uniqueSlugStartIndex)
-        } else {
-          slug = uniqueSlug(slug, slugs, true, opts.uniqueSlugStartIndex)
-        }
+      // A permalink renderer could modify the `tokens` array so
+      // make sure to get the up-to-date index on each iteration.
+      const index = tokens.indexOf(token)
 
-        token.attrSet('id', slug)
+      // Aggregate the next token children text.
+      const title = tokens[index + 1]
+        .children
+        .filter(token => token.type === 'text' || token.type === 'code_inline')
+        .reduce((acc, t) => acc + t.content, '')
 
-        if (opts.tabIndex !== false) {
-          token.attrSet('tabindex', `${opts.tabIndex}`)
-        }
+      let slug = token.attrGet('id')
 
-        if (typeof opts.permalink === 'function') {
-          opts.permalink(slug, opts, state, index)
-        } else if (opts.permalink) {
-          opts.renderPermalink(slug, opts, state, index)
-        } else if (opts.renderPermalink && opts.renderPermalink !== permalink.legacy) {
-          opts.renderPermalink(slug, opts, state, index)
-        }
+      if (slug == null) {
+        slug = uniqueSlug(opts.slugify(title), slugs, false, opts.uniqueSlugStartIndex)
+      } else {
+        slug = uniqueSlug(slug, slugs, true, opts.uniqueSlugStartIndex)
+      }
 
-        if (opts.callback) {
-          opts.callback(token, { slug, title })
-        }
-      })
+      token.attrSet('id', slug)
+
+      if (opts.tabIndex !== false) {
+        token.attrSet('tabindex', `${opts.tabIndex}`)
+      }
+
+      if (typeof opts.permalink === 'function') {
+        opts.permalink(slug, opts, state, index)
+      } else if (opts.permalink) {
+        opts.renderPermalink(slug, opts, state, index)
+      } else if (opts.renderPermalink && opts.renderPermalink !== permalink.legacy) {
+        opts.renderPermalink(slug, opts, state, index)
+      }
+
+      if (opts.callback) {
+        opts.callback(token, { slug, title })
+      }
+    }
   })
 }
 
