@@ -182,6 +182,21 @@ strictEqual(
 strictEqual(
   md().use(anchor, {
     permalink: anchor.permalink.linkAfterHeader({
+      style: 'visually-hidden',
+      assistiveText: title => `Permalink to “${title}”`,
+      visuallyHiddenClass: 'visually-hidden'
+    })
+  }).render('# H1\n\n## H2\n\n### H3\n\n#### H4\n\n## H2-2'),
+  '<h1 id="h1" tabindex="-1">H1</h1>\n<a class="header-anchor" href="#h1"><span class="visually-hidden">Permalink to “H1”</span> ' +
+  '<span aria-hidden="true">#</span></a><h2 id="h2" tabindex="-1">H2</h2>\n<a class="header-anchor" href="#h2"><span class="visually-hidden">Permalink to “H2”</span> ' +
+  '<span aria-hidden="true">#</span></a><h3 id="h3" tabindex="-1">H3</h3>\n<a class="header-anchor" href="#h3"><span class="visually-hidden">Permalink to “H3”</span> ' +
+  '<span aria-hidden="true">#</span></a><h4 id="h4" tabindex="-1">H4</h4>\n<a class="header-anchor" href="#h4"><span class="visually-hidden">Permalink to “H4”</span> ' +
+  '<span aria-hidden="true">#</span></a><h2 id="h2-2" tabindex="-1">H2-2</h2>\n<a class="header-anchor" href="#h2-2"><span class="visually-hidden">Permalink to “H2-2”</span> <span aria-hidden="true">#</span></a>'
+)
+
+strictEqual(
+  md().use(anchor, {
+    permalink: anchor.permalink.linkAfterHeader({
       style: 'aria-label',
       assistiveText: title => `Permalink to “${title}”`
     })
