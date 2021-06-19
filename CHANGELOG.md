@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.0.2] - 2021-06-19
+* Fix bug with `linkAfterHeader` permalink renderer. ([#93])
+* Also fix regression where `symbol` wasn't allowed to be HTML anymore
+  in new renderers.
+
 ## [8.0.1] - 2021-06-15
 * Fix permalink option typo in readme. ([#91])
 
@@ -156,7 +161,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.1...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.2...HEAD
+[8.0.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.1...v8.0.2
 [8.0.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.0...v8.0.1
 [8.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v7.1.0...v8.0.0
 [7.1.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v7.0.2...v7.1.0
@@ -227,3 +233,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#86]: https://github.com/valeriangalliat/markdown-it-anchor/pull/86
 [#89]: https://github.com/valeriangalliat/markdown-it-anchor/pull/89
 [#91]: https://github.com/valeriangalliat/markdown-it-anchor/pull/91
+[#93]: https://github.com/valeriangalliat/markdown-it-anchor/pull/93
