@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.0.3] - 2021-06-20
+* Update TypeScript types compatible with 8.0.0 release. ([#95])
+
 ## [8.0.2] - 2021-06-19
 * Fix bug with `linkAfterHeader` permalink renderer. ([#93])
 * Also fix regression where `symbol` wasn't allowed to be HTML anymore
@@ -161,7 +164,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.2...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.3...HEAD
+[8.0.3]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.2...v8.0.3
 [8.0.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.1...v8.0.2
 [8.0.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.0...v8.0.1
 [8.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v7.1.0...v8.0.0
@@ -234,3 +238,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#89]: https://github.com/valeriangalliat/markdown-it-anchor/pull/89
 [#91]: https://github.com/valeriangalliat/markdown-it-anchor/pull/91
 [#93]: https://github.com/valeriangalliat/markdown-it-anchor/pull/93
+[#95]: https://github.com/valeriangalliat/markdown-it-anchor/pull/95
