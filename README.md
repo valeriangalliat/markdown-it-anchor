@@ -125,11 +125,13 @@ const anchor = require('markdown-it-anchor')
 const md = require('markdown-it')()
 
 md.use(anchor, {
-  permalink: anchor.permalink.styleOfPermalink(permalinkOpts)
+  permalink: anchor.permalink[styleOfPermalink](permalinkOpts)
 })
 ```
 
-All renderers share a common set of options:
+Here, `styleOfPermalink` is one of the available styles documented
+below, and `permalinkOpts` is an options object. All renderers share a
+common set of options:
 
 | Name          | Description                                       | Default                            |
 |---------------|---------------------------------------------------|------------------------------------|
