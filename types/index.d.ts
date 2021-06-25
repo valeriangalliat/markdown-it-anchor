@@ -34,7 +34,7 @@ declare namespace anchor {
   }
 
   export interface AnchorOptions {
-    level?: number;
+    level?: number | number[];
 
     slugify?(str: string): string;
 
