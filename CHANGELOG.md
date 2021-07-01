@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.0.5] - 2021-07-01
+* Revert `html_inline` to `html_block` in legacy permalink. ([#98])
+
 ## [8.0.4] - 2021-06-25
 * Fix `level` option TypeScript type. ([#97])
 
@@ -167,7 +170,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.4...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.5...HEAD
+[8.0.5]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.4...v8.0.5
 [8.0.4]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.3...v8.0.4
 [8.0.3]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.2...v8.0.3
 [8.0.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.1...v8.0.2
@@ -244,3 +248,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#93]: https://github.com/valeriangalliat/markdown-it-anchor/pull/93
 [#95]: https://github.com/valeriangalliat/markdown-it-anchor/pull/95
 [#97]: https://github.com/valeriangalliat/markdown-it-anchor/pull/97
+[#98]: https://github.com/valeriangalliat/markdown-it-anchor/issues/98
