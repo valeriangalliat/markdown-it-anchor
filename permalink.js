@@ -7,6 +7,10 @@ const position = {
   before: 'unshift'
 }
 
+const permalinkSymbolMeta = {
+  isPermalinkSymbol: true
+}
+
 export function legacy (slug, opts, state, idx) {
   if (!emittedWarning) {
     const warningText = 'Using deprecated markdown-it-anchor permalink option, see https://github.com/valeriangalliat/markdown-it-anchor#todo-anchor-or-file'
@@ -28,7 +32,7 @@ export function legacy (slug, opts, state, idx) {
         ...Object.entries(opts.permalinkAttrs(slug, state))
       ]
     }),
-    Object.assign(new state.Token('html_block', '', 0), { content: opts.permalinkSymbol }),
+    Object.assign(new state.Token('html_block', '', 0), { content: opts.permalinkSymbol, meta: permalinkSymbolMeta }),
     new state.Token('link_close', 'a', -1)
   ]
 
@@ -78,7 +82,7 @@ export const ariaHidden = makePermalink((slug, opts, anchorOpts, state, idx) => 
         ...Object.entries(opts.renderAttrs(slug, state))
       ]
     }),
-    Object.assign(new state.Token('html_inline', '', 0), { content: opts.symbol }),
+    Object.assign(new state.Token('html_inline', '', 0), { content: opts.symbol, meta: permalinkSymbolMeta }),
     new state.Token('link_close', 'a', -1)
   ]
 
@@ -161,6 +165,7 @@ export const linkAfterHeader = makePermalink((slug, opts, anchorOpts, state, idx
       }),
       Object.assign(new state.Token('html_inline', '', 0), {
         content: opts.symbol,
+        meta: permalinkSymbolMeta
       }),
       new state.Token('span_close', 'span', -1)
     )
@@ -168,6 +173,7 @@ export const linkAfterHeader = makePermalink((slug, opts, anchorOpts, state, idx
     subLinkTokens.push(
       Object.assign(new state.Token('html_inline', '', 0), {
         content: opts.symbol,
+        meta: permalinkSymbolMeta
       })
     )
   }

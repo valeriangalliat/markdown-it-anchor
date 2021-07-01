@@ -1,4 +1,4 @@
-const { strictEqual } = require('assert')
+const { strictEqual, deepStrictEqual } = require('assert')
 const md = require('markdown-it')
 const attrs = require('markdown-it-attrs')
 const anchor = require('./')
@@ -246,3 +246,26 @@ strictEqual(
   }).render('# H1'),
   '<h1 id="h1" tabindex="-1">H1</h1>\n<a class="header-anchor" href="#h1"><span aria-hidden="true">#</span><span class="visually-hidden">Permalink to “H1”</span></a>'
 )
+
+function dumpTokens (cb) {
+  return md => {
+    md.core.ruler.push('test', state => {
+      cb(state.tokens)
+    })
+  }
+}
+
+md().use(anchor, { permalink: true }).use(dumpTokens(tokens => {
+  // Ensure consistent legacy behaviour of `html_block`.
+  strictEqual(tokens[1].children[3].type, 'html_block')
+  strictEqual(tokens[1].children[3].content, '¶')
+
+  // Check proper meta is set.
+  deepStrictEqual(tokens[1].children[3].meta, { isPermalinkSymbol: true })
+})).render('# H1')
+
+md().use(anchor, { permalink: anchor.permalink.ariaHidden() }).use(dumpTokens(tokens => {
+  strictEqual(tokens[1].children[3].type, 'html_inline')
+  strictEqual(tokens[1].children[3].content, '#')
+  deepStrictEqual(tokens[1].children[3].meta, { isPermalinkSymbol: true })
+})).render('# H1')
