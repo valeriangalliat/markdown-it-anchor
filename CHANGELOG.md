@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.1.0] - 2021-07-01
+* Add `token.meta.isPermalinkSymbol` to help other plugins (e.g. TOC) to
+  identify and ignore permalink symbols. ([#99])
+
 ## [8.0.5] - 2021-07-01
 * Revert `html_inline` to `html_block` in legacy permalink. ([#98])
 
@@ -170,7 +174,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.5...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.0...HEAD
+[8.1.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.5...v8.1.0
 [8.0.5]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.4...v8.0.5
 [8.0.4]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.3...v8.0.4
 [8.0.3]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.2...v8.0.3
@@ -249,3 +254,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#95]: https://github.com/valeriangalliat/markdown-it-anchor/pull/95
 [#97]: https://github.com/valeriangalliat/markdown-it-anchor/pull/97
 [#98]: https://github.com/valeriangalliat/markdown-it-anchor/issues/98
+[#99]: https://github.com/valeriangalliat/markdown-it-anchor/pull/99
