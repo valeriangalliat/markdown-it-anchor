@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.1.2] - 2021-07-23
+* Fix `prepublish` script not being run on `npm publish` anymore.
+* Update the `dist` code.
+
 ## [8.1.1] - 2021-07-23
 * Fix `ReferenceError` with `process.emitWarning` in the browser. ([#102])
 
