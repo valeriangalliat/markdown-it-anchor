@@ -15,7 +15,7 @@ export function legacy (slug, opts, state, idx) {
   if (!emittedWarning) {
     const warningText = 'Using deprecated markdown-it-anchor permalink option, see https://github.com/valeriangalliat/markdown-it-anchor#todo-anchor-or-file'
 
-    if (process && process.emitWarning) {
+    if (typeof process === 'object' && process && process.emitWarning) {
       process.emitWarning(warningText)
     } else {
       console.warn(warningText)
