@@ -43,7 +43,7 @@ declare namespace anchor {
 
     callback?(token: Token, anchor_info: AnchorInfo): void;
 
-    tabIndex?: number;
+    tabIndex?: number | false;
   }
 
   export const permalink: {
