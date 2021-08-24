@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.1.3] - 2021-08-24
+* Fix `tabIndex` type. ([#103])
+
 ## [8.1.2] - 2021-07-23
 * Fix `prepublish` script not being run on `npm publish` anymore.
 * Update the `dist` code.
@@ -181,7 +184,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.1...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.3...HEAD
+[8.1.3]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.2...v8.1.3
+[8.1.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.1...v8.1.2
 [8.1.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.0...v8.1.1
 [8.1.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.5...v8.1.0
 [8.0.5]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.0.4...v8.0.5
@@ -264,3 +269,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#98]: https://github.com/valeriangalliat/markdown-it-anchor/issues/98
 [#99]: https://github.com/valeriangalliat/markdown-it-anchor/pull/99
 [#102]: https://github.com/valeriangalliat/markdown-it-anchor/pull/102
+[#103]: https://github.com/valeriangalliat/markdown-it-anchor/issues/103
