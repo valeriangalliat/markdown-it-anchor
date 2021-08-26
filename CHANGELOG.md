@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.2.0] - 2021-08-26
+* Introduce a `linkInsideHeader` permalink option, which is the closest
+  to the permalink in previous versions. ([#101])
+* Refactor tests using AVA.
+
 ## [8.1.3] - 2021-08-24
 * Fix `tabIndex` type. ([#103])
 
@@ -39,7 +44,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [8.0.0] - 2021-06-14
 * Set `tabindex="-1"` on headers. ([#85], [#86])
-* Include and document accessible permalink options. ([#82], [#89])
+* Change the way to configure a permalink, allowing for more accessible
+  choices. ([#82], [#89])
+* Show a deprecation warning for the old permalink option.
 
 ## [7.1.0] - 2021-03-06
 * Update TypeScript types. ([#83])
@@ -184,7 +191,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.3...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.2.0...HEAD
+[8.2.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.3...v8.2.0
 [8.1.3]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.2...v8.1.3
 [8.1.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.1...v8.1.2
 [8.1.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.0...v8.1.1
@@ -268,5 +276,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#97]: https://github.com/valeriangalliat/markdown-it-anchor/pull/97
 [#98]: https://github.com/valeriangalliat/markdown-it-anchor/issues/98
 [#99]: https://github.com/valeriangalliat/markdown-it-anchor/pull/99
+[#101]: https://github.com/valeriangalliat/markdown-it-anchor/issues/101
 [#102]: https://github.com/valeriangalliat/markdown-it-anchor/pull/102
 [#103]: https://github.com/valeriangalliat/markdown-it-anchor/issues/103
