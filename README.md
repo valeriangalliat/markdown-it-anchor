@@ -230,7 +230,8 @@ md.use(anchor, {
 
 By using a visually hidden element for the assistive text, we make sure
 that the assistive text can be picked up by translation services, as
-most of the popular translation services currently ignore `aria-label`.
+most of the popular translation services (including Google Translate)
+currently ignore `aria-label`.
 
 If you prefer an alternative method for the assistive text, see other
 styles:
@@ -295,9 +296,10 @@ accessibility issues.
 
 If you use a symbol like just `#` without adding any markup around,
 screen readers will read it as part of every heading (in the case of
-`#`, it could be read "pound" or "number sign") meaning that if you
-title is "my beautiful title", it will read "number sign my beautiful
-title" for example.
+`#`, it could be read "pound", "number" or "number sign") meaning that
+if you title is "my beautiful title", it will read "number sign my
+beautiful title" for example. For other common symbols, `🔗` is usually
+read as "link symbol" and `¶` as "pilcrow".
 
 Additionally, screen readers users commonly request the list of all
 links in the page, so they'll be flooded with "number sign, number sign,
@@ -324,8 +326,8 @@ const md = require('markdown-it')()
 md.use(anchor, {
   permalink: anchor.permalink.linkInsideHeader({
     symbol: `
-      <span aria-label="Link symbol" role="img">🔗</span>
       <span class="visually-hidden">Jump to heading</span>
+      <span aria-hidden="true">#</span>
     `,
     placement: 'before'
   })
@@ -335,20 +337,20 @@ md.use(anchor, {
 ```html
 <h2 id="title">
   <a class="header-anchor" href="#title">
-    <span aria-label="Link symbol" role="img">🔗</span>
     <span class="visually-hidden">Jump to heading</span>
+    <span aria-hidden="true">#</span>
   </a>
   Title
 </h2>
 ```
 
 While this example allows more accessible anchors with the same markup
-as previous versions of markdown-it-anchor, it's still not ideal.
-`aria-label` is known to be ignored by most translation tools (including
-Google Translate), and a generic assistive text like "jump to heading"
-is not very useful when listing the links in the page (which will read
-"jump to heading, jump to heading, jump to heading" for each of your
-permalinks).
+as previous versions of markdown-it-anchor, it's still not ideal. The
+assistive text for permalinks will be read as part of the heading when
+listing all the titles of the page, e.g. "jump to heading title 1, jump
+to heading title 2" and so on. Also that assistive text is not very
+useful when listing the links in the page (which will read "jump to
+heading, jump to heading, jump to heading" for each of your permalinks).
 
 ### ARIA hidden
 

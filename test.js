@@ -225,7 +225,7 @@ nest('permalink.linkInsideHeader', test => {
   })
 
   test('html', t => {
-    const symbol = '<span aria-label="Link symbol" role="img">🔗</span> <span class="visually-hidden">Jump to heading</span>'
+    const symbol = '<span class="visually-hidden">Jump to heading</span> <span aria-hidden="true">#</span>'
 
     t.is(
       md().use(anchor, {
