@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-anchor",
-  "version": "8.2.0",
+  "version": "8.3.0",
   "description": "Header anchors for markdown-it.",
   "source": "index.js",
   "main": "dist/markdownItAnchor.js",
