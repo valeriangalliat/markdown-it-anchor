@@ -114,7 +114,7 @@ See [`example.html`](example.html).
 ## Permalinks
 
 Version 8.0.0 completely reworked the way permalinks work in order to
-offer more accessible options out of the box.
+offer more accessible options out of the box. You can also [make your own permalink](#custom-permalink).
 
 Instead of a single default way of rendering permalinks (which used to
 have a poor UX on screen readers), we now have multiple styles of
@@ -382,6 +382,38 @@ While no experience might be arguably better than a bad experience, I
 would instead recommend using one of the above renderers to provide an
 accessible experience. My favorite one is the [header link](#header-link),
 which is also the simplest one.
+
+### Custom permalink
+
+If none of those options suit you, you can always make your own
+renderer! Take inspiration from [the code behind all permalinks](permalink.js).
+
+The signature of the function you pass in the `permalink` option is the
+following:
+
+```js
+function renderPermalink (slug, opts, state, idx) {}
+```
+
+Where `opts` are the markdown-it-anchor options, `state` is a
+markdown-it [`StateCore`](https://github.com/markdown-it/markdown-it)
+instance, and `idx` is the index of the `heading_open` token in the
+`state.tokens` array. That array contains [`Token`](https://markdown-it.github.io/markdown-it/#Token)
+objects.
+
+To make sense of the "token stream" and the way token objects are
+organized, you will probably want to read the [markdown-it design principles](https://github.com/markdown-it/markdown-it/blob/master/docs/architecture.md)
+page.
+
+This function can freely modify the token stream (`state.tokens`),
+usually around the given `idx`, to construct the anchor.
+
+Because of the way the token stream works, a `heading_open` token is
+usually followed by a `inline` token that contains the actual text (and
+inline markup) of the heading, and finally a `heading_close` token. This
+is why you'll see most built-in permalink renderers touch
+`state.tokens[idx + 1]`, because they update the contents of the
+`inline` token that follows a `heading_open`.
 
 ## Debugging
 
