@@ -21,6 +21,12 @@ declare namespace anchor {
     placement?: 'before' | 'after'
   }
 
+  export interface LinkInsideHeaderPermalinkOptions extends PermalinkOptions {
+    space?: boolean,
+    placement?: 'before' | 'after',
+    ariaHidden?: boolean
+  }
+
   export interface AriaHiddenPermalinkOptions extends PermalinkOptions {
     space?: boolean,
     placement?: 'before' | 'after'
@@ -49,6 +55,7 @@ declare namespace anchor {
   export const permalink: {
     headerLink: () => PermalinkGenerator
     linkAfterHeader: (opts: LinkAfterHeaderPermalinkOptions) => PermalinkGenerator
+    linkInsideHeader: (opts: LinkInsideHeaderPermalinkOptions) => PermalinkGenerator
     ariaHidden: (opts: AriaHiddenPermalinkOptions) => PermalinkGenerator
   };
 }
