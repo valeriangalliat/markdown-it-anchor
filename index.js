@@ -34,7 +34,9 @@ function anchor (md, opts) {
       ? isLevelSelectedArray(opts.level)
       : isLevelSelectedNumber(opts.level)
 
-    for (const token of tokens) {
+    for (let idx = 0; idx < tokens.length; idx++) {
+      const token = tokens[idx]
+
       if (token.type !== 'heading_open') {
         continue
       }
@@ -43,12 +45,8 @@ function anchor (md, opts) {
         continue
       }
 
-      // A permalink renderer could modify the `tokens` array so
-      // make sure to get the up-to-date index on each iteration.
-      const index = tokens.indexOf(token)
-
       // Aggregate the next token children text.
-      const title = tokens[index + 1]
+      const title = tokens[idx + 1]
         .children
         .filter(token => token.type === 'text' || token.type === 'code_inline')
         .reduce((acc, t) => acc + t.content, '')
@@ -68,12 +66,16 @@ function anchor (md, opts) {
       }
 
       if (typeof opts.permalink === 'function') {
-        opts.permalink(slug, opts, state, index)
+        opts.permalink(slug, opts, state, idx)
       } else if (opts.permalink) {
-        opts.renderPermalink(slug, opts, state, index)
+        opts.renderPermalink(slug, opts, state, idx)
       } else if (opts.renderPermalink && opts.renderPermalink !== permalink.legacy) {
-        opts.renderPermalink(slug, opts, state, index)
+        opts.renderPermalink(slug, opts, state, idx)
       }
+
+      // A permalink renderer could modify the `tokens` array so
+      // make sure to get the up-to-date index on each iteration.
+      idx = tokens.indexOf(token)
 
       if (opts.callback) {
         opts.callback(token, { slug, title })

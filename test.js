@@ -348,6 +348,30 @@ nest('permalink.linkAfterHeader', test => {
       '<h1 id="h1" tabindex="-1">H1</h1>\n<a class="header-anchor" href="#h1"><span aria-hidden="true">#</span><span class="visually-hidden">Permalink to “H1”</span></a>'
     )
   })
+
+  test('custom splice wrapper', t => {
+    const linkAfterHeader = anchor.permalink.linkAfterHeader({
+      style: 'visually-hidden',
+      assistiveText: title => `Permalink to “${title}”`,
+      visuallyHiddenClass: 'visually-hidden'
+    })
+
+    t.is(
+      md().use(anchor, {
+        permalink (slug, opts, state, idx) {
+          state.tokens.splice(idx, 0, Object.assign(new state.Token('div_open', 'div', 1), {
+            attrs: [['class', 'wrapper']],
+            block: true
+          }))
+
+          state.tokens.splice(idx + 4, 0, Object.assign(new state.Token('div_close', 'div', -1)))
+
+          linkAfterHeader(slug, opts, state, idx + 1)
+        }
+      }).render('# H1'),
+      '<div class="wrapper">\n<h1 id="h1" tabindex="-1">H1</h1>\n<a class="header-anchor" href="#h1"><span class="visually-hidden">Permalink to “H1”</span> <span aria-hidden="true">#</span></a></div>'
+    )
+  })
 })
 
 nest('tokens', test => {

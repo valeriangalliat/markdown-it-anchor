@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.3.0] - 2021-08-26
+* Make core loop resilient to permalink renderers mutating the token
+  stream with `splice`. ([#100])
+
 ## [8.2.0] - 2021-08-26
 * Introduce a `linkInsideHeader` permalink option, which is the closest
   to the permalink in previous versions. ([#101])
@@ -191,7 +195,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.2.0...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.3.0...HEAD
+[8.3.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.2.0...v8.3.0
 [8.2.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.3...v8.2.0
 [8.1.3]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.2...v8.1.3
 [8.1.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.1...v8.1.2
@@ -276,6 +281,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#97]: https://github.com/valeriangalliat/markdown-it-anchor/pull/97
 [#98]: https://github.com/valeriangalliat/markdown-it-anchor/issues/98
 [#99]: https://github.com/valeriangalliat/markdown-it-anchor/pull/99
+[#100]: https://github.com/valeriangalliat/markdown-it-anchor/issues/100
 [#101]: https://github.com/valeriangalliat/markdown-it-anchor/issues/101
 [#102]: https://github.com/valeriangalliat/markdown-it-anchor/pull/102
 [#103]: https://github.com/valeriangalliat/markdown-it-anchor/issues/103
