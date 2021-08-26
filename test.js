@@ -364,12 +364,14 @@ nest('permalink.linkAfterHeader', test => {
             block: true
           }))
 
-          state.tokens.splice(idx + 4, 0, Object.assign(new state.Token('div_close', 'div', -1)))
+          state.tokens.splice(idx + 4, 0, Object.assign(new state.Token('div_close', 'div', -1), {
+            block: true
+          }))
 
           linkAfterHeader(slug, opts, state, idx + 1)
         }
       }).render('# H1'),
-      '<div class="wrapper">\n<h1 id="h1" tabindex="-1">H1</h1>\n<a class="header-anchor" href="#h1"><span class="visually-hidden">Permalink to “H1”</span> <span aria-hidden="true">#</span></a></div>'
+      '<div class="wrapper">\n<h1 id="h1" tabindex="-1">H1</h1>\n<a class="header-anchor" href="#h1"><span class="visually-hidden">Permalink to “H1”</span> <span aria-hidden="true">#</span></a></div>\n'
     )
   })
 })
