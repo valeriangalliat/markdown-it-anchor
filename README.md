@@ -130,8 +130,11 @@ md.use(anchor, {
 ```
 
 Here, `styleOfPermalink` is one of the available styles documented
-below, and `permalinkOpts` is an options object. All renderers share a
-common set of options:
+below, and `permalinkOpts` is an options object.
+
+<div id="common-options"></div>
+
+All renderers share a common set of options:
 
 | Name          | Description                                       | Default                            |
 |---------------|---------------------------------------------------|------------------------------------|
@@ -202,6 +205,7 @@ text from the visual experience.
 | `visuallyHiddenClass` | The class you use to make an element visually hidden.                                                     | `undefined`, required for `visually-hidden` style                   |
 | `space`               | Add a space between the assistive text and the permalink symbol.                                          | `true`                                                              |
 | `placement`           | Placement of the permalink symbol relative to the assistive text, can be `before` or `after` the header.  | `after`                                                             |
+|                       | See [common options](#common-options).                                                                    |                                                                     |
 
 ```js
 const anchor = require('markdown-it-anchor')
@@ -283,29 +287,79 @@ md.use(anchor, {
 
 </details>
 
+### Link inside header
+
+This is the equivalent of the default permalink in previous versions.
+The reason it's not the first one in the list is because this method has
+accessibility issues.
+
+If you use a symbol like just `#` without adding any markup around,
+screen readers will read it as part of every heading (in the case of
+`#`, it could be read "pound" or "number sign") meaning that if you
+title is "my beautiful title", it will read "number sign my beautiful
+title" for example.
+
+Additionally, screen readers users commonly request the list of all
+links in the page, so they'll be flooded with "number sign, number sign,
+number sign" for each of your headings.
+
+I would highly recommend using one of the markups above which have a
+better experience, but if you really want to use this markup, make sure
+to pass accessible HTML as `symbol` to make things usable, like in the
+example below, but even that has some flaws.
+
+With that said, this permalink allows the following options:
+
+| Name         | Description                                                                                                         | Default |
+|--------------|---------------------------------------------------------------------------------------------------------------------|---------|
+| `space`      | Add a space between the header text and the permalink symbol.                                                       | `true`  |
+| `placement`  | Placement of the permalink, can be `before` or `after` the header. This option used to be called `permalinkBefore`. | `after` |
+| `ariaHidden` | Whether to add `aria-hidden="true"`, see [ARIA hidden](#aria-hidden).                                               | `false` |
+|              | See [common options](#common-options).                                                                              |         |
+
+```js
+const anchor = require('markdown-it-anchor')
+const md = require('markdown-it')()
+
+md.use(anchor, {
+  permalink: anchor.permalink.linkInsideHeader({
+    symbol: `
+      <span aria-label="Link symbol" role="img">🔗</span>
+      <span class="visually-hidden">Jump to heading</span>
+    `,
+    placement: 'before'
+  })
+})
+```
+
+```html
+<h2 id="title">
+  <a class="header-anchor" href="#title">
+    <span aria-label="Link symbol" role="img">🔗</span>
+    <span class="visually-hidden">Jump to heading</span>
+  </a>
+  Title
+</h2>
+```
+
+While this example allows more accessible anchors with the same markup
+as previous versions of markdown-it-anchor, it's still not ideal.
+`aria-label` is known to be ignored by most translation tools (including
+Google Translate), and a generic assistive text like "jump to heading"
+is not very useful when listing the links in the page (which will read
+"jump to heading, jump to heading, jump to heading" for each of your
+permalinks).
+
 ### ARIA hidden
 
-This is the closest one to the old default permalink, and is similar to
-GitHub's way of rendering permalinks.
+This is just an alias for [`linkInsideHeader`](#link-inside-header) with
+`ariaHidden: true` by default, to mimic GitHub's way of rendering
+permalinks.
 
-It's the same markup as before with the addition of `aria-hidden="true"`
-to make that permalink explicitly inaccessible instead of having the
-permalink and its symbol being read by screen readers as part of every
-single headings (which was a pretty terrible experience).
-
-While no experience might be arguably better than a bad experience, I
-would instead recommend using one of the above renderers to provide an
-accessible experience. My favorite one is the [header link](#header-link),
-which is also the simplest one.
-
-If the `aria-hidden` style is still your way to go, it offers a number
-of options:
-
-| Name        | Description                                                                                                         | Default |
-|-------------|---------------------------------------------------------------------------------------------------------------------|---------|
-| `space`     | Add a space between the header text and the permalink symbol.                                                       | `true`  |
-| `placement` | Placement of the permalink, can be `before` or `after` the header. This option used to be called `permalinkBefore`. | `after` |
-
+Setting `aria-hidden="true"` makes the permalink explicitly inaccessible
+instead of having the permalink and its symbol being read by screen
+readers as part of every single headings (which was a pretty terrible
+experience).
 
 ```js
 const anchor = require('markdown-it-anchor')
@@ -321,6 +375,11 @@ md.use(anchor, {
 ```html
 <h2 id="title"><a class="header-anchor" href="#title" aria-hidden="true">#</a> Title</h2>
 ```
+
+While no experience might be arguably better than a bad experience, I
+would instead recommend using one of the above renderers to provide an
+accessible experience. My favorite one is the [header link](#header-link),
+which is also the simplest one.
 
 ## Debugging
 

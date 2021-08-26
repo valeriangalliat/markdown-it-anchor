@@ -58,27 +58,28 @@ const commonDefaults = {
   renderAttrs
 }
 
-export function makePermalink (wrappedRenderPermalink) {
+export function makePermalink (renderPermalinkImpl) {
   function renderPermalink (opts) {
     opts = Object.assign({}, renderPermalink.defaults, opts)
 
     return (slug, anchorOpts, state, idx) => {
-      return wrappedRenderPermalink(slug, opts, anchorOpts, state, idx)
+      return renderPermalinkImpl(slug, opts, anchorOpts, state, idx)
     }
   }
 
   renderPermalink.defaults = Object.assign({}, commonDefaults)
+  renderPermalink.renderPermalinkImpl = renderPermalinkImpl
 
   return renderPermalink
 }
 
-export const ariaHidden = makePermalink((slug, opts, anchorOpts, state, idx) => {
+export const linkInsideHeader = makePermalink((slug, opts, anchorOpts, state, idx) => {
   const linkTokens = [
     Object.assign(new state.Token('link_open', 'a', 1), {
       attrs: [
         ...(opts.class ? [['class', opts.class]] : []),
         ['href', opts.renderHref(slug, state)],
-        ['aria-hidden', 'true'],
+        ...(opts.ariaHidden ? [['aria-hidden', 'true']] : []),
         ...Object.entries(opts.renderAttrs(slug, state))
       ]
     }),
@@ -93,9 +94,16 @@ export const ariaHidden = makePermalink((slug, opts, anchorOpts, state, idx) => 
   state.tokens[idx + 1].children[position[opts.placement]](...linkTokens)
 })
 
-Object.assign(ariaHidden.defaults, {
+Object.assign(linkInsideHeader.defaults, {
   space: true,
-  placement: 'after'
+  placement: 'after',
+  ariaHidden: false
+})
+
+export const ariaHidden = makePermalink(linkInsideHeader.renderPermalinkImpl)
+
+ariaHidden.defaults = Object.assign({}, linkInsideHeader.defaults, {
+  ariaHidden: true
 })
 
 export const headerLink = makePermalink((slug, opts, anchorOpts, state, idx) => {

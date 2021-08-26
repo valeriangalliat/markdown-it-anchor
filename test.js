@@ -216,6 +216,29 @@ test('uniqueSlugStartIndex', t => {
   )
 })
 
+nest('permalink.linkInsideHeader', test => {
+  test('default', t => {
+    t.is(
+      md().use(anchor, { permalink: anchor.permalink.linkInsideHeader() }).render('# H1'),
+      '<h1 id="h1" tabindex="-1">H1 <a class="header-anchor" href="#h1">#</a></h1>\n'
+    )
+  })
+
+  test('html', t => {
+    const symbol = '<span aria-label="Link symbol" role="img">🔗</span> <span class="visually-hidden">Jump to heading</span>'
+
+    t.is(
+      md().use(anchor, {
+        permalink: anchor.permalink.linkInsideHeader({
+          symbol,
+          placement: 'before'
+        })
+      }).render('# H1'),
+      `<h1 id="h1" tabindex="-1"><a class="header-anchor" href="#h1">${symbol}</a> H1</h1>\n`
+    )
+  })
+})
+
 nest('permalink.ariaHidden', test => {
   test('default', t => {
     t.is(
