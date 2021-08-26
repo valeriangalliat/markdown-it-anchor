@@ -35,10 +35,11 @@
     "dev": "microbundle watch",
     "lint": "standard index.js test.js",
     "prepare": "npm run build && npm test",
-    "test": "npm run lint && node -r source-map-support/register test"
+    "test": "npm run lint && ava test.js"
   },
   "runkitExampleFilename": "runkit.js",
   "devDependencies": {
+    "ava": "^3.15.0",
     "markdown-it": "*",
     "markdown-it-attrs": "^3.0.1",
     "microbundle": "^0.12.0",
