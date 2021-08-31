@@ -107,6 +107,66 @@ Looking for an automatic table of contents (TOC) generator? Take a look at
 [markdown-it-toc-done-right](https://www.npmjs.com/package/markdown-it-toc-done-right)
 it's made from the ground to be a great companion of this plugin.
 
+## HTML headings
+
+markdown-it-anchor doesn't parse HTML blocks, so headings defined in
+HTML blocks will be ignored. If you need to add anchors to both HTML
+headings and Markdown headings, the easiest way would be to do it on the
+final HTML rather than during the Markdown parsing phase:
+
+```js
+const { parse } = require('node-html-parser')
+
+const root = parse(html)
+
+for (const h of root.querySelectorAll('h1, h2, h3, h4, h5, h6')) {
+  const slug = h.getAttribute('id') || slugify(h.textContent)
+  h.setAttribute('id', slug)
+  h.innerHTML = `<a href="#${slug}>${h.innerHTML}</a>`
+}
+
+console.log(root.toString())
+```
+
+Or with a (not accessible) GitHub-style anchor, replace the
+`h.innerHTML` part with:
+
+```js
+h.insertAdjacentHTML('afterbegin', `<a class="anchor" aria-hidden="true" href="#${slug}">🔗</a> `)
+```
+
+While this still needs extra work like handling duplicated slugs and
+IDs, this should give you a solid base.
+
+That said if you really want to use markdown-it-anchor for this even
+though it's not designed to, you can do like npm does with their
+[marky-markdown](https://github.com/npm/marky-markdown) parser, and
+[transform the `html_block` tokens](https://github.com/npm/marky-markdown/blob/master/lib/plugin/html-heading.js)
+into a sequence of `heading_open`, `inline`, and `heading_close` tokens
+that can be handled by markdown-it-anchor:
+
+```js
+const md = require('markdown-it')()
+  .use(require('@npmcorp/marky-markdown/lib/plugin/html-heading'))
+  .use(require('markdown-it-anchor'), opts)
+```
+
+While they use regexes to parse the HTML and it won't gracefully handle
+any arbitrary HTML, it should work okay for the happy path, which might
+be good enough for you.
+
+You might also want to check [this implementation](https://github.com/valeriangalliat/markdown-it-anchor/issues/105#issuecomment-907323858)
+which uses [Cheerio](https://www.npmjs.com/package/cheerio) for a more
+solid parsing, including support for HTML attributes.
+
+The only edge cases I see it failing with are multiple headings defined
+in the same HTML block with arbitrary content between them, or headings
+where the opening and closing tag are defined in separate `html_block`
+tokens, both which should very rarely happen.
+
+If you need a bulletproof implementation, I would recommend the first
+HTML parser approach I documented instead.
+
 ## Browser example
 
 See [`example.html`](example.html).
