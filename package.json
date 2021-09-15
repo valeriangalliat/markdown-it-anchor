@@ -48,5 +48,8 @@
   },
   "peerDependencies": {
     "markdown-it": "*"
+  },
+  "dependencies": {
+    "@types/markdown-it": "^12.2.1"
   }
 }
