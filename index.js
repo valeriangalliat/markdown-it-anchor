@@ -103,4 +103,11 @@ anchor.defaults = {
   permalinkAttrs: permalink.ariaHidden.defaults.renderAttrs
 }
 
+// Dirty hack to make `import anchor from 'markdown-it-anchor'` work with
+// TypeScript which doesn't support the `module` field of `package.json` and
+// will always get the CommonJS version which otherwise wouldn't have a
+// `default` key, resulting in markdown-it-anchor being undefined when being
+// imported that way.
+anchor.default = anchor
+
 export default anchor
