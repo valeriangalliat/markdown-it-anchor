@@ -226,6 +226,12 @@ implementing permalinks. This is also the style that I chose for my own
 [Web Almanac]: https://almanac.httparchive.org/en/2020/table-of-contents
 [blog]: https://www.codejam.info/
 
+
+| Name              | Description                                                           | Default                               |
+|-------------------|-----------------------------------------------------------------------|---------------------------------------|
+| `safariReaderFix` | Add a `span` inside the link so Safari shows headings in reader view. | `false` (for backwards compatibility) |
+|                   | See [common options](#common-options).                                |                                       |
+
 ```js
 const anchor = require('markdown-it-anchor')
 const md = require('markdown-it')()
@@ -245,7 +251,22 @@ headers. If you do, consider the other styles.
 Also note that this pattern [breaks reader mode in Safari](https://www.leereamsnyder.com/blog/making-headings-with-links-show-up-in-safari-reader),
 an issue you can also notice on the referenced websites above. This was
 already [reported to Apple](https://bugs.webkit.org/show_bug.cgi?id=225609#c2)
-but their bug tracker is not public.
+but their bug tracker is not public. In the meantime, a fix mentioned in
+the article above is to insert a `span` inside the link. You can use the
+`safariReaderFix` option to enable it.
+
+```js
+const anchor = require('markdown-it-anchor')
+const md = require('markdown-it')()
+
+md.use(anchor, {
+  permalink: anchor.permalink.headerLink({ safariReaderFix: true })
+})
+```
+
+```html
+<h2 id="title"><a class="header-anchor" href="#title"><span>Title</span></a></h2>
+```
 
 ### Link after header
 

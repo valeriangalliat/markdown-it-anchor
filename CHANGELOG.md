@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.4.0] - 2021-09-15
+* Add a fix for Safari reader view in `headerLink`. ([#107])
+
 ## [8.3.1] - 2021-09-15
 * Update TypeScript types to properly reflect the export style of
   `@types/markdown-it`. Also use `export default anchor` in type
@@ -204,7 +207,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.3.1...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.4.0...HEAD
+[8.4.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.3.1...v8.4.0
 [8.3.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.3.0...v8.3.1
 [8.3.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.2.0...v8.3.0
 [8.2.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.1.3...v8.2.0
@@ -296,5 +300,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#102]: https://github.com/valeriangalliat/markdown-it-anchor/pull/102
 [#103]: https://github.com/valeriangalliat/markdown-it-anchor/issues/103
 [#106]: https://github.com/valeriangalliat/markdown-it-anchor/pull/106
+[#107]: https://github.com/valeriangalliat/markdown-it-anchor/issues/107
 
 [`6fcc502`]: https://github.com/valeriangalliat/markdown-it-anchor/commit/6fcc50233d593458aa883e5b515cb8311114555c

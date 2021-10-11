@@ -115,13 +115,19 @@ export const headerLink = makePermalink((slug, opts, anchorOpts, state, idx) => 
         ...Object.entries(opts.renderAttrs(slug, state))
       ]
     }),
+    ...(opts.safariReaderFix ? [new state.Token('span_open', 'span', 1)] : []),
     ...state.tokens[idx + 1].children,
+    ...(opts.safariReaderFix ? [new state.Token('span_close', 'span', -1)] : []),
     new state.Token('link_close', 'a', -1)
   ]
 
   state.tokens[idx + 1] = Object.assign(new state.Token('inline', '', 0), {
     children: linkTokens
   })
+})
+
+Object.assign(headerLink.defaults, {
+  safariReaderFix: false
 })
 
 export const linkAfterHeader = makePermalink((slug, opts, anchorOpts, state, idx) => {

@@ -259,11 +259,20 @@ nest('permalink.ariaHidden', test => {
   })
 })
 
-test('permalink.headerLink', t => {
-  t.is(
-    md().use(anchor, { permalink: anchor.permalink.headerLink() }).render('# H1'),
-    '<h1 id="h1" tabindex="-1"><a class="header-anchor" href="#h1">H1</a></h1>\n'
-  )
+nest('permalink.headerLink', test => {
+  test('default', t => {
+    t.is(
+      md().use(anchor, { permalink: anchor.permalink.headerLink() }).render('# H1'),
+      '<h1 id="h1" tabindex="-1"><a class="header-anchor" href="#h1">H1</a></h1>\n'
+    )
+  })
+
+  test('Safari reader fix', t => {
+    t.is(
+      md().use(anchor, { permalink: anchor.permalink.headerLink({ safariReaderFix: true }) }).render('# H1'),
+      '<h1 id="h1" tabindex="-1"><a class="header-anchor" href="#h1"><span>H1</span></a></h1>\n'
+    )
+  })
 })
 
 nest('permalink.linkAfterHeader', test => {
