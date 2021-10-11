@@ -6,7 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [8.4.0] - 2021-09-15
+## [8.4.1] - 2021-10-11
+* Attempt to fix `npm publish` that didn't publish previous version.
+
+## [8.4.0] - 2021-10-11
 * Add a fix for Safari reader view in `headerLink`. ([#107])
 
 ## [8.3.1] - 2021-09-15
@@ -207,7 +210,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.4.0...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.4.1...HEAD
+[8.4.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.4.0...v8.4.1
 [8.4.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.3.1...v8.4.0
 [8.3.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.3.0...v8.3.1
 [8.3.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.2.0...v8.3.0
