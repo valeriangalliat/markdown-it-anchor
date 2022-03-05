@@ -2,14 +2,6 @@
   "name": "markdown-it-anchor",
   "version": "8.4.1",
   "description": "Header anchors for markdown-it.",
-  "source": "index.js",
-  "main": "dist/markdownItAnchor.js",
-  "module": "dist/markdownItAnchor.mjs",
-  "unpkg": "dist/markdownItAnchor.umd.js",
-  "mangle": {
-    "regex": "^_"
-  },
-  "types": "./types/index.d.ts",
   "keywords": [
     "markdown",
     "markdown-it",
@@ -17,8 +9,11 @@
     "header",
     "anchor"
   ],
-  "homepage": "https://github.com/valeriangalliat/markdown-it-anchor",
   "license": "Unlicense",
+  "contributors": [
+    "Val (https://val.codejam.info/)",
+    "Nagao, Fabio Zendhi <nagaozen@gmail.com> (https://github.com/nagaozen/)"
+  ],
   "files": [
     "README.md",
     "UNLICENSE",
@@ -26,10 +21,10 @@
     "runkit.js",
     "types/*"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/valeriangalliat/markdown-it-anchor.git"
-  },
+  "main": "dist/markdownItAnchor.js",
+  "module": "dist/markdownItAnchor.mjs",
+  "types": "./types/index.d.ts",
+  "repository": "valeriangalliat/markdown-it-anchor",
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch",
@@ -37,7 +32,6 @@
     "prepare": "npm run build && npm test",
     "test": "npm run lint && ava test.js"
   },
-  "runkitExampleFilename": "runkit.js",
   "devDependencies": {
     "ava": "^3.15.0",
     "markdown-it": "*",
@@ -47,7 +41,13 @@
     "standard": "^14.3.1"
   },
   "peerDependencies": {
-    "markdown-it": "*",
-    "@types/markdown-it": "*"
-  }
+    "@types/markdown-it": "*",
+    "markdown-it": "*"
+  },
+  "source": "index.js",
+  "unpkg": "dist/markdownItAnchor.umd.js",
+  "mangle": {
+    "regex": "^_"
+  },
+  "runkitExampleFilename": "runkit.js"
 }
