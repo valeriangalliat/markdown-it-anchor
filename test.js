@@ -383,6 +383,20 @@ nest('permalink.linkAfterHeader', test => {
       '<div class="wrapper">\n<h1 id="h1" tabindex="-1">H1</h1>\n<a class="header-anchor" href="#h1"><span class="visually-hidden">Permalink to “H1”</span> <span aria-hidden="true">#</span></a></div>\n'
     )
   })
+
+  test('custom native wrapper', t => {
+    t.is(
+      md().use(anchor, {
+        permalink: anchor.permalink.linkAfterHeader({
+          style: 'visually-hidden',
+          assistiveText: title => `Permalink to “${title}”`,
+          visuallyHiddenClass: 'visually-hidden',
+          wrapper: ['<div class="wrapper">', '</div>']
+        })
+      }).render('# H1'),
+      '<div class="wrapper">\n<h1 id="h1" tabindex="-1">H1</h1>\n<a class="header-anchor" href="#h1"><span class="visually-hidden">Permalink to “H1”</span> <span aria-hidden="true">#</span></a></div>\n'
+    )
+  })
 })
 
 nest('tokens', test => {

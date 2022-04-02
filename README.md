@@ -286,6 +286,7 @@ text from the visual experience.
 | `visuallyHiddenClass` | The class you use to make an element visually hidden.                                                     | `undefined`, required for `visually-hidden` style                   |
 | `space`               | Add a space between the assistive text and the permalink symbol.                                          | `true`                                                              |
 | `placement`           | Placement of the permalink symbol relative to the assistive text, can be `before` or `after` the header.  | `after`                                                             |
+| `wrapper`             | Opening and closing wrapper string, e.g. `['<div class="wrapper">', '</div>']`.                           | `null`                                                              |
 |                       | See [common options](#common-options).                                                                    |                                                                     |
 
 ```js
@@ -296,17 +297,20 @@ md.use(anchor, {
   permalink: anchor.permalink.linkAfterHeader({
     style: 'visually-hidden',
     assistiveText: title => `Permalink to “${title}”`,
-    visuallyHiddenClass: 'visually-hidden'
+    visuallyHiddenClass: 'visually-hidden',
+    wrapper: ['<div class="wrapper">', '</div>']
   })
 })
 ```
 
 ```html
-<h2 id="title">Title</h2>
-<a class="header-anchor" href="#title">
-  <span class="visually-hidden">Permalink to “Title”</span>
-  <span aria-hidden="true">#</span>
-</a>
+<div class="wrapper">
+  <h2 id="title">Title</h2>
+  <a class="header-anchor" href="#title">
+    <span class="visually-hidden">Permalink to “Title”</span>
+    <span aria-hidden="true">#</span>
+  </a>
+</div>
 ```
 
 By using a visually hidden element for the assistive text, we make sure
