@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+* Support wrapping output of `linkAfterHeader`. ([#100], [#110])
 
 ## [8.4.1] - 2021-10-11
 * Attempt to fix `npm publish` that didn't publish previous version.
@@ -305,5 +306,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#103]: https://github.com/valeriangalliat/markdown-it-anchor/issues/103
 [#106]: https://github.com/valeriangalliat/markdown-it-anchor/pull/106
 [#107]: https://github.com/valeriangalliat/markdown-it-anchor/issues/107
+[#110]: https://github.com/valeriangalliat/markdown-it-anchor/issues/110
 
 [`6fcc502`]: https://github.com/valeriangalliat/markdown-it-anchor/commit/6fcc50233d593458aa883e5b515cb8311114555c

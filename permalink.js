@@ -207,10 +207,21 @@ export const linkAfterHeader = makePermalink((slug, opts, anchorOpts, state, idx
   ]
 
   state.tokens.splice(idx + 3, 0, ...linkTokens)
+
+  if (opts.wrapper) {
+    state.tokens.splice(idx, 0, Object.assign(new state.Token('html_block', '', 0), {
+      content: opts.wrapper[0] + '\n'
+    }))
+
+    state.tokens.splice(idx + 3 + linkTokens.length + 1, 0, Object.assign(new state.Token('html_block', '', 0), {
+      content: opts.wrapper[1] + '\n'
+    }))
+  }
 })
 
 Object.assign(linkAfterHeader.defaults, {
   style: 'visually-hidden',
   space: true,
-  placement: 'after'
+  placement: 'after',
+  wrapper: null
 })
