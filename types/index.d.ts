@@ -13,6 +13,10 @@ declare namespace anchor {
     renderAttrs?: RenderAttrs
   }
 
+  export interface HeaderLinkPermalinkOptions extends PermalinkOptions {
+    safariReaderFix: boolean;
+  }
+
   export interface LinkAfterHeaderPermalinkOptions extends PermalinkOptions {
     style?: 'visually-hidden' | 'aria-label' | 'aria-describedby' | 'aria-labelledby',
     assistiveText?: (title: string) => string,
@@ -54,7 +58,7 @@ declare namespace anchor {
   }
 
   export const permalink: {
-    headerLink: () => PermalinkGenerator
+    headerLink: (opts: HeaderLinkPermalinkOptions) => PermalinkGenerator
     linkAfterHeader: (opts: LinkAfterHeaderPermalinkOptions) => PermalinkGenerator
     linkInsideHeader: (opts: LinkInsideHeaderPermalinkOptions) => PermalinkGenerator
     ariaHidden: (opts: AriaHiddenPermalinkOptions) => PermalinkGenerator
