@@ -17,15 +17,18 @@ See a [demo as JSFiddle](https://jsfiddle.net/9ukc8dy6/).
 
 The `opts` object can contain:
 
-| Name                   | Description                                                               | Default                    |
-|------------------------|---------------------------------------------------------------------------|----------------------------|
-| `level`                | Minimum level to apply anchors, or array of selected levels.              | 1                          |
-| `slugify`              | A custom slugification function.                                          | See [`index.js`](index.js) |
-| `uniqueSlugStartIndex` | Index to start with when making duplicate slugs unique.                   | 1                          |
-| `permalink`            | A function to render permalinks, see [permalinks] below.                  | `undefined`                |
-| `callback`             | Called with token and info after rendering.                               | `undefined`                |
-| `tabIndex`             | Value of the `tabindex` attribute on headings, set to `false` to disable. | `-1`                       |
+| Name                   | Description                                                               | Default                                 |
+|------------------------|---------------------------------------------------------------------------|-----------------------------------------|
+| `level`                | Minimum level to apply anchors, or array of selected levels.              | 1                                       |
+| `permalink`            | A function to render permalinks, see [permalinks] below.                  | `undefined`                             |
+| `slugify`              | A custom slugification function.                                          | See [`index.js`][index-slugify]         |
+| `callback`             | Called with token and info after rendering.                               | `undefined`                             |
+| `getTokensText`        | A custom function to get the text contents of the title from its tokens.  | See [`index.js`][index-get-tokens-text] |
+| `tabIndex`             | Value of the `tabindex` attribute on headings, set to `false` to disable. | `-1`                                    |
+| `uniqueSlugStartIndex` | Index to start with when making duplicate slugs unique.                   | 1                                       |
 
+[index-slugify]: https://github.com/valeriangalliat/markdown-it-anchor/blob/master/index.js#L3
+[index-get-tokens-text]: https://github.com/valeriangalliat/markdown-it-anchor/blob/master/index.js#L5
 [permalinks]: #permalinks
 
 All headers greater than the minimum `level` will have an `id` attribute
@@ -37,12 +40,15 @@ only level 2 and 3 headers.
 If a `permalink` renderer is given, it will be called for each matching header
 to add a permalink. See [permalinks] below.
 
+If a `slugify` function is given, you can decide how to transform a
+heading text to a URL slug. See [user-friendly URLs](#user-friendly-urls).
+
 The `callback` option is a function that will be called at the end of
 rendering with the `token` and an `info` object.  The `info` object has
 `title` and `slug` properties with the token content and the slug used
 for the identifier.
 
-Finally, we set by default [`tabindex="-1"`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex)
+We set by default [`tabindex="-1"`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex)
 on headers. This marks the headers as focusable elements that are not
 reachable by keyboard navigation. The effect is that screen readers will
 read the title content when it's being jumped to. Outside of screen
@@ -51,12 +57,15 @@ can override this behavior with the `tabIndex` option. Set it to `false`
 to remove the attribute altogether, otherwise the value will be used as
 attribute value.
 
+Finally, you can customize how the title text is extracted from the
+markdown-it tokens (to later generate the slug). See [user-friendly URLs](#user-friendly-urls).
+
 ## User-friendly URLs
 
 Starting from v5.0.0, markdown-it-anchor dropped the [`string`](https://github.com/jprichardson/string.js)
 package to retain our core value of being an impartial and secure
-library. Nevertheless, users looking for backward compatibility may want the old
-`slugify` function:
+library. Nevertheless, users looking for backward compatibility may want
+the old `slugify` function:
 
 ```sh
 npm install string
@@ -83,6 +92,32 @@ const slugify = require('@sindresorhus/slugify')
 const md = require('markdown-it')()
   .use(require('markdown-it-anchor'), { slugify: s => slugify(s) })
 ```
+
+Additionally, if you want to further customize the title that gets
+passed to the `slugify` function, you can do so by customizing the
+`getTokensText` function, that gets the plain text from a list of
+markdown-it inline tokens:
+
+```js
+function getTokensText (tokens) {
+  return tokens
+    .filter(token => !['html_inline', 'image'].includes(token.type))
+    .map(t => t.content)
+    .join('')
+}
+
+const md = require('markdown-it')()
+  .use(require('markdown-it-anchor'), { getTokensText })
+```
+
+By default we include only `text` and `code_inline` tokens, which
+appeared to be a sensible approach for the vast majority of use cases.
+
+An alternative approach is to include every token's content except for
+`html_inline` and `image` tokens, which yields the exact same results as
+the previous approach with a stock markdown-it, but would also include
+custom tokens added by any of your markdown-it plugins, which might or
+might not be desirable for you. Now you have the option!
 
 ## Explicit `id`s
 

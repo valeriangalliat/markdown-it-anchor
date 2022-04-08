@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.6.0] - 2021-04-08
+
+* Add a `getTokensText` option to customize how we extract the title
+  text from the heading tokens. ([#112])
+
 ## [8.5.0] - 2021-04-04
 * Support wrapping output of `linkAfterHeader`. ([#100], [#110])
 
@@ -213,7 +218,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.5.0...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.0...HEAD
+[8.6.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.5.0...v8.6.0
 [8.5.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.4.1...v8.5.0
 [8.4.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.4.0...v8.4.1
 [8.4.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.3.1...v8.4.0
@@ -310,5 +316,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#106]: https://github.com/valeriangalliat/markdown-it-anchor/pull/106
 [#107]: https://github.com/valeriangalliat/markdown-it-anchor/issues/107
 [#110]: https://github.com/valeriangalliat/markdown-it-anchor/issues/110
+[#112]: https://github.com/valeriangalliat/markdown-it-anchor/issues/112
 
 [`6fcc502`]: https://github.com/valeriangalliat/markdown-it-anchor/commit/6fcc50233d593458aa883e5b515cb8311114555c

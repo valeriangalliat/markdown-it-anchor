@@ -2,6 +2,13 @@ import * as permalink from './permalink'
 
 const slugify = (s) => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-'))
 
+function getTokensText (tokens) {
+  return tokens
+    .filter(t => ['text', 'code_inline'].includes(t.type))
+    .map(t => t.content)
+    .join('')
+}
+
 function uniqueSlug (slug, slugs, failOnNonUnique, startIndex) {
   let uniq = slug
   let i = startIndex
@@ -46,10 +53,7 @@ function anchor (md, opts) {
       }
 
       // Aggregate the next token children text.
-      const title = tokens[idx + 1]
-        .children
-        .filter(token => token.type === 'text' || token.type === 'code_inline')
-        .reduce((acc, t) => acc + t.content, '')
+      const title = opts.getTokensText(tokens[idx + 1].children)
 
       let slug = token.attrGet('id')
 
@@ -91,6 +95,7 @@ anchor.defaults = {
   slugify,
   uniqueSlugStartIndex: 1,
   tabIndex: '-1',
+  getTokensText,
 
   // Legacy options.
   permalink: false,

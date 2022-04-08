@@ -216,6 +216,22 @@ test('uniqueSlugStartIndex', t => {
   )
 })
 
+test('nested things', t => {
+  t.is(
+    md({ html: true }).use(anchor).render('# H1 [link](link) ![image](link) `code` ~~strike~~ _em_ **strong** <span>inline html</span>'),
+    '<h1 id="h1-link-code-strike-em-strong-inline-html" tabindex="-1">H1 <a href="link">link</a> <img src="link" alt="image"> <code>code</code> <s>strike</s> <em>em</em> <strong>strong</strong> <span>inline html</span></h1>\n'
+  )
+})
+
+test('getTokensText', t => {
+  t.is(
+    md().use(anchor, {
+      getTokensText: tokens => tokens.filter(t => ['text', 'image'].includes(t.type)).map(t => t.content).join('')
+    }).render('# H1 ![image](link) `code` _em_'),
+    '<h1 id="h1-image-em" tabindex="-1">H1 <img src="link" alt="image"> <code>code</code> <em>em</em></h1>\n'
+  )
+})
+
 nest('permalink.linkInsideHeader', test => {
   test('default', t => {
     t.is(
