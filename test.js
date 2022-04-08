@@ -240,6 +240,20 @@ nest('permalink.linkInsideHeader', test => {
     )
   })
 
+  test('no space', t => {
+    t.is(
+      md().use(anchor, { permalink: anchor.permalink.linkInsideHeader({ space: false }) }).render('# H1'),
+      '<h1 id="h1" tabindex="-1">H1<a class="header-anchor" href="#h1">#</a></h1>\n'
+    )
+  })
+
+  test('custom space', t => {
+    t.is(
+      md().use(anchor, { permalink: anchor.permalink.linkInsideHeader({ space: '&nbsp;' }) }).render('# H1'),
+      '<h1 id="h1" tabindex="-1">H1&nbsp;<a class="header-anchor" href="#h1">#</a></h1>\n'
+    )
+  })
+
   test('html', t => {
     const symbol = '<span class="visually-hidden">Jump to heading</span> <span aria-hidden="true">#</span>'
 

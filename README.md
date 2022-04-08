@@ -432,12 +432,12 @@ example below, but even that has some flaws.
 
 With that said, this permalink allows the following options:
 
-| Name         | Description                                                                                                         | Default |
-|--------------|---------------------------------------------------------------------------------------------------------------------|---------|
-| `space`      | Add a space between the header text and the permalink symbol.                                                       | `true`  |
-| `placement`  | Placement of the permalink, can be `before` or `after` the header. This option used to be called `permalinkBefore`. | `after` |
-| `ariaHidden` | Whether to add `aria-hidden="true"`, see [ARIA hidden](#aria-hidden).                                               | `false` |
-|              | See [common options](#common-options).                                                                              |         |
+| Name         | Description                                                                                                              | Default |
+|--------------|--------------------------------------------------------------------------------------------------------------------------|---------|
+| `space`      | Add a space between the header text and the permalink symbol. Set it to a string to customize the space (e.g. `&nbsp;`). | `true`  |
+| `placement`  | Placement of the permalink, can be `before` or `after` the header. This option used to be called `permalinkBefore`.      | `after` |
+| `ariaHidden` | Whether to add `aria-hidden="true"`, see [ARIA hidden](#aria-hidden).                                                    | `false` |
+|              | See [common options](#common-options).                                                                                   |         |
 
 ```js
 const anchor = require('markdown-it-anchor')

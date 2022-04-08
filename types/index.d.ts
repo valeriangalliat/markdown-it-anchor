@@ -21,18 +21,18 @@ declare namespace anchor {
     style?: 'visually-hidden' | 'aria-label' | 'aria-describedby' | 'aria-labelledby',
     assistiveText?: (title: string) => string,
     visuallyHiddenClass?: string,
-    space?: boolean,
+    space?: boolean | string,
     placement?: 'before' | 'after'
   }
 
   export interface LinkInsideHeaderPermalinkOptions extends PermalinkOptions {
-    space?: boolean,
+    space?: boolean | string,
     placement?: 'before' | 'after',
     ariaHidden?: boolean
   }
 
   export interface AriaHiddenPermalinkOptions extends PermalinkOptions {
-    space?: boolean,
+    space?: boolean | string,
     placement?: 'before' | 'after'
   }
 

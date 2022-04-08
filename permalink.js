@@ -88,7 +88,9 @@ export const linkInsideHeader = makePermalink((slug, opts, anchorOpts, state, id
   ]
 
   if (opts.space) {
-    state.tokens[idx + 1].children[position[opts.placement]](Object.assign(new state.Token('text', '', 0), { content: ' ' }))
+    const space = typeof opts.space === 'string' ? opts.space : ' '
+    const type = typeof opts.space === 'string' ? 'html_inline' : 'text'
+    state.tokens[idx + 1].children[position[opts.placement]](Object.assign(new state.Token(type, '', 0), { content: space }))
   }
 
   state.tokens[idx + 1].children[position[opts.placement]](...linkTokens)
@@ -170,7 +172,9 @@ export const linkAfterHeader = makePermalink((slug, opts, anchorOpts, state, idx
     )
 
     if (opts.space) {
-      subLinkTokens[position[opts.placement]](Object.assign(new state.Token('text', '', 0), { content: ' ' }))
+      const space = typeof opts.space === 'string' ? opts.space : ' '
+      const type = typeof opts.space === 'string' ? 'html_inline' : 'text'
+      subLinkTokens[position[opts.placement]](Object.assign(new state.Token(type, '', 0), { content: space }))
     }
 
     subLinkTokens[position[opts.placement]](
