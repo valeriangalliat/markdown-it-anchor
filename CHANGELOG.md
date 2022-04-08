@@ -7,7 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ## [8.6.0] - 2021-04-08
-
 * Add a `getTokensText` option to customize how we extract the title
   text from the heading tokens. ([#112])
 
