@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.6.2] - 2021-04-08
+* Fix types to reflect optional permalink arguments and properties. ([#114])
+
 ## [8.6.1] - 2021-04-08
 * Fix type for `headerLink` permalink options. ([#108])
 * Allow to customize the `space` text (e.g. using `&nbsp;`). ([#88])
@@ -221,7 +224,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.0...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.2...HEAD
+[8.6.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.1...v8.6.2
+[8.6.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.0...v8.6.1
 [8.6.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.5.0...v8.6.0
 [8.5.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.4.1...v8.5.0
 [8.4.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.4.0...v8.4.1
@@ -305,6 +310,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#83]: https://github.com/valeriangalliat/markdown-it-anchor/pull/83
 [#85]: https://github.com/valeriangalliat/markdown-it-anchor/issues/85
 [#86]: https://github.com/valeriangalliat/markdown-it-anchor/pull/86
+[#88]: https://github.com/valeriangalliat/markdown-it-anchor/issues/88
 [#89]: https://github.com/valeriangalliat/markdown-it-anchor/pull/89
 [#91]: https://github.com/valeriangalliat/markdown-it-anchor/pull/91
 [#93]: https://github.com/valeriangalliat/markdown-it-anchor/pull/93
@@ -318,7 +324,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#103]: https://github.com/valeriangalliat/markdown-it-anchor/issues/103
 [#106]: https://github.com/valeriangalliat/markdown-it-anchor/pull/106
 [#107]: https://github.com/valeriangalliat/markdown-it-anchor/issues/107
+[#108]: https://github.com/valeriangalliat/markdown-it-anchor/issues/108
 [#110]: https://github.com/valeriangalliat/markdown-it-anchor/issues/110
 [#112]: https://github.com/valeriangalliat/markdown-it-anchor/issues/112
+[#114]: https://github.com/valeriangalliat/markdown-it-anchor/pull/114
 
 [`6fcc502`]: https://github.com/valeriangalliat/markdown-it-anchor/commit/6fcc50233d593458aa883e5b515cb8311114555c
