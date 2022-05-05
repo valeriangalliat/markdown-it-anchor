@@ -36,7 +36,7 @@ declare namespace anchor {
     placement?: 'before' | 'after'
   }
 
-  export type PermalinkGenerator = (slug: string, opts: PermalinkOptions, state: State, index: number) => string;
+  export type PermalinkGenerator = (slug: string, opts: PermalinkOptions, state: State, index: number) => void;
 
   export interface AnchorInfo {
     slug: string;
