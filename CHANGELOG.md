@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.6.4] - 2021-05-11
+* Fix `linkAfterHeader` type to support `wrapper` tuple. ([#116])
+
 ## [8.6.3] - 2021-05-05
 * Fix permalink generator type to return `void` instead of `string`. ([#115])
 
@@ -227,7 +230,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.3...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.4...HEAD
+[8.6.4]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.3...v8.6.4
 [8.6.3]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.2...v8.6.3
 [8.6.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.1...v8.6.2
 [8.6.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.0...v8.6.1
@@ -333,5 +337,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#112]: https://github.com/valeriangalliat/markdown-it-anchor/issues/112
 [#114]: https://github.com/valeriangalliat/markdown-it-anchor/pull/114
 [#115]: https://github.com/valeriangalliat/markdown-it-anchor/issues/115
+[#116]: https://github.com/valeriangalliat/markdown-it-anchor/issues/116
 
 [`6fcc502`]: https://github.com/valeriangalliat/markdown-it-anchor/commit/6fcc50233d593458aa883e5b515cb8311114555c

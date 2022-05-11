@@ -23,6 +23,7 @@ declare namespace anchor {
     visuallyHiddenClass?: string,
     space?: boolean | string,
     placement?: 'before' | 'after'
+    wrapper?: [string, string] | null
   }
 
   export interface LinkInsideHeaderPermalinkOptions extends PermalinkOptions {
