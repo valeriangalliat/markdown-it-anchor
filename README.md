@@ -1,10 +1,35 @@
 # markdown-it-anchor [![npm version](http://img.shields.io/npm/v/markdown-it-anchor.svg?style=flat-square)](https://www.npmjs.org/package/markdown-it-anchor)
 
-> Header anchors for [markdown-it].
+> A markdown-it plugin that adds an `id` attribute to headings and
+> optionally permalinks.
 
 [markdown-it]: https://github.com/markdown-it/markdown-it
 
 English | [中文 (v7.0.1)](./README-zh_CN.md)
+
+## Overview
+
+This plugin adds an `id` attribute to headings, e.g. `## Foo` becomes
+`<h2 id="foo">Foo</h2>`.
+
+Optionally it can also include [permalinks](#permalinks), e.g.
+`<h2 id="foo"><a class="header-anchor" href="#foo">Foo</a></h2>`
+and a bunch of other variants!
+
+* [**Usage**](#usage)
+* [User-friendly URLs](#user-friendly-urls)
+* [Manually setting the `id` attribute](#manually-setting-the-id-attribute)
+* [Compatible table of contents plugin](#compatible-table-of-contents-plugin)
+* [Parsing headings from HTML blocks](#parsing-headings-from-html-blocks)
+* [Browser example](#browser-example)
+* [**Permalinks**](#permalinks)
+  * [Header link](#header-link)
+  * [Link after header](#link-after-header)
+  * [Link inside header](#link-inside-header)
+  * [ARIA hidden](#aria-hidden)
+  * [Custom permalink](#custom-permalink)
+* [Debugging](#debugging)
+* [Development](#development)
 
 ## Usage
 
@@ -119,7 +144,7 @@ the previous approach with a stock markdown-it, but would also include
 custom tokens added by any of your markdown-it plugins, which might or
 might not be desirable for you. Now you have the option!
 
-## Explicit `id`s
+## Manually setting the `id` attribute
 
 You might want to explicitly set the `id` attribute of your headings
 from the Markdown document, for example to keep them consistent across
@@ -136,13 +161,13 @@ Then you can do something like this:
 
 The anchor link will reuse the `id` that you explicitly defined.
 
-## Table of contents
+## Compatible table of contents plugin
 
 Looking for an automatic table of contents (TOC) generator? Take a look at
 [markdown-it-toc-done-right](https://www.npmjs.com/package/markdown-it-toc-done-right)
 it's made from the ground to be a great companion of this plugin.
 
-## HTML headings
+## Parsing headings from HTML blocks
 
 markdown-it-anchor doesn't parse HTML blocks, so headings defined in
 HTML blocks will be ignored. If you need to add anchors to both HTML
