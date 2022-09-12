@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.6.5] - 2022-09-12
+* Support native ESM modules with TypeScript. ([#118])
+
 ## [8.6.4] - 2021-05-11
 * Fix `linkAfterHeader` type to support `wrapper` tuple. ([#116])
 
@@ -230,7 +233,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.4...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.5...HEAD
+[8.6.5]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.4...v8.6.5
 [8.6.4]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.3...v8.6.4
 [8.6.3]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.2...v8.6.3
 [8.6.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.1...v8.6.2
@@ -338,5 +342,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#114]: https://github.com/valeriangalliat/markdown-it-anchor/pull/114
 [#115]: https://github.com/valeriangalliat/markdown-it-anchor/issues/115
 [#116]: https://github.com/valeriangalliat/markdown-it-anchor/issues/116
+[#118]: https://github.com/valeriangalliat/markdown-it-anchor/issues/118
 
 [`6fcc502`]: https://github.com/valeriangalliat/markdown-it-anchor/commit/6fcc50233d593458aa883e5b515cb8311114555c
