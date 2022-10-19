@@ -65,6 +65,8 @@ function anchor (md, opts) {
 
       token.attrSet('id', slug)
 
+      token.attrSet('target', opts.target)
+
       if (opts.tabIndex !== false) {
         token.attrSet('tabindex', `${opts.tabIndex}`)
       }
@@ -96,6 +98,7 @@ anchor.defaults = {
   uniqueSlugStartIndex: 1,
   tabIndex: '-1',
   getTokensText,
+  target: '_self',
 
   // Legacy options.
   permalink: false,

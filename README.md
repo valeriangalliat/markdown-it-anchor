@@ -51,6 +51,7 @@ The `opts` object can contain:
 | `getTokensText`        | A custom function to get the text contents of the title from its tokens.  | See [`index.js`][index-get-tokens-text] |
 | `tabIndex`             | Value of the `tabindex` attribute on headings, set to `false` to disable. | `-1`                                    |
 | `uniqueSlugStartIndex` | Index to start with when making duplicate slugs unique.                   | 1                                       |
+| `target`               | The Target attribute is used to specified where to open the link          | _self                                   |
 
 [index-slugify]: https://github.com/valeriangalliat/markdown-it-anchor/blob/master/index.js#L3
 [index-get-tokens-text]: https://github.com/valeriangalliat/markdown-it-anchor/blob/master/index.js#L5
@@ -81,6 +82,13 @@ readers, the experience is the same as not setting that attribute. You
 can override this behavior with the `tabIndex` option. Set it to `false`
 to remove the attribute altogether, otherwise the value will be used as
 attribute value.
+
+The anchor `target` Property is used to set or return the value of the target attribute of a link.
+- `_blank`: It opens the link in a new window.
+- `_self`: It is the default value. It opens the linked document in the same frame.
+- `_parent`: It opens the linked document in the parent frameset.
+- `_top`: It opens the linked document in the full body of the window.
+- `framename`: It opens the linked document in the named frame.
 
 Finally, you can customize how the title text is extracted from the
 markdown-it tokens (to later generate the slug). See [user-friendly URLs](#user-friendly-urls).
