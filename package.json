@@ -26,17 +26,17 @@
   "types": "./types/index.d.ts",
   "repository": "valeriangalliat/markdown-it-anchor",
   "scripts": {
-    "build": "microbundle",
+    "build": "microbundle --generateTypes false",
     "dev": "microbundle watch",
     "lint": "standard index.js test.js",
     "prepare": "npm run build && npm test",
     "test": "npm run lint && ava test.js"
   },
   "devDependencies": {
-    "ava": "^3.15.0",
+    "ava": "^5.1.0",
     "markdown-it": "*",
     "markdown-it-attrs": "^3.0.1",
-    "microbundle": "^0.15.0",
+    "microbundle": "^0.15.1",
     "source-map-support": "^0.5.19",
     "standard": "^14.3.1"
   },
