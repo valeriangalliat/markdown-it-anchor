@@ -13,7 +13,7 @@ const permalinkSymbolMeta = {
 
 export function legacy (slug, opts, state, idx) {
   if (!emittedWarning) {
-    const warningText = 'Using deprecated markdown-it-anchor permalink option, see https://github.com/valeriangalliat/markdown-it-anchor#todo-anchor-or-file'
+    const warningText = 'Using deprecated markdown-it-anchor permalink option, see https://github.com/valeriangalliat/markdown-it-anchor#permalinks'
 
     if (typeof process === 'object' && process && process.emitWarning) {
       process.emitWarning(warningText)

@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.6.7] - 2023-02-16
+* Fix link in deprecation warning. ([#123])
+
 ## [8.6.6] - 2022-12-18
 * `npm audit fix`. ([#121])
 
@@ -236,7 +239,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.6...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.7...HEAD
+[8.6.7]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.6...v8.6.7
 [8.6.6]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.5...v8.6.6
 [8.6.5]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.4...v8.6.5
 [8.6.4]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.3...v8.6.4
@@ -348,5 +352,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#116]: https://github.com/valeriangalliat/markdown-it-anchor/issues/116
 [#118]: https://github.com/valeriangalliat/markdown-it-anchor/issues/118
 [#121]: https://github.com/valeriangalliat/markdown-it-anchor/pull/121
+[#123]: https://github.com/valeriangalliat/markdown-it-anchor/issues/123
 
 [`6fcc502`]: https://github.com/valeriangalliat/markdown-it-anchor/commit/6fcc50233d593458aa883e5b515cb8311114555c
