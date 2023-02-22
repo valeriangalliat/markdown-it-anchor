@@ -232,6 +232,13 @@ test('getTokensText', t => {
   )
 })
 
+test('slugify', t => {
+	t.is(
+		md().use(anchor, { slugify: (title, env) => `${env.docId}-${title}` }).render('# bar', { docId: 'foo' }),
+		'<h1 id="foo-bar" tabindex="-1">bar</h1>\n'
+	)
+})
+
 nest('permalink.linkInsideHeader', test => {
   test('default', t => {
     t.is(
