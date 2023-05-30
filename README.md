@@ -182,7 +182,7 @@ const root = parse(html)
 for (const h of root.querySelectorAll('h1, h2, h3, h4, h5, h6')) {
   const slug = h.getAttribute('id') || slugify(h.textContent)
   h.setAttribute('id', slug)
-  h.innerHTML = `<a href="#${slug}>${h.innerHTML}</a>`
+  h.innerHTML = `<a href="#${slug}">${h.innerHTML}</a>`
 }
 
 console.log(root.toString())
