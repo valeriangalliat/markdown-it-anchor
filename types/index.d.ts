@@ -1,6 +1,6 @@
 import MarkdownIt = require('markdown-it');
-import Token = require('markdown-it/lib/token');
-import State = require('markdown-it/lib/rules_core/state_core');
+import Token from 'markdown-it/lib/token.mjs';
+import State from 'markdown-it/lib/rules_core/state_core.mjs';
 
 declare namespace anchor {
   export type RenderHref = (slug: string, state: State) => string;
