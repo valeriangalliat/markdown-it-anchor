@@ -35,10 +35,10 @@
   "devDependencies": {
     "ava": "^5.1.0",
     "markdown-it": "*",
-    "markdown-it-attrs": "^3.0.1",
+    "markdown-it-attrs": "^4.1.6",
     "microbundle": "^0.15.1",
     "source-map-support": "^0.5.19",
-    "standard": "^14.3.1"
+    "standard": "^17.1.0"
   },
   "peerDependencies": {
     "@types/markdown-it": "*",
