@@ -1,4 +1,4 @@
-import MarkdownIt = require('markdown-it');
+import MarkdownIt from 'markdown-it';
 import Token from 'markdown-it/lib/token.mjs';
 import State from 'markdown-it/lib/rules_core/state_core.mjs';
 
