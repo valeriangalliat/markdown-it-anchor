@@ -47,7 +47,7 @@ declare namespace anchor {
   export interface AnchorOptions {
     level?: number | number[];
 
-    slugify?(str: string): string;
+    slugify?(str: string, env: any): string;
     getTokensText?(tokens: Token[]): string;
 
     uniqueSlugStartIndex?: number;
