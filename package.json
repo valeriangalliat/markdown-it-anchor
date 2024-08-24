@@ -33,6 +33,7 @@
     "test": "npm run lint && ava test.js"
   },
   "devDependencies": {
+    "@sindresorhus/slugify": "^2.2.1",
     "ava": "^5.1.0",
     "markdown-it": "*",
     "markdown-it-attrs": "^4.1.6",

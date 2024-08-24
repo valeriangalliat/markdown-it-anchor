@@ -58,7 +58,13 @@ function anchor (md, opts) {
       let slug = token.attrGet('id')
 
       if (slug == null) {
-        slug = uniqueSlug(opts.slugify(title, state.env), slugs, false, opts.uniqueSlugStartIndex)
+        if (opts.slugifyWithState) {
+          slug = opts.slugifyWithState(title, state)
+        } else {
+          slug = opts.slugify(title)
+        }
+
+        slug = uniqueSlug(slug, slugs, false, opts.uniqueSlugStartIndex)
       } else {
         slug = uniqueSlug(slug, slugs, true, opts.uniqueSlugStartIndex)
       }
