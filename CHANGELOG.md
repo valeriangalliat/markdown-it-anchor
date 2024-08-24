@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.0.2] - 2024-08-24
+* Support duplicated `class` attributes. ([#133])
+
 ## [9.0.1] - 2024-05-17
 * Fix types following upgrade. ([#131])
 
@@ -245,7 +248,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.0.1...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.0.2...HEAD
+[9.0.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.0.1...v9.0.2
 [9.0.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.0.0...v9.0.1
 [9.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.7...v9.0.0
 [8.6.7]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v8.6.6...v8.6.7
@@ -364,5 +368,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#128]: https://github.com/valeriangalliat/markdown-it-anchor/issues/128
 [#129]: https://github.com/valeriangalliat/markdown-it-anchor/pull/129
 [#131]: https://github.com/valeriangalliat/markdown-it-anchor/pull/131
+[#133]: https://github.com/valeriangalliat/markdown-it-anchor/pull/133
 
 [`6fcc502`]: https://github.com/valeriangalliat/markdown-it-anchor/commit/6fcc50233d593458aa883e5b515cb8311114555c
