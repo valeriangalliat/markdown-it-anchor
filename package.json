@@ -27,7 +27,7 @@
   "repository": "valeriangalliat/markdown-it-anchor",
   "scripts": {
     "build": "microbundle --generateTypes false",
-    "dev": "microbundle watch",
+    "dev": "microbundle --generateTypes false watch",
     "lint": "standard index.js test.js",
     "prepare": "npm run build && npm test",
     "test": "npm run lint && ava test.js"
