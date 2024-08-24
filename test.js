@@ -267,6 +267,20 @@ nest('permalink.linkInsideHeader', test => {
       `<h1 id="h1" tabindex="-1"><a class="header-anchor" href="#h1">${symbol}</a> H1</h1>\n`
     )
   })
+
+  test('renderAttrs', t => {
+    t.is(
+      md().use(anchor, {
+        permalink: anchor.permalink.linkInsideHeader({
+          renderAttrs: () => ({
+            class: 'should-merge-class',
+            id: 'some-id'
+          })
+        })
+      }).render('# H1'),
+      '<h1 id="h1" tabindex="-1">H1 <a class="header-anchor should-merge-class" href="#h1" id="some-id">#</a></h1>\n'
+    )
+  })
 })
 
 nest('permalink.ariaHidden', test => {
