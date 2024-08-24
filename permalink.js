@@ -73,15 +73,31 @@ export function makePermalink (renderPermalinkImpl) {
   return renderPermalink
 }
 
+function mergeDuplicateClassAttrs(attrs) {
+  const classValues = [];
+  const mergedAttrs = attrs.filter(([key, value]) => {
+      if (key !== 'class') {
+        return true;
+      }
+      classValues.push(value);
+  });
+
+  if (classValues.length > 0) {
+      mergedAttrs.unshift(['class', classValues.join(' ')]);
+  }
+
+  return mergedAttrs;
+}
+
 export const linkInsideHeader = makePermalink((slug, opts, anchorOpts, state, idx) => {
   const linkTokens = [
     Object.assign(new state.Token('link_open', 'a', 1), {
-      attrs: [
+      attrs: mergeDuplicateClassAttrs([
         ...(opts.class ? [['class', opts.class]] : []),
         ['href', opts.renderHref(slug, state)],
         ...(opts.ariaHidden ? [['aria-hidden', 'true']] : []),
         ...Object.entries(opts.renderAttrs(slug, state))
-      ]
+      ])
     }),
     Object.assign(new state.Token('html_inline', '', 0), { content: opts.symbol, meta: permalinkSymbolMeta }),
     new state.Token('link_close', 'a', -1)
@@ -111,11 +127,11 @@ ariaHidden.defaults = Object.assign({}, linkInsideHeader.defaults, {
 export const headerLink = makePermalink((slug, opts, anchorOpts, state, idx) => {
   const linkTokens = [
     Object.assign(new state.Token('link_open', 'a', 1), {
-      attrs: [
+      attrs: mergeDuplicateClassAttrs([
         ...(opts.class ? [['class', opts.class]] : []),
         ['href', opts.renderHref(slug, state)],
         ...Object.entries(opts.renderAttrs(slug, state))
-      ]
+      ])
     }),
     ...(opts.safariReaderFix ? [new state.Token('span_open', 'span', 1)] : []),
     ...state.tokens[idx + 1].children,
@@ -204,7 +220,7 @@ export const linkAfterHeader = makePermalink((slug, opts, anchorOpts, state, idx
 
   const linkTokens = [
     Object.assign(new state.Token('link_open', 'a', 1), {
-      attrs: linkAttrs
+      attrs:  mergeDuplicateClassAttrs(linkAttrs)
     }),
     ...subLinkTokens,
     new state.Token('link_close', 'a', -1),
