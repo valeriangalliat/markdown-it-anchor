@@ -118,6 +118,8 @@ const md = require('markdown-it')()
   .use(require('markdown-it-anchor'), { slugify: s => slugify(s) })
 ```
 
+### Custimizing the slugify input
+
 Additionally, if you want to further customize the title that gets
 passed to the `slugify` function, you can do so by customizing the
 `getTokensText` function, that gets the plain text from a list of
@@ -143,6 +145,18 @@ An alternative approach is to include every token's content except for
 the previous approach with a stock markdown-it, but would also include
 custom tokens added by any of your markdown-it plugins, which might or
 might not be desirable for you. Now you have the option!
+
+### Slugifying with state
+
+If you need access to the markdown-it state from the slugify function,
+e.g. to access `state.env`, you can use `slugifyWithState` instead.
+
+```js
+const md = require('markdown-it')()
+  .use(require('markdown-it-anchor'), {
+    slugifyWithState: (title, state) => `${state.env.id}-${slugify(title)}`
+  })
+```
 
 ## Manually setting the `id` attribute
 

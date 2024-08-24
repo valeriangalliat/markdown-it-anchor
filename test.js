@@ -232,11 +232,20 @@ test('getTokensText', t => {
   )
 })
 
-test('slugify', t => {
-	t.is(
-		md().use(anchor, { slugify: (title, env) => `${env.docId}-${title}` }).render('# bar', { docId: 'foo' }),
-		'<h1 id="foo-bar" tabindex="-1">bar</h1>\n'
-	)
+test('slugify', async t => {
+  const slugify = (await import('@sindresorhus/slugify')).default
+
+  t.is(
+    md().use(anchor, { slugify }).render('# foo bar'),
+    '<h1 id="foo-bar" tabindex="-1">foo bar</h1>\n'
+  )
+})
+
+test('slugify with state', t => {
+  t.is(
+    md().use(anchor, { slugifyWithState: (title, state) => `${state.env.docId}-${title}` }).render('# bar', { docId: 'foo' }),
+    '<h1 id="foo-bar" tabindex="-1">bar</h1>\n'
+  )
 })
 
 nest('permalink.linkInsideHeader', test => {
