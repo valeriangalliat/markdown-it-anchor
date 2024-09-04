@@ -1,8 +1,10 @@
 import MarkdownIt from 'markdown-it';
-import Token from 'markdown-it/lib/token.mjs';
-import State from 'markdown-it/lib/rules_core/state_core.mjs';
+import Token as JSToken from 'markdown-it/lib/token.mjs';
+import State as JSState from 'markdown-it/lib/rules_core/state_core.mjs';
 
 declare namespace anchor {
+  export type Token = JSToken;
+  export type State = JSState;
   export type RenderHref = (slug: string, state: State) => string;
   export type RenderAttrs = (slug: string, state: State) => Record<string, string | number>;
 
