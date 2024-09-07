@@ -1,8 +1,12 @@
-import MarkdownIt, {StateCore, Token} from 'markdown-it';
+import MarkdownIt from 'markdown-it';
+import Token as JSToken from 'markdown-it/lib/token.mjs';
+import State as JSState from 'markdown-it/lib/rules_core/state_core.mjs';
 
 declare namespace anchor {
-  export type RenderHref = (slug: string, state: StateCore) => string;
-  export type RenderAttrs = (slug: string, state: StateCore) => Record<string, string | number>;
+  export type Token = JSToken;
+  export type State = JSState;
+  export type RenderHref = (slug: string, state: State) => string;
+  export type RenderAttrs = (slug: string, state: State) => Record<string, string | number>;
 
   export interface PermalinkOptions {
     class?: string,
@@ -35,7 +39,7 @@ declare namespace anchor {
     placement?: 'before' | 'after'
   }
 
-  export type PermalinkGenerator = (slug: string, opts: PermalinkOptions, state: StateCore, index: number) => void;
+  export type PermalinkGenerator = (slug: string, opts: PermalinkOptions, state: State, index: number) => void;
 
   export interface AnchorInfo {
     slug: string;
@@ -46,7 +50,7 @@ declare namespace anchor {
     level?: number | number[];
 
     slugify?(str: string): string;
-    slugifyWithStateCore?(str: string, state: StateCore): string;
+    slugifyWithState?(str: string, state: State): string;
     getTokensText?(tokens: Token[]): string;
 
     uniqueSlugStartIndex?: number;
