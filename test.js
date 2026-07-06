@@ -333,6 +333,17 @@ nest('permalink.headerLink', test => {
       '<h1 id="h1" tabindex="-1"><a class="header-anchor" href="#h1"><span>H1</span></a></h1>\n'
     )
   })
+
+  test('preserves inline token level', t => {
+    const instance = md().use(anchor, { permalink: anchor.permalink.headerLink() })
+    const tokens = instance.parse('## Heading\n', {})
+    const headingIdx = tokens.findIndex(token => token.type === 'heading_open')
+    const headingOpen = tokens[headingIdx]
+    const inline = tokens[headingIdx + 1]
+
+    t.is(inline.type, 'inline')
+    t.is(inline.level, headingOpen.level + 1)
+  })
 })
 
 nest('permalink.linkAfterHeader', test => {

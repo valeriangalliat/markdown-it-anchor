@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.2.1] - 2026-07-06
+* Preserve level of inline token in `headerLink`. ([#138])
+
 ## [9.2.0] - 2024-09-07
 * Re-export `Token` and `State` types from markdown-it. ([#135])
 
@@ -254,7 +257,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.2.0...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.2.1...HEAD
+[9.2.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.2.0...v9.2.1
 [9.2.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.1.0...v9.2.0
 [9.1.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.0.2...v9.1.0
 [9.0.2]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.0.1...v9.0.2
@@ -380,5 +384,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#133]: https://github.com/valeriangalliat/markdown-it-anchor/pull/133
 [#134]: https://github.com/valeriangalliat/markdown-it-anchor/pull/134
 [#135]: https://github.com/valeriangalliat/markdown-it-anchor/pull/135
+[#138]: https://github.com/valeriangalliat/markdown-it-anchor/issues/138
 
 [`6fcc502`]: https://github.com/valeriangalliat/markdown-it-anchor/commit/6fcc50233d593458aa883e5b515cb8311114555c

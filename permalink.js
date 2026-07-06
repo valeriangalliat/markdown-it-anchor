@@ -139,9 +139,7 @@ export const headerLink = makePermalink((slug, opts, anchorOpts, state, idx) => 
     new state.Token('link_close', 'a', -1)
   ]
 
-  state.tokens[idx + 1] = Object.assign(new state.Token('inline', '', 0), {
-    children: linkTokens
-  })
+  state.tokens[idx + 1].children = linkTokens
 })
 
 Object.assign(headerLink.defaults, {
