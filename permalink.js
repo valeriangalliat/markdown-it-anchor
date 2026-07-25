@@ -89,14 +89,24 @@ function mergeDuplicateClassAttrs(attrs) {
   return mergedAttrs;
 }
 
+function getTitle (state, idx) {
+  const title =
+    state.tokens[idx + 1]?.children
+      ?.filter((token) => ['text', 'code_inline'].includes(token.type))
+      .reduce((acc, t) => acc + t.content, '')
+      .trim() || ''
+  return title
+}
+
 export const linkInsideHeader = makePermalink((slug, opts, anchorOpts, state, idx) => {
+  const title = getTitle(state, idx);
   const linkTokens = [
     Object.assign(new state.Token('link_open', 'a', 1), {
       attrs: mergeDuplicateClassAttrs([
         ...(opts.class ? [['class', opts.class]] : []),
-        ['href', opts.renderHref(slug, state)],
+        ['href', opts.renderHref(slug, state, anchorOpts, idx, title)],
         ...(opts.ariaHidden ? [['aria-hidden', 'true']] : []),
-        ...Object.entries(opts.renderAttrs(slug, state))
+        ...Object.entries(opts.renderAttrs(slug, state, anchorOpts, idx, title))
       ])
     }),
     Object.assign(new state.Token('html_inline', '', 0), { content: opts.symbol, meta: permalinkSymbolMeta }),
@@ -125,12 +135,13 @@ ariaHidden.defaults = Object.assign({}, linkInsideHeader.defaults, {
 })
 
 export const headerLink = makePermalink((slug, opts, anchorOpts, state, idx) => {
+  const title = getTitle(state, idx);
   const linkTokens = [
     Object.assign(new state.Token('link_open', 'a', 1), {
       attrs: mergeDuplicateClassAttrs([
         ...(opts.class ? [['class', opts.class]] : []),
-        ['href', opts.renderHref(slug, state)],
-        ...Object.entries(opts.renderAttrs(slug, state))
+        ['href', opts.renderHref(slug, state, anchorOpts, idx, title)],
+        ...Object.entries(opts.renderAttrs(slug, state, anchorOpts, idx, title))
       ])
     }),
     ...(opts.safariReaderFix ? [new state.Token('span_open', 'span', 1)] : []),
@@ -171,8 +182,8 @@ export const linkAfterHeader = makePermalink((slug, opts, anchorOpts, state, idx
     linkAttrs.push(['class', opts.class])
   }
 
-  linkAttrs.push(['href', opts.renderHref(slug, state)])
-  linkAttrs.push(...Object.entries(opts.renderAttrs(slug, state)))
+  linkAttrs.push(['href', opts.renderHref(slug, state, anchorOpts, idx, title)])
+  linkAttrs.push(...Object.entries(opts.renderAttrs(slug, state, anchorOpts, idx, title)))
 
   if (opts.style === 'visually-hidden') {
     subLinkTokens.push(

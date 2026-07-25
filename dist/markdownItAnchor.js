@@ -70,10 +70,20 @@ function mergeDuplicateClassAttrs(attrs) {
   }
   return mergedAttrs;
 }
+function getTitle(state, idx) {
+  var _state$tokens;
+  var title = ((_state$tokens = state.tokens[idx + 1]) == null || (_state$tokens = _state$tokens.children) == null ? void 0 : _state$tokens.filter(function (token) {
+    return ['text', 'code_inline'].includes(token.type);
+  }).reduce(function (acc, t) {
+    return acc + t.content;
+  }, '').trim()) || '';
+  return title;
+}
 var linkInsideHeader = makePermalink(function (slug, opts, anchorOpts, state, idx) {
   var _state$tokens$childre2;
+  var title = getTitle(state, idx);
   var linkTokens = [Object.assign(new state.Token('link_open', 'a', 1), {
-    attrs: mergeDuplicateClassAttrs([].concat(opts["class"] ? [['class', opts["class"]]] : [], [['href', opts.renderHref(slug, state)]], opts.ariaHidden ? [['aria-hidden', 'true']] : [], Object.entries(opts.renderAttrs(slug, state))))
+    attrs: mergeDuplicateClassAttrs([].concat(opts["class"] ? [['class', opts["class"]]] : [], [['href', opts.renderHref(slug, state, anchorOpts, idx, title)]], opts.ariaHidden ? [['aria-hidden', 'true']] : [], Object.entries(opts.renderAttrs(slug, state, anchorOpts, idx, title))))
   }), Object.assign(new state.Token('html_inline', '', 0), {
     content: opts.symbol,
     meta: permalinkSymbolMeta
@@ -97,8 +107,9 @@ ariaHidden.defaults = Object.assign({}, linkInsideHeader.defaults, {
   ariaHidden: true
 });
 var headerLink = makePermalink(function (slug, opts, anchorOpts, state, idx) {
+  var title = getTitle(state, idx);
   var linkTokens = [Object.assign(new state.Token('link_open', 'a', 1), {
-    attrs: mergeDuplicateClassAttrs([].concat(opts["class"] ? [['class', opts["class"]]] : [], [['href', opts.renderHref(slug, state)]], Object.entries(opts.renderAttrs(slug, state))))
+    attrs: mergeDuplicateClassAttrs([].concat(opts["class"] ? [['class', opts["class"]]] : [], [['href', opts.renderHref(slug, state, anchorOpts, idx, title)]], Object.entries(opts.renderAttrs(slug, state, anchorOpts, idx, title))))
   })].concat(opts.safariReaderFix ? [new state.Token('span_open', 'span', 1)] : [], state.tokens[idx + 1].children, opts.safariReaderFix ? [new state.Token('span_close', 'span', -1)] : [], [new state.Token('link_close', 'a', -1)]);
   state.tokens[idx + 1].children = linkTokens;
 });
@@ -106,7 +117,7 @@ Object.assign(headerLink.defaults, {
   safariReaderFix: false
 });
 var linkAfterHeader = makePermalink(function (slug, opts, anchorOpts, state, idx) {
-  var _state$tokens;
+  var _state$tokens2;
   if (!['visually-hidden', 'aria-label', 'aria-describedby', 'aria-labelledby'].includes(opts.style)) {
     throw new Error("`permalink.linkAfterHeader` called with unknown style option `" + opts.style + "`");
   }
@@ -126,8 +137,8 @@ var linkAfterHeader = makePermalink(function (slug, opts, anchorOpts, state, idx
   if (opts["class"]) {
     linkAttrs.push(['class', opts["class"]]);
   }
-  linkAttrs.push(['href', opts.renderHref(slug, state)]);
-  linkAttrs.push.apply(linkAttrs, Object.entries(opts.renderAttrs(slug, state)));
+  linkAttrs.push(['href', opts.renderHref(slug, state, anchorOpts, idx, title)]);
+  linkAttrs.push.apply(linkAttrs, Object.entries(opts.renderAttrs(slug, state, anchorOpts, idx, title)));
   if (opts.style === 'visually-hidden') {
     subLinkTokens.push(Object.assign(new state.Token('span_open', 'span', 1), {
       attrs: [['class', opts.visuallyHiddenClass]]
@@ -161,7 +172,7 @@ var linkAfterHeader = makePermalink(function (slug, opts, anchorOpts, state, idx
   var linkTokens = [Object.assign(new state.Token('link_open', 'a', 1), {
     attrs: mergeDuplicateClassAttrs(linkAttrs)
   })].concat(subLinkTokens, [new state.Token('link_close', 'a', -1)]);
-  (_state$tokens = state.tokens).splice.apply(_state$tokens, [idx + 3, 0].concat(linkTokens));
+  (_state$tokens2 = state.tokens).splice.apply(_state$tokens2, [idx + 3, 0].concat(linkTokens));
   if (opts.wrapper) {
     state.tokens.splice(idx, 0, Object.assign(new state.Token('html_block', '', 0), {
       content: opts.wrapper[0] + '\n'
@@ -225,7 +236,8 @@ var isLevelSelectedArray = function isLevelSelectedArray(selection) {
 function anchor(md, opts) {
   opts = Object.assign({}, anchor.defaults, opts);
   md.core.ruler.push('anchor', function (state) {
-    var slugs = {};
+    var _opts$slugs;
+    var slugs = (_opts$slugs = opts.slugs) != null ? _opts$slugs : {};
     var tokens = state.tokens;
     var isLevelSelected = Array.isArray(opts.level) ? isLevelSelectedArray(opts.level) : isLevelSelectedNumber(opts.level);
     for (var idx = 0; idx < tokens.length; idx++) {

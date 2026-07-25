@@ -5,8 +5,8 @@ import { default as MarkdownItState} from 'markdown-it/lib/rules_core/state_core
 declare namespace anchor {
   export type Token = MarkdownItToken
   export type State = MarkdownItState
-  export type RenderHref = (slug: string, state: State) => string;
-  export type RenderAttrs = (slug: string, state: State) => Record<string, string | number>;
+  export type RenderHref = (slug: string, state: State, opts: PermalinkOptions, index: number, title: string) => string;
+  export type RenderAttrs = (slug: string, state: State, opts: PermalinkOptions, index: number, title: string) => Record<string, string | number>;
 
   export interface PermalinkOptions {
     class?: string,
@@ -59,6 +59,8 @@ declare namespace anchor {
     callback?(token: Token, anchor_info: AnchorInfo): void;
 
     tabIndex?: number | false;
+
+    slugs?: Record<string, boolean>;
   }
 
   export const permalink: {

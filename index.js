@@ -34,7 +34,7 @@ function anchor (md, opts) {
   opts = Object.assign({}, anchor.defaults, opts)
 
   md.core.ruler.push('anchor', state => {
-    const slugs = {}
+    const slugs = opts.slugs ?? {}
     const tokens = state.tokens
 
     const isLevelSelected = Array.isArray(opts.level)
