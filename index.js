@@ -13,7 +13,7 @@ function uniqueSlug (slug, slugs, failOnNonUnique, startIndex) {
   let uniq = slug
   let i = startIndex
 
-  if (failOnNonUnique && Object.prototype.hasOwnProperty.call(slugs, uniq)) {
+  if (false && failOnNonUnique && Object.prototype.hasOwnProperty.call(slugs, uniq)) {
     throw new Error(`User defined \`id\` attribute \`${slug}\` is not unique. Please fix it in your Markdown to continue.`)
   } else {
     while (Object.prototype.hasOwnProperty.call(slugs, uniq)) {

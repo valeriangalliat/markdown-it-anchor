@@ -1,2 +1,280 @@
-let e=!1;const n={false:"push",true:"unshift",after:"push",before:"unshift"},t={isPermalinkSymbol:!0};function i(i,r,a,l){if(!e){const n="Using deprecated markdown-it-anchor permalink option, see https://github.com/valeriangalliat/markdown-it-anchor#permalinks";"object"==typeof process&&process&&process.emitWarning?process.emitWarning(n):console.warn(n),e=!0}const o=[Object.assign(new a.Token("link_open","a",1),{attrs:[...r.permalinkClass?[["class",r.permalinkClass]]:[],["href",r.permalinkHref(i,a)],...Object.entries(r.permalinkAttrs(i,a))]}),Object.assign(new a.Token("html_block","",0),{content:r.permalinkSymbol,meta:t}),new a.Token("link_close","a",-1)];r.permalinkSpace&&a.tokens[l+1].children[n[r.permalinkBefore]](Object.assign(new a.Token("text","",0),{content:" "})),a.tokens[l+1].children[n[r.permalinkBefore]](...o)}function r(e){return`#${e}`}function a(e){return{}}const l={class:"header-anchor",symbol:"#",renderHref:r,renderAttrs:a};function o(e){function n(t){return t=Object.assign({},n.defaults,t),(n,i,r,a)=>e(n,t,i,r,a)}return n.defaults=Object.assign({},l),n.renderPermalinkImpl=e,n}function s(e){const n=[],t=e.filter(([e,t])=>{if("class"!==e)return!0;n.push(t)});return n.length>0&&t.unshift(["class",n.join(" ")]),t}const c=o((e,i,r,a,l)=>{const o=[Object.assign(new a.Token("link_open","a",1),{attrs:s([...i.class?[["class",i.class]]:[],["href",i.renderHref(e,a)],...i.ariaHidden?[["aria-hidden","true"]]:[],...Object.entries(i.renderAttrs(e,a))])}),Object.assign(new a.Token("html_inline","",0),{content:i.symbol,meta:t}),new a.Token("link_close","a",-1)];if(i.space){const e="string"==typeof i.space?i.space:" ";a.tokens[l+1].children[n[i.placement]](Object.assign(new a.Token("string"==typeof i.space?"html_inline":"text","",0),{content:e}))}a.tokens[l+1].children[n[i.placement]](...o)});Object.assign(c.defaults,{space:!0,placement:"after",ariaHidden:!1});const d=o(c.renderPermalinkImpl);d.defaults=Object.assign({},c.defaults,{ariaHidden:!0});const p=o((e,n,t,i,r)=>{const a=[Object.assign(new i.Token("link_open","a",1),{attrs:s([...n.class?[["class",n.class]]:[],["href",n.renderHref(e,i)],...Object.entries(n.renderAttrs(e,i))])}),...n.safariReaderFix?[new i.Token("span_open","span",1)]:[],...i.tokens[r+1].children,...n.safariReaderFix?[new i.Token("span_close","span",-1)]:[],new i.Token("link_close","a",-1)];i.tokens[r+1].children=a});Object.assign(p.defaults,{safariReaderFix:!1});const b=o((e,i,r,a,l)=>{if(!["visually-hidden","aria-label","aria-describedby","aria-labelledby"].includes(i.style))throw new Error(`\`permalink.linkAfterHeader\` called with unknown style option \`${i.style}\``);if(!["aria-describedby","aria-labelledby"].includes(i.style)&&!i.assistiveText)throw new Error(`\`permalink.linkAfterHeader\` called without the \`assistiveText\` option in \`${i.style}\` style`);if("visually-hidden"===i.style&&!i.visuallyHiddenClass)throw new Error("`permalink.linkAfterHeader` called without the `visuallyHiddenClass` option in `visually-hidden` style");const o=a.tokens[l+1].children.filter(e=>"text"===e.type||"code_inline"===e.type).reduce((e,n)=>e+n.content,""),c=[],d=[];if(i.class&&d.push(["class",i.class]),d.push(["href",i.renderHref(e,a)]),d.push(...Object.entries(i.renderAttrs(e,a))),"visually-hidden"===i.style){if(c.push(Object.assign(new a.Token("span_open","span",1),{attrs:[["class",i.visuallyHiddenClass]]}),Object.assign(new a.Token("text","",0),{content:i.assistiveText(o)}),new a.Token("span_close","span",-1)),i.space){const e="string"==typeof i.space?i.space:" ";c[n[i.placement]](Object.assign(new a.Token("string"==typeof i.space?"html_inline":"text","",0),{content:e}))}c[n[i.placement]](Object.assign(new a.Token("span_open","span",1),{attrs:[["aria-hidden","true"]]}),Object.assign(new a.Token("html_inline","",0),{content:i.symbol,meta:t}),new a.Token("span_close","span",-1))}else c.push(Object.assign(new a.Token("html_inline","",0),{content:i.symbol,meta:t}));"aria-label"===i.style?d.push(["aria-label",i.assistiveText(o)]):["aria-describedby","aria-labelledby"].includes(i.style)&&d.push([i.style,e]);const p=[Object.assign(new a.Token("link_open","a",1),{attrs:s(d)}),...c,new a.Token("link_close","a",-1)];a.tokens.splice(l+3,0,...p),i.wrapper&&(a.tokens.splice(l,0,Object.assign(new a.Token("html_block","",0),{content:i.wrapper[0]+"\n"})),a.tokens.splice(l+3+p.length+1,0,Object.assign(new a.Token("html_block","",0),{content:i.wrapper[1]+"\n"})))});function f(e,n,t,i){let r=e,a=i;if(t&&Object.prototype.hasOwnProperty.call(n,r))throw new Error(`User defined \`id\` attribute \`${e}\` is not unique. Please fix it in your Markdown to continue.`);for(;Object.prototype.hasOwnProperty.call(n,r);)r=`${e}-${a}`,a+=1;return n[r]=!0,r}function u(e,n){n=Object.assign({},u.defaults,n),e.core.ruler.push("anchor",e=>{const t={},r=e.tokens,a=Array.isArray(n.level)?(l=n.level,e=>l.includes(e)):(e=>n=>n>=e)(n.level);var l;for(let l=0;l<r.length;l++){const o=r[l];if("heading_open"!==o.type)continue;if(!a(Number(o.tag.substr(1))))continue;const s=n.getTokensText(r[l+1].children);let c=o.attrGet("id");null==c?(c=n.slugifyWithState?n.slugifyWithState(s,e):n.slugify(s),c=f(c,t,!1,n.uniqueSlugStartIndex)):c=f(c,t,!0,n.uniqueSlugStartIndex),o.attrSet("id",c),!1!==n.tabIndex&&o.attrSet("tabindex",`${n.tabIndex}`),"function"==typeof n.permalink?n.permalink(c,n,e,l):(n.permalink||n.renderPermalink&&n.renderPermalink!==i)&&n.renderPermalink(c,n,e,l),l=r.indexOf(o),n.callback&&n.callback(o,{slug:c,title:s})}})}Object.assign(b.defaults,{style:"visually-hidden",space:!0,placement:"after",wrapper:null}),u.permalink={__proto__:null,legacy:i,renderHref:r,renderAttrs:a,makePermalink:o,linkInsideHeader:c,ariaHidden:d,headerLink:p,linkAfterHeader:b},u.defaults={level:1,slugify:e=>encodeURIComponent(String(e).trim().toLowerCase().replace(/\s+/g,"-")),uniqueSlugStartIndex:1,tabIndex:"-1",getTokensText:function(e){return e.filter(e=>["text","code_inline"].includes(e.type)).map(e=>e.content).join("")},permalink:!1,renderPermalink:i,permalinkClass:d.defaults.class,permalinkSpace:d.defaults.space,permalinkSymbol:"¶",permalinkBefore:"before"===d.defaults.placement,permalinkHref:d.defaults.renderHref,permalinkAttrs:d.defaults.renderAttrs},u.default=u;export{u as default};
+let emittedWarning = false;
+const position = {
+  false: 'push',
+  true: 'unshift',
+  after: 'push',
+  before: 'unshift'
+};
+const permalinkSymbolMeta = {
+  isPermalinkSymbol: true
+};
+function legacy(slug, opts, state, idx) {
+  if (!emittedWarning) {
+    const warningText = 'Using deprecated markdown-it-anchor permalink option, see https://github.com/valeriangalliat/markdown-it-anchor#permalinks';
+    if (typeof process === 'object' && process && process.emitWarning) {
+      process.emitWarning(warningText);
+    } else {
+      console.warn(warningText);
+    }
+    emittedWarning = true;
+  }
+  const linkTokens = [Object.assign(new state.Token('link_open', 'a', 1), {
+    attrs: [...(opts.permalinkClass ? [['class', opts.permalinkClass]] : []), ['href', opts.permalinkHref(slug, state)], ...Object.entries(opts.permalinkAttrs(slug, state))]
+  }), Object.assign(new state.Token('html_block', '', 0), {
+    content: opts.permalinkSymbol,
+    meta: permalinkSymbolMeta
+  }), new state.Token('link_close', 'a', -1)];
+  if (opts.permalinkSpace) {
+    state.tokens[idx + 1].children[position[opts.permalinkBefore]](Object.assign(new state.Token('text', '', 0), {
+      content: ' '
+    }));
+  }
+  state.tokens[idx + 1].children[position[opts.permalinkBefore]](...linkTokens);
+}
+function renderHref(slug) {
+  return `#${slug}`;
+}
+function renderAttrs(slug) {
+  return {};
+}
+const commonDefaults = {
+  class: 'header-anchor',
+  symbol: '#',
+  renderHref,
+  renderAttrs
+};
+function makePermalink(renderPermalinkImpl) {
+  function renderPermalink(opts) {
+    opts = Object.assign({}, renderPermalink.defaults, opts);
+    return (slug, anchorOpts, state, idx) => {
+      return renderPermalinkImpl(slug, opts, anchorOpts, state, idx);
+    };
+  }
+  renderPermalink.defaults = Object.assign({}, commonDefaults);
+  renderPermalink.renderPermalinkImpl = renderPermalinkImpl;
+  return renderPermalink;
+}
+function mergeDuplicateClassAttrs(attrs) {
+  const classValues = [];
+  const mergedAttrs = attrs.filter(([key, value]) => {
+    if (key !== 'class') {
+      return true;
+    }
+    classValues.push(value);
+  });
+  if (classValues.length > 0) {
+    mergedAttrs.unshift(['class', classValues.join(' ')]);
+  }
+  return mergedAttrs;
+}
+const linkInsideHeader = makePermalink((slug, opts, anchorOpts, state, idx) => {
+  const linkTokens = [Object.assign(new state.Token('link_open', 'a', 1), {
+    attrs: mergeDuplicateClassAttrs([...(opts.class ? [['class', opts.class]] : []), ['href', opts.renderHref(slug, state)], ...(opts.ariaHidden ? [['aria-hidden', 'true']] : []), ...Object.entries(opts.renderAttrs(slug, state))])
+  }), Object.assign(new state.Token('html_inline', '', 0), {
+    content: opts.symbol,
+    meta: permalinkSymbolMeta
+  }), new state.Token('link_close', 'a', -1)];
+  if (opts.space) {
+    const space = typeof opts.space === 'string' ? opts.space : ' ';
+    const type = typeof opts.space === 'string' ? 'html_inline' : 'text';
+    state.tokens[idx + 1].children[position[opts.placement]](Object.assign(new state.Token(type, '', 0), {
+      content: space
+    }));
+  }
+  state.tokens[idx + 1].children[position[opts.placement]](...linkTokens);
+});
+Object.assign(linkInsideHeader.defaults, {
+  space: true,
+  placement: 'after',
+  ariaHidden: false
+});
+const ariaHidden = makePermalink(linkInsideHeader.renderPermalinkImpl);
+ariaHidden.defaults = Object.assign({}, linkInsideHeader.defaults, {
+  ariaHidden: true
+});
+const headerLink = makePermalink((slug, opts, anchorOpts, state, idx) => {
+  const linkTokens = [Object.assign(new state.Token('link_open', 'a', 1), {
+    attrs: mergeDuplicateClassAttrs([...(opts.class ? [['class', opts.class]] : []), ['href', opts.renderHref(slug, state)], ...Object.entries(opts.renderAttrs(slug, state))])
+  }), ...(opts.safariReaderFix ? [new state.Token('span_open', 'span', 1)] : []), ...state.tokens[idx + 1].children, ...(opts.safariReaderFix ? [new state.Token('span_close', 'span', -1)] : []), new state.Token('link_close', 'a', -1)];
+  state.tokens[idx + 1].children = linkTokens;
+});
+Object.assign(headerLink.defaults, {
+  safariReaderFix: false
+});
+const linkAfterHeader = makePermalink((slug, opts, anchorOpts, state, idx) => {
+  if (!['visually-hidden', 'aria-label', 'aria-describedby', 'aria-labelledby'].includes(opts.style)) {
+    throw new Error(`\`permalink.linkAfterHeader\` called with unknown style option \`${opts.style}\``);
+  }
+  if (!['aria-describedby', 'aria-labelledby'].includes(opts.style) && !opts.assistiveText) {
+    throw new Error(`\`permalink.linkAfterHeader\` called without the \`assistiveText\` option in \`${opts.style}\` style`);
+  }
+  if (opts.style === 'visually-hidden' && !opts.visuallyHiddenClass) {
+    throw new Error('`permalink.linkAfterHeader` called without the `visuallyHiddenClass` option in `visually-hidden` style');
+  }
+  const title = state.tokens[idx + 1].children.filter(token => token.type === 'text' || token.type === 'code_inline').reduce((acc, t) => acc + t.content, '');
+  const subLinkTokens = [];
+  const linkAttrs = [];
+  if (opts.class) {
+    linkAttrs.push(['class', opts.class]);
+  }
+  linkAttrs.push(['href', opts.renderHref(slug, state)]);
+  linkAttrs.push(...Object.entries(opts.renderAttrs(slug, state)));
+  if (opts.style === 'visually-hidden') {
+    subLinkTokens.push(Object.assign(new state.Token('span_open', 'span', 1), {
+      attrs: [['class', opts.visuallyHiddenClass]]
+    }), Object.assign(new state.Token('text', '', 0), {
+      content: opts.assistiveText(title)
+    }), new state.Token('span_close', 'span', -1));
+    if (opts.space) {
+      const space = typeof opts.space === 'string' ? opts.space : ' ';
+      const type = typeof opts.space === 'string' ? 'html_inline' : 'text';
+      subLinkTokens[position[opts.placement]](Object.assign(new state.Token(type, '', 0), {
+        content: space
+      }));
+    }
+    subLinkTokens[position[opts.placement]](Object.assign(new state.Token('span_open', 'span', 1), {
+      attrs: [['aria-hidden', 'true']]
+    }), Object.assign(new state.Token('html_inline', '', 0), {
+      content: opts.symbol,
+      meta: permalinkSymbolMeta
+    }), new state.Token('span_close', 'span', -1));
+  } else {
+    subLinkTokens.push(Object.assign(new state.Token('html_inline', '', 0), {
+      content: opts.symbol,
+      meta: permalinkSymbolMeta
+    }));
+  }
+  if (opts.style === 'aria-label') {
+    linkAttrs.push(['aria-label', opts.assistiveText(title)]);
+  } else if (['aria-describedby', 'aria-labelledby'].includes(opts.style)) {
+    linkAttrs.push([opts.style, slug]);
+  }
+  const linkTokens = [Object.assign(new state.Token('link_open', 'a', 1), {
+    attrs: mergeDuplicateClassAttrs(linkAttrs)
+  }), ...subLinkTokens, new state.Token('link_close', 'a', -1)];
+  state.tokens.splice(idx + 3, 0, ...linkTokens);
+  if (opts.wrapper) {
+    state.tokens.splice(idx, 0, Object.assign(new state.Token('html_block', '', 0), {
+      content: opts.wrapper[0] + '\n'
+    }));
+    state.tokens.splice(idx + 3 + linkTokens.length + 1, 0, Object.assign(new state.Token('html_block', '', 0), {
+      content: opts.wrapper[1] + '\n'
+    }));
+  }
+});
+Object.assign(linkAfterHeader.defaults, {
+  style: 'visually-hidden',
+  space: true,
+  placement: 'after',
+  wrapper: null
+});
+
+var permalink = {
+  __proto__: null,
+  legacy: legacy,
+  renderHref: renderHref,
+  renderAttrs: renderAttrs,
+  makePermalink: makePermalink,
+  linkInsideHeader: linkInsideHeader,
+  ariaHidden: ariaHidden,
+  headerLink: headerLink,
+  linkAfterHeader: linkAfterHeader
+};
+
+const slugify = s => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-'));
+function getTokensText(tokens) {
+  return tokens.filter(t => ['text', 'code_inline'].includes(t.type)).map(t => t.content).join('');
+}
+function uniqueSlug(slug, slugs, failOnNonUnique, startIndex) {
+  let uniq = slug;
+  let i = startIndex;
+  {
+    while (Object.prototype.hasOwnProperty.call(slugs, uniq)) {
+      uniq = `${slug}-${i}`;
+      i += 1;
+    }
+  }
+  slugs[uniq] = true;
+  return uniq;
+}
+const isLevelSelectedNumber = selection => level => level >= selection;
+const isLevelSelectedArray = selection => level => selection.includes(level);
+function anchor(md, opts) {
+  opts = Object.assign({}, anchor.defaults, opts);
+  md.core.ruler.push('anchor', state => {
+    const slugs = {};
+    const tokens = state.tokens;
+    const isLevelSelected = Array.isArray(opts.level) ? isLevelSelectedArray(opts.level) : isLevelSelectedNumber(opts.level);
+    for (let idx = 0; idx < tokens.length; idx++) {
+      const token = tokens[idx];
+      if (token.type !== 'heading_open') {
+        continue;
+      }
+      if (!isLevelSelected(Number(token.tag.substr(1)))) {
+        continue;
+      }
+
+      // Aggregate the next token children text.
+      const title = opts.getTokensText(tokens[idx + 1].children);
+      let slug = token.attrGet('id');
+      if (slug == null) {
+        if (opts.slugifyWithState) {
+          slug = opts.slugifyWithState(title, state);
+        } else {
+          slug = opts.slugify(title);
+        }
+        slug = uniqueSlug(slug, slugs, false, opts.uniqueSlugStartIndex);
+      } else {
+        slug = uniqueSlug(slug, slugs, true, opts.uniqueSlugStartIndex);
+      }
+      token.attrSet('id', slug);
+      if (opts.tabIndex !== false) {
+        token.attrSet('tabindex', `${opts.tabIndex}`);
+      }
+      if (typeof opts.permalink === 'function') {
+        opts.permalink(slug, opts, state, idx);
+      } else if (opts.permalink) {
+        opts.renderPermalink(slug, opts, state, idx);
+      } else if (opts.renderPermalink && opts.renderPermalink !== legacy) {
+        opts.renderPermalink(slug, opts, state, idx);
+      }
+
+      // A permalink renderer could modify the `tokens` array so
+      // make sure to get the up-to-date index on each iteration.
+      idx = tokens.indexOf(token);
+      if (opts.callback) {
+        opts.callback(token, {
+          slug,
+          title
+        });
+      }
+    }
+  });
+}
+anchor.permalink = permalink;
+anchor.defaults = {
+  level: 1,
+  slugify,
+  uniqueSlugStartIndex: 1,
+  tabIndex: '-1',
+  getTokensText,
+  // Legacy options.
+  permalink: false,
+  renderPermalink: legacy,
+  permalinkClass: ariaHidden.defaults.class,
+  permalinkSpace: ariaHidden.defaults.space,
+  permalinkSymbol: '¶',
+  permalinkBefore: ariaHidden.defaults.placement === 'before',
+  permalinkHref: ariaHidden.defaults.renderHref,
+  permalinkAttrs: ariaHidden.defaults.renderAttrs
+};
+
+// Dirty hack to make `import anchor from 'markdown-it-anchor'` work with
+// TypeScript which doesn't support the `module` field of `package.json` and
+// will always get the CommonJS version which otherwise wouldn't have a
+// `default` key, resulting in markdown-it-anchor being undefined when being
+// imported that way.
+anchor.default = anchor;
+
+export { anchor as default };
 //# sourceMappingURL=markdownItAnchor.modern.mjs.map
