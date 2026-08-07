@@ -1,6 +1,6 @@
 import * as permalink from './permalink'
 
-const slugify = (s) => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-'))
+const slugify = (str) => str.toLowerCase().replaceAll(/[\p{P}\p{S}]/gu, " ").trim().replaceAll(/\s+/g, "-");
 
 function getTokensText (tokens) {
   return tokens
@@ -13,7 +13,7 @@ function uniqueSlug (slug, slugs, failOnNonUnique, startIndex) {
   let uniq = slug
   let i = startIndex
 
-  if (false && failOnNonUnique && Object.prototype.hasOwnProperty.call(slugs, uniq)) {
+  if (failOnNonUnique && Object.prototype.hasOwnProperty.call(slugs, uniq)) {
     throw new Error(`User defined \`id\` attribute \`${slug}\` is not unique. Please fix it in your Markdown to continue.`)
   } else {
     while (Object.prototype.hasOwnProperty.call(slugs, uniq)) {
@@ -66,7 +66,7 @@ function anchor (md, opts) {
 
         slug = uniqueSlug(slug, slugs, false, opts.uniqueSlugStartIndex)
       } else {
-        slug = uniqueSlug(slug, slugs, true, opts.uniqueSlugStartIndex)
+        slug = uniqueSlug(slug, slugs, opt.failOnNonUnique, opts.uniqueSlugStartIndex)
       }
 
       token.attrSet('id', slug)
@@ -102,6 +102,7 @@ anchor.defaults = {
   uniqueSlugStartIndex: 1,
   tabIndex: '-1',
   getTokensText,
+  failOnNonUnique: true,
 
   // Legacy options.
   permalink: false,
