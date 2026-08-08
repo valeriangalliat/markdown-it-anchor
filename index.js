@@ -1,6 +1,6 @@
 import * as permalink from './permalink'
 
-const slugify = (str) => str.toLowerCase().replaceAll(/[\p{P}\p{S}]/gu, " ").trim().replaceAll(/\s+/g, "-");
+const slugify = (s) => encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, '-'))
 
 function getTokensText (tokens) {
   return tokens
