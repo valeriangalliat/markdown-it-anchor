@@ -54,6 +54,46 @@ nest('makrdown-it-attrs', test => {
       'User defined `id` attribute `h1` is not unique. Please fix it in your Markdown to continue.'
     )
   })
+
+  test('allow id conflict user', t => {
+    t.is(
+      (() => {
+        try {
+          return md().use(attrs).use(anchor, { failOnNonUnique: false }).render('# H1 {id=bubblegum}\n\n## H2 {id=bubblegum}')
+        } catch (ex) {
+          return ex.message
+        }
+      })(),
+      '<h1 id="bubblegum" tabindex="-1">H1</h1>\n<h2 id="bubblegum-1" tabindex="-1">H2</h2>\n'
+    )
+  })
+
+  test('allow id conflict auto', t => {
+    t.is(
+      (() => {
+        try {
+          return md().use(attrs).use(anchor, { failOnNonUnique: false }).render('# H1\n\n## H2 {id=h1}')
+        } catch (ex) {
+          return ex.message
+        }
+      })(),
+      '<h1 id="h1" tabindex="-1">H1</h1>\n<h2 id="h1-1" tabindex="-1">H2</h2>\n'
+    )
+  })
+
+  test('shared slugs', t => {
+    t.is(
+      (() => {
+        const slugs = new Set(["h1"])
+        try {
+          return md().use(attrs).use(anchor, { slugs }).render('# H1\n\n## H1')
+        } catch (ex) {
+          return ex.message
+        }
+      })(),
+      '<h1 id="h1-1" tabindex="-1">H1</h1>\n<h2 id="h1-2" tabindex="-1">H1</h2>\n'
+    )
+  })
 })
 
 test('level number', t => {
