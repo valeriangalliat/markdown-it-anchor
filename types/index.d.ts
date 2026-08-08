@@ -61,7 +61,7 @@ declare namespace anchor {
     tabIndex?: number | false;
 
     failOnNonUnique?: boolean;
-    slugs?: Record<string, boolean>;
+    slugs?: Set<string>;
   }
 
   export const permalink: {

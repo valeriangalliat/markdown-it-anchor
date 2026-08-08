@@ -195,15 +195,15 @@ function getTokensText(tokens) {
 function uniqueSlug(slug, slugs, failOnNonUnique, startIndex) {
   let uniq = slug;
   let i = startIndex;
-  if (failOnNonUnique && Object.prototype.hasOwnProperty.call(slugs, uniq)) {
+  if (failOnNonUnique && slugs.has(uniq)) {
     throw new Error(`User defined \`id\` attribute \`${slug}\` is not unique. Please fix it in your Markdown to continue.`);
   } else {
-    while (Object.prototype.hasOwnProperty.call(slugs, uniq)) {
+    while (slugs.has(uniq)) {
       uniq = `${slug}-${i}`;
-      i += 1;
+      i++;
     }
   }
-  slugs[uniq] = true;
+  slugs.add(uniq);
   return uniq;
 }
 const isLevelSelectedNumber = selection => level => level >= selection;
@@ -212,7 +212,7 @@ function anchor(md, opts) {
   opts = Object.assign({}, anchor.defaults, opts);
   md.core.ruler.push('anchor', state => {
     var _opts$slugs;
-    const slugs = (_opts$slugs = opts.slugs) != null ? _opts$slugs : {};
+    const slugs = (_opts$slugs = opts.slugs) != null ? _opts$slugs : new Set();
     const tokens = state.tokens;
     const isLevelSelected = Array.isArray(opts.level) ? isLevelSelectedArray(opts.level) : isLevelSelectedNumber(opts.level);
     for (let idx = 0; idx < tokens.length; idx++) {
@@ -235,7 +235,7 @@ function anchor(md, opts) {
         }
         slug = uniqueSlug(slug, slugs, false, opts.uniqueSlugStartIndex);
       } else {
-        slug = uniqueSlug(slug, slugs, opt.failOnNonUnique, opts.uniqueSlugStartIndex);
+        slug = uniqueSlug(slug, slugs, opts.failOnNonUnique, opts.uniqueSlugStartIndex);
       }
       token.attrSet('id', slug);
       if (opts.tabIndex !== false) {
