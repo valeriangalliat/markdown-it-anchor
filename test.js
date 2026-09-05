@@ -262,6 +262,26 @@ test('slugify with state', t => {
   )
 })
 
+test('env markdownItAnchor pre-seed', t => {
+  t.is(
+    md().use(anchor).render('# H1\n\n## H1', { markdownItAnchor: { slugs: { h1: true } } }),
+    '<h1 id="h1-1" tabindex="-1">H1</h1>\n<h2 id="h1-2" tabindex="-1">H1</h2>\n'
+  )
+})
+
+test('env markdownItAnchor export', t => {
+  const env = {}
+  md().use(anchor).render('# H1\n\n## H2', env)
+  t.deepEqual(env.markdownItAnchor, { slugs: { h1: true, h2: true } })
+})
+
+test('env markdownItAnchor reuse across renders', t => {
+  const mdit = md().use(anchor)
+  const env = {}
+  t.is(mdit.render('# H1', env), '<h1 id="h1" tabindex="-1">H1</h1>\n')
+  t.is(mdit.render('# H1', env), '<h1 id="h1-1" tabindex="-1">H1</h1>\n')
+})
+
 nest('permalink.linkInsideHeader', test => {
   test('default', t => {
     t.is(

@@ -18,6 +18,7 @@ and a bunch of other variants!
 
 * [**Usage**](#usage)
 * [User-friendly URLs](#user-friendly-urls)
+* [Sharing the slug registry](#sharing-the-slug-registry)
 * [Manually setting the `id` attribute](#manually-setting-the-id-attribute)
 * [Compatible table of contents plugin](#compatible-table-of-contents-plugin)
 * [Parsing headings from HTML blocks](#parsing-headings-from-html-blocks)
@@ -157,6 +158,28 @@ const md = require('markdown-it')()
   .use(require('markdown-it-anchor'), {
     slugifyWithState: (title, state) => `${state.env.id}-${slugify(title)}`
   })
+```
+
+## Sharing the slug registry
+
+Used slugs are stored on `env.markdownItAnchor.slugs` (a `{ [slug]: true }`
+map). A later plugin loaded after this one can read the same object on
+`state.env.markdownItAnchor.slugs`.
+
+The map lives on `env`, so it is shared across `render()` calls that
+receive the same object. Pass one `env` when several Markdown sources
+make up a single HTML page; pass a new `env` (or omit it) per page.
+
+You can also pre-seed reserved IDs:
+
+```js
+const md = require('markdown-it')()
+  .use(require('markdown-it-anchor'))
+
+const env = { markdownItAnchor: { slugs: { h1: true } } }
+md.render('# H1', env)
+// <h1 id="h1-1">H1</h1>
+// env.markdownItAnchor.slugs === { h1: true, 'h1-1': true }
 ```
 
 ## Manually setting the `id` attribute
