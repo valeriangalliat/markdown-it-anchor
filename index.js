@@ -66,7 +66,7 @@ function anchor (md, opts) {
 
         slug = uniqueSlug(slug, slugs, false, opts.uniqueSlugStartIndex)
       } else {
-        slug = uniqueSlug(slug, slugs, true, opts.uniqueSlugStartIndex)
+        slug = uniqueSlug(slug, slugs, opts.failOnNonUnique, opts.uniqueSlugStartIndex)
       }
 
       token.attrSet('id', slug)
@@ -102,6 +102,7 @@ anchor.defaults = {
   uniqueSlugStartIndex: 1,
   tabIndex: '-1',
   getTokensText,
+  failOnNonUnique: true,
 
   // Legacy options.
   permalink: false,

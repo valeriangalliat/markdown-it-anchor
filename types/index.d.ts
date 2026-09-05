@@ -54,6 +54,7 @@ declare namespace anchor {
     getTokensText?(tokens: Token[]): string;
 
     uniqueSlugStartIndex?: number;
+    failOnNonUnique?: boolean;
     permalink?: PermalinkGenerator;
 
     callback?(token: Token, anchor_info: AnchorInfo): void;

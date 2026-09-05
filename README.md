@@ -51,6 +51,7 @@ The `opts` object can contain:
 | `getTokensText`        | A custom function to get the text contents of the title from its tokens.  | See [`index.js`][index-get-tokens-text] |
 | `tabIndex`             | Value of the `tabindex` attribute on headings, set to `false` to disable. | `-1`                                    |
 | `uniqueSlugStartIndex` | Index to start with when making duplicate slugs unique.                   | 1                                       |
+| `failOnNonUnique`      | Throw when an explicit heading `id` is not unique.                        | `true`                                  |
 
 [index-slugify]: https://github.com/valeriangalliat/markdown-it-anchor/blob/master/index.js#L3
 [index-get-tokens-text]: https://github.com/valeriangalliat/markdown-it-anchor/blob/master/index.js#L5
@@ -174,6 +175,13 @@ Then you can do something like this:
 ```
 
 The anchor link will reuse the `id` that you explicitly defined.
+
+If two headings use the same explicit `id`, this plugin throws. That is
+intentional: an explicit `id` is a permalink, and silently rewriting it
+to `foo-1` would break the URL. Set `failOnNonUnique: false` to suffix
+instead, which is useful when another plugin assigns IDs without
+checking uniqueness. Auto-generated IDs still suffix on collision
+regardless of this option.
 
 ## Compatible table of contents plugin
 
