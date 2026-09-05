@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [10.0.0] - 2026-09-04
+* Add a `failOnNonUnique` option to suffix duplicate explicit IDs
+  instead of throwing. ([#139], [#140])
+* Expose used slugs on `env.markdownItAnchor.slugs` for other plugins.
+  **Breaking:** the same `env` reused across `render` calls now shares
+  uniqueness. Pass a new `env` (or omit it) per document to keep the old
+  isolation. Reuse `env` when several Markdown sources make up one HTML
+  page. ([#139], [#140])
+
 ## [9.2.1] - 2026-07-06
 * Preserve level of inline token in `headerLink`. ([#138])
 
@@ -257,7 +266,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2015-03-18
 * Initial release.
 
-[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.2.1...HEAD
+[Unreleased]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v10.0.0...HEAD
+[10.0.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.2.1...v10.0.0
 [9.2.1]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.2.0...v9.2.1
 [9.2.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.1.0...v9.2.0
 [9.1.0]: https://github.com/valeriangalliat/markdown-it-anchor/compare/v9.0.2...v9.1.0
@@ -385,5 +395,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#134]: https://github.com/valeriangalliat/markdown-it-anchor/pull/134
 [#135]: https://github.com/valeriangalliat/markdown-it-anchor/pull/135
 [#138]: https://github.com/valeriangalliat/markdown-it-anchor/issues/138
+[#139]: https://github.com/valeriangalliat/markdown-it-anchor/issues/139
+[#140]: https://github.com/valeriangalliat/markdown-it-anchor/pull/140
 
 [`6fcc502`]: https://github.com/valeriangalliat/markdown-it-anchor/commit/6fcc50233d593458aa883e5b515cb8311114555c
