@@ -390,7 +390,7 @@ text from the visual experience.
 | `assistiveText`       | A function that takes the title and returns the assistive text.                                           | `undefined`, required for `visually-hidden` and `aria-label` styles |
 | `visuallyHiddenClass` | The class you use to make an element visually hidden.                                                     | `undefined`, required for `visually-hidden` style                   |
 | `space`               | Add a space between the assistive text and the permalink symbol.                                          | `true`                                                              |
-| `placement`           | Placement of the permalink symbol relative to the assistive text, can be `before` or `after` the header.  | `after`                                                             |
+| `placement`           | Placement of the permalink symbol relative to the assistive text, can be `before` or `after`.             | `after`                                                             |
 | `wrapper`             | Opening and closing wrapper string, e.g. `['<div class="wrapper">', '</div>']`.                           | `null`                                                              |
 |                       | See [common options](#common-options).                                                                    |                                                                     |
 
