@@ -1,4 +1,4 @@
-import MarkdownIt from 'markdown-it';
+import { type MarkdownIt } from 'markdown-it';
 import { default as MarkdownItToken } from 'markdown-it/lib/token.mjs';
 import { default as MarkdownItState} from 'markdown-it/lib/rules_core/state_core.mjs';
 

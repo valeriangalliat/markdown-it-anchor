@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-anchor",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "description": "Header anchors for markdown-it.",
   "keywords": [
     "markdown",
@@ -35,15 +35,14 @@
   "devDependencies": {
     "@sindresorhus/slugify": "^2.2.1",
     "ava": "^5.1.0",
-    "markdown-it": "*",
-    "markdown-it-attrs": "^4.1.6",
+    "markdown-it": "^15.0.0",
+    "markdown-it-attrs": "^5.0.0",
     "microbundle": "^0.15.1",
     "source-map-support": "^0.5.19",
     "standard": "^17.1.0"
   },
   "peerDependencies": {
-    "@types/markdown-it": "*",
-    "markdown-it": "*"
+    "markdown-it": "^15.0.0"
   },
   "source": "index.js",
   "unpkg": "dist/markdownItAnchor.umd.js",
