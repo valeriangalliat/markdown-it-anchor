@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "test": "tsc --noEmit --strict --skipLibCheck false --module NodeNext --moduleResolution NodeNext consumer.mts --typeRoots ./node_modules/@types"
+  },
+  "dependencies": {
+    "markdown-it": "^14.0.0",
+    "markdown-it-anchor": "file:../../..",
+    "@types/markdown-it": "^14.0.0",
+    "typescript": "~5.9.0"
+  }
+}

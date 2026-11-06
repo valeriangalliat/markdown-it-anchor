@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [10.1.0] - 2026-11-05
+* Support markdown-it 15. The `@types/markdown-it` peer dependency is now
+  optional; TypeScript users of markdown-it 14 and earlier should install it
+  explicitly. ([#141])
+
 ## [10.0.0] - 2026-09-04
 * Add a `failOnNonUnique` option to suffix duplicate explicit IDs
   instead of throwing. ([#139], [#140])
@@ -397,5 +402,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#138]: https://github.com/valeriangalliat/markdown-it-anchor/issues/138
 [#139]: https://github.com/valeriangalliat/markdown-it-anchor/issues/139
 [#140]: https://github.com/valeriangalliat/markdown-it-anchor/pull/140
+[#141]: https://github.com/valeriangalliat/markdown-it-anchor/pull/141
 
 [`6fcc502`]: https://github.com/valeriangalliat/markdown-it-anchor/commit/6fcc50233d593458aa883e5b515cb8311114555c

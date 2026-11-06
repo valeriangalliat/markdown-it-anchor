@@ -1,6 +1,8 @@
-import MarkdownIt from 'markdown-it';
-import { default as MarkdownItToken } from 'markdown-it/lib/token.mjs';
-import { default as MarkdownItState} from 'markdown-it/lib/rules_core/state_core.mjs';
+import MarkdownItConstructor from 'markdown-it';
+
+type MarkdownIt = InstanceType<typeof MarkdownItConstructor>;
+type MarkdownItState = InstanceType<MarkdownIt['core']['State']>;
+type MarkdownItToken = InstanceType<MarkdownItState['Token']>;
 
 declare namespace anchor {
   export type Token = MarkdownItToken

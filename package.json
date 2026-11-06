@@ -30,7 +30,8 @@
     "dev": "microbundle --generateTypes false watch",
     "lint": "standard index.js test.js",
     "prepare": "npm run build && npm test",
-    "test": "npm run lint && ava test.js"
+    "test": "npm run lint && ava test.js",
+    "test:types": "npm ci --ignore-scripts --install-links --prefix test/types/14 && npm test --prefix test/types/14 && npm ci --ignore-scripts --install-links --prefix test/types/15 && npm test --prefix test/types/15"
   },
   "devDependencies": {
     "@sindresorhus/slugify": "^2.2.1",
@@ -50,5 +51,10 @@
   "mangle": {
     "regex": "^_"
   },
-  "runkitExampleFilename": "runkit.js"
+  "runkitExampleFilename": "runkit.js",
+  "peerDependenciesMeta": {
+    "@types/markdown-it": {
+      "optional": true
+    }
+  }
 }
